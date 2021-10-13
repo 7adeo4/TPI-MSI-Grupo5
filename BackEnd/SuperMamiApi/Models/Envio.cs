@@ -26,8 +26,10 @@ namespace SuperMamiApi.Models
         public bool? EsTitular { get; set; }
         public int? IdUsuario { get; set; }
 
+        public virtual Barrio IdBarrioNavigation { get; set; }
         public virtual EmpresaTransporte IdEmpresaNavigation { get; set; }
         public virtual Estado IdEstadoNavigation { get; set; }
+        public virtual Usuario IdUsuarioNavigation { get; set; }
         public virtual ICollection<DetalleEnvio> DetalleEnvios { get; set; }
     }
 }

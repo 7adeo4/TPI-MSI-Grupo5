@@ -131,5 +131,7 @@ namespace SuperMamiApi.Controllers
             return resultado;
         }
     }
+
+    //dotnet ef dbcontext scaffold "User ID=prog3; Password=Admin1234;Server=localhost; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models 
 }
 
