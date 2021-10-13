@@ -9,6 +9,7 @@ namespace SuperMamiApi.Models
     {
         public Usuario()
         {
+            Envios = new HashSet<Envio>();
             Retiros = new HashSet<Retiro>();
         }
 
@@ -21,6 +22,7 @@ namespace SuperMamiApi.Models
         public string Contrasenia { get; set; }
 
         public virtual Role IdRolNavigation { get; set; }
+        public virtual ICollection<Envio> Envios { get; set; }
         public virtual ICollection<Retiro> Retiros { get; set; }
     }
 }
