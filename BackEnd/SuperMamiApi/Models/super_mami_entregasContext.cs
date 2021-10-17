@@ -27,6 +27,7 @@ namespace SuperMamiApi.Models
         public virtual DbSet<Retiro> Retiros { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Sucursale> Sucursales { get; set; }
+        public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public virtual DbSet<TipoEnvio> TipoEnvios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -34,7 +35,7 @@ namespace SuperMamiApi.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseNpgsql("User ID=prog3; Password=Admin1234;Server=localhost; Database=super_mami_entregas;Integrated Security=true;Pooling=true");
             }
         }
@@ -363,6 +364,22 @@ namespace SuperMamiApi.Models
                     .HasConstraintName("fk_sucursales_id_barrio");
             });
 
+            modelBuilder.Entity<TipoDocumento>(entity =>
+            {
+                entity.HasKey(e => e.IdTipoDocumento)
+                    .HasName("tipo_documento_pkey");
+
+                entity.ToTable("tipo_documento");
+
+                entity.Property(e => e.IdTipoDocumento)
+                    .HasColumnName("id_tipo_documento")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.TipoDocumento1)
+                    .HasMaxLength(50)
+                    .HasColumnName("tipo_documento");
+            });
+
             modelBuilder.Entity<TipoEnvio>(entity =>
             {
                 entity.HasKey(e => e.IdTipoEnvio)
@@ -412,9 +429,15 @@ namespace SuperMamiApi.Models
 
                 entity.Property(e => e.IdRol).HasColumnName("id_rol");
 
+                entity.Property(e => e.IdTipoDocumento).HasColumnName("id_tipo_documento");
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .HasColumnName("nombre");
+
+                entity.Property(e => e.NroDocumento)
+                    .HasMaxLength(50)
+                    .HasColumnName("nro_documento");
 
                 entity.Property(e => e.Telefono)
                     .HasMaxLength(50)
@@ -424,6 +447,11 @@ namespace SuperMamiApi.Models
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdRol)
                     .HasConstraintName("fk_usuarios_id_rol");
+
+                entity.HasOne(d => d.IdTipoDocumentoNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.IdTipoDocumento)
+                    .HasConstraintName("fk_usuarios_id_tipo_documento");
             });
 
             OnModelCreatingPartial(modelBuilder);
