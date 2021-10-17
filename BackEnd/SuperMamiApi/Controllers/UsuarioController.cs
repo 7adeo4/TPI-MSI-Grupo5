@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("Usuario/AltaUsuario/")]
+        [Route("Usuario/GetUsuario")]
         public ActionResult<ResultadoAPI> Get([FromBody] CommandBuscarUsuario usuario)
         {
             var resultado = new ResultadoAPI();
@@ -58,17 +58,17 @@ namespace SuperMamiApi.Controllers
                 resultado.CodigoError = 400;
                 return resultado;
             }
-
         }
 
-
         [HttpPost]
-        [Route("Socio/AltaSocio")]
-        public ActionResult<ResultadoAPI> AltaUsuario([FromBody] CommandAltaUsuarios comando)
+        [Route("Usuario/AltaUsuario")]
+        public ActionResult<ResultadoAPI> AltaUsuario([FromBody] CommandAltaUsuario comando)
         {
             ResultadoAPI resultado = new ResultadoAPI();
             Usuario u = new Usuario();
 
+            u.IdTipoDocumento = comando.IdTipoDocumento;
+            u.NroDocumento = comando.NroDocumento;
             u.Nombre = comando.Nombre;
             u.Apellido = comando.Apellido;
             u.Email = comando.Email;
@@ -78,6 +78,18 @@ namespace SuperMamiApi.Controllers
 
             try
             {
+                 if (u.IdTipoDocumento <= 0)
+                {
+                    resultado.Ok = false;
+                    resultado.Error = "Ese tipo de documento no existe";
+                    return resultado;
+                }
+                if (u.NroDocumento == "")
+                {
+                    resultado.Ok = false;
+                    resultado.Error = "Ingrese el nro de documento del usuario porfavor";
+                    return resultado;
+                }
                 if (u.Nombre == "")
                 {
                     resultado.Ok = false;
@@ -130,6 +142,67 @@ namespace SuperMamiApi.Controllers
             }
             return resultado;
         }
+
+        [HttpPut]
+        [Route("Usuario/UpdateUsuario")]
+        public ActionResult<ResultadoAPI> UpdateUsuario([FromBody] CommandUpdateUsuario comando)
+        {
+            ResultadoAPI resultado = new ResultadoAPI();
+            Usuario u = new Usuario();
+            if (u.Nombre == "")
+            {
+                resultado.Ok = false;
+                resultado.Error = "Ingrese el nombre del usuario porfavor";
+                return resultado;
+            }
+            if (u.Apellido == "")
+            {
+                resultado.Ok = false;
+                resultado.Error = "Ingrese el apellido del usuario porfavor";
+                return resultado;
+            }
+            if (u.Email == "")
+            {
+                resultado.Ok = false;
+                resultado.Error = "Ingrese el email del usuario porfavor";
+                return resultado;
+            }
+            if (u.Telefono == "")
+            {
+                resultado.Ok = false;
+                resultado.Error = "Ingrese un número válido para el usuario porfavor";
+                return resultado;
+            }
+            if (u.Contrasenia == "")
+            {
+                resultado.Ok = false;
+                resultado.Error = "Ingrese una contraseña válida";
+                return resultado;
+            }
+            var usu = db.Usuarios.Where(c => c.NroDocumento == comando.NroDocumento).FirstOrDefault();
+            if (usu != null)
+            {
+                usu.Nombre = comando.Nombre;
+                usu.Apellido = comando.Apellido;
+                usu.Email = comando.Email;
+                usu.Telefono = comando.Telefono;
+                usu.Contrasenia = comando.Contrasenia;
+                db.Usuarios.Update(usu);
+                db.SaveChanges();
+                resultado.Ok = true;
+                resultado.Return = db.Usuarios.ToList();
+                return resultado;
+            }
+            else
+            {
+                resultado.Ok = false;
+                resultado.CodigoError = 200;
+                resultado.Error = "Usuario no encontrado, revise el Documento";
+                return resultado;
+            }
+        }
     }
+
+    //dotnet ef dbcontext scaffold "User ID=prog3; Password=Admin1234;Server=localhost; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models 
 }
 

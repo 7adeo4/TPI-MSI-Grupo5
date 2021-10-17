@@ -27,6 +27,7 @@ namespace SuperMamiApi.Models
         public virtual DbSet<Retiro> Retiros { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Sucursale> Sucursales { get; set; }
+        public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
         public virtual DbSet<TipoEnvio> TipoEnvios { get; set; }
         public virtual DbSet<Usuario> Usuarios { get; set; }
 
@@ -50,7 +51,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("barrios");
 
-                entity.Property(e => e.IdBarrio).HasColumnName("id_barrio");
+                entity.Property(e => e.IdBarrio)
+                    .HasColumnName("id_barrio")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Barrio1)
                     .HasMaxLength(50)
@@ -64,7 +67,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("detalle_envio");
 
-                entity.Property(e => e.IdDetalleEnvio).HasColumnName("id_detalle_envio");
+                entity.Property(e => e.IdDetalleEnvio)
+                    .HasColumnName("id_detalle_envio")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.EsGratuito)
                     .HasColumnType("bit(1)")
@@ -91,7 +96,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("detalle_retiro");
 
-                entity.Property(e => e.IdDetalleRetiro).HasColumnName("id_detalle_retiro");
+                entity.Property(e => e.IdDetalleRetiro)
+                    .HasColumnName("id_detalle_retiro")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.IdRetiro).HasColumnName("id_retiro");
 
@@ -112,7 +119,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("empresa_transporte");
 
-                entity.Property(e => e.IdEmpresa).HasColumnName("id_empresa");
+                entity.Property(e => e.IdEmpresa)
+                    .HasColumnName("id_empresa")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Calle)
                     .HasMaxLength(50)
@@ -155,7 +164,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("envios");
 
-                entity.Property(e => e.IdEnvio).HasColumnName("id_envio");
+                entity.Property(e => e.IdEnvio)
+                    .HasColumnName("id_envio")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(50)
@@ -191,6 +202,11 @@ namespace SuperMamiApi.Models
 
                 entity.Property(e => e.Telefono).HasColumnName("telefono");
 
+                entity.HasOne(d => d.IdBarrioNavigation)
+                    .WithMany(p => p.Envios)
+                    .HasForeignKey(d => d.IdBarrio)
+                    .HasConstraintName("fk_envios_id_barrio");
+
                 entity.HasOne(d => d.IdEmpresaNavigation)
                     .WithMany(p => p.Envios)
                     .HasForeignKey(d => d.IdEmpresa)
@@ -200,16 +216,23 @@ namespace SuperMamiApi.Models
                     .WithMany(p => p.Envios)
                     .HasForeignKey(d => d.IdEstado)
                     .HasConstraintName("fk_envios_id_estado");
+
+                entity.HasOne(d => d.IdUsuarioNavigation)
+                    .WithMany(p => p.Envios)
+                    .HasForeignKey(d => d.IdUsuario)
+                    .HasConstraintName("fk_envios_id_usuario");
             });
 
             modelBuilder.Entity<Estado>(entity =>
             {
                 entity.HasKey(e => e.IdEstado)
-                    .HasName("estado_pkey");
+                    .HasName("estados_pkey");
 
-                entity.ToTable("estado");
+                entity.ToTable("estados");
 
-                entity.Property(e => e.IdEstado).HasColumnName("id_estado");
+                entity.Property(e => e.IdEstado)
+                    .HasColumnName("id_estado")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Estado1)
                     .HasMaxLength(30)
@@ -223,7 +246,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("liquidacion_envios");
 
-                entity.Property(e => e.IdLiquidacion).HasColumnName("id_liquidacion");
+                entity.Property(e => e.IdLiquidacion)
+                    .HasColumnName("id_liquidacion")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Fecha)
                     .HasColumnType("date")
@@ -246,7 +271,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("retiros");
 
-                entity.Property(e => e.IdRetiro).HasColumnName("id_retiro");
+                entity.Property(e => e.IdRetiro)
+                    .HasColumnName("id_retiro")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(50)
@@ -297,7 +324,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("roles");
 
-                entity.Property(e => e.IdRol).HasColumnName("id_rol");
+                entity.Property(e => e.IdRol)
+                    .HasColumnName("id_rol")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Rol)
                     .HasMaxLength(50)
@@ -311,7 +340,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("sucursales");
 
-                entity.Property(e => e.IdSucursal).HasColumnName("id_sucursal");
+                entity.Property(e => e.IdSucursal)
+                    .HasColumnName("id_sucursal")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.CodPostal)
                     .HasMaxLength(50)
@@ -333,6 +364,22 @@ namespace SuperMamiApi.Models
                     .HasConstraintName("fk_sucursales_id_barrio");
             });
 
+            modelBuilder.Entity<TipoDocumento>(entity =>
+            {
+                entity.HasKey(e => e.IdTipoDocumento)
+                    .HasName("tipo_documento_pkey");
+
+                entity.ToTable("tipo_documento");
+
+                entity.Property(e => e.IdTipoDocumento)
+                    .HasColumnName("id_tipo_documento")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.TipoDocumento1)
+                    .HasMaxLength(50)
+                    .HasColumnName("tipo_documento");
+            });
+
             modelBuilder.Entity<TipoEnvio>(entity =>
             {
                 entity.HasKey(e => e.IdTipoEnvio)
@@ -340,7 +387,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("tipo_envio");
 
-                entity.Property(e => e.IdTipoEnvio).HasColumnName("id_tipo_envio");
+                entity.Property(e => e.IdTipoEnvio)
+                    .HasColumnName("id_tipo_envio")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.CantidadBolsasMax).HasColumnName("cantidad_bolsas_max");
 
@@ -362,7 +411,9 @@ namespace SuperMamiApi.Models
 
                 entity.ToTable("usuarios");
 
-                entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
+                entity.Property(e => e.IdUsuario)
+                    .HasColumnName("id_usuario")
+                    .UseIdentityAlwaysColumn();
 
                 entity.Property(e => e.Apellido)
                     .HasMaxLength(50)
@@ -378,9 +429,15 @@ namespace SuperMamiApi.Models
 
                 entity.Property(e => e.IdRol).HasColumnName("id_rol");
 
+                entity.Property(e => e.IdTipoDocumento).HasColumnName("id_tipo_documento");
+
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .HasColumnName("nombre");
+
+                entity.Property(e => e.NroDocumento)
+                    .HasMaxLength(50)
+                    .HasColumnName("nro_documento");
 
                 entity.Property(e => e.Telefono)
                     .HasMaxLength(50)
@@ -390,6 +447,11 @@ namespace SuperMamiApi.Models
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdRol)
                     .HasConstraintName("fk_usuarios_id_rol");
+
+                entity.HasOne(d => d.IdTipoDocumentoNavigation)
+                    .WithMany(p => p.Usuarios)
+                    .HasForeignKey(d => d.IdTipoDocumento)
+                    .HasConstraintName("fk_usuarios_id_tipo_documento");
             });
 
             OnModelCreatingPartial(modelBuilder);
