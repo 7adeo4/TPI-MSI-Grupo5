@@ -14,6 +14,8 @@ namespace SuperMamiApi.Models
         }
 
         public int IdUsuario { get; set; }
+        public int? IdTipoDocumento { get; set; }
+        public string NroDocumento { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
@@ -22,6 +24,7 @@ namespace SuperMamiApi.Models
         public string Contrasenia { get; set; }
 
         public virtual Role IdRolNavigation { get; set; }
+        public virtual TipoDocumento IdTipoDocumentoNavigation { get; set; }
         public virtual ICollection<Envio> Envios { get; set; }
         public virtual ICollection<Retiro> Retiros { get; set; }
     }
