@@ -9,7 +9,6 @@ $("#submit").click(function () {
     let password = $("#password").val();
     
     insertUser(name,lastName, dni, typeDni, email, phone, rolUser, password);
-    
 });
 
 insertUser = (name, lastName, dni, typeDni, email, phone , rolUser, password) => {
@@ -40,5 +39,6 @@ insertUser = (name, lastName, dni, typeDni, email, phone , rolUser, password) =>
         error: function (error) {
             swal("Problemas en el servidor");
         },
+
     });
 }
