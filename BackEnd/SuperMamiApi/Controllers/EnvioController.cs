@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SuperMamiApi.Commands.UserCommands;
+using SuperMamiApi.Commands;
 using SuperMamiApi.Models;
 using SuperMamiApi.Resultados;
 using Microsoft.AspNetCore.Cors;
@@ -15,25 +15,25 @@ namespace SuperMamiApi.Controllers
 {
     [ApiController]
     [EnableCors("speMsi")]
-    public class UsuarioController : ControllerBase
+    public class EnvioController : ControllerBase
     {
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
-        private readonly ILogger<UsuarioController> _logger;
+        private readonly ILogger<EnvioController> _logger;
 
-        public UsuarioController(ILogger<UsuarioController> logger)
+        public EnvioController(ILogger<EnvioController> logger)
         {
             _logger = logger;
         }
 
         [HttpPost]
-        [Route("Usuario/GetUsuario")]
-        public ActionResult<ResultadoAPI> Get([FromBody] CommandBuscarUsuario usuario)
+        [Route("Envio/GetEnvio")]
+        public ActionResult<ResultadoAPI> Get([FromBody] CommandBuscarEnvio envio)
         {
             var resultado = new ResultadoAPI();
             try
             {
 
-                var alu = db.Usuarios.ToList().Where(c => c.IdUsuario == usuario.IdUsuario).FirstOrDefault();
+                var alu = db.Usuarios.ToList().Where(c => c.IdUsuario == envio.IdUsuario).FirstOrDefault();
                 if (alu != null)
                 {
                     resultado.Ok = true;
