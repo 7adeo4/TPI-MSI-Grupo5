@@ -20,5 +20,4 @@ form.addEventListener("submit", function (e) {
       } else {
         document.getElementById("alertName").remove()
       }
-    
 });

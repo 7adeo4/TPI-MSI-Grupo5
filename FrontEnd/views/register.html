@@ -23,6 +23,15 @@
             <span id="alertName"></span>
         </div>
         <div class="col-5 mb-3">
+            <label for="dni" class="form-label">Dni</label>
+            <input type="number" class="form-control" id="dni">
+            <span id="alertName"></span>
+        </div>
+        <div class="col-5 mb-3">
+            <label for="typeDni" class="form-label">Tipo de Dni</label>
+            <select id="typeDni" class="form-control"></select>
+        </div>
+        <div class="col-5 mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email">
         </div>
@@ -36,13 +45,7 @@
         </div>
         <div class="col-5 mb-3">
             <label for="rolUser" class="form-label">Rol del usuario</label>
-            <select id="rolUser" class="form-control">
-                <option value="seleccionar" selected>Selecciona un rol</option>
-                <option value="value2">Value 2</option>
-                <option value="value3">Value 3</option>
-                <option value="value3">Value 3</option>
-                <option value="value3">Value 3</option>
-            </select>
+            <select id="rolUser" class="form-control"></select>
         </div>
         <div class="mb-3 col-5">
             <label for="password" class="form-label">Contraseña</label>
@@ -59,7 +62,20 @@
         <button type="submit" class="btn btn-primary col-2">Registrarse</button>
         <a href="./login.html">¿Ya tienes cuenta?</a>
     </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"
+    ></script>
+    <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../js/validations.js"/>
-</body>
+    <script src="../js/connectionApi.js"></script>
+    </body>
 
 </html>
