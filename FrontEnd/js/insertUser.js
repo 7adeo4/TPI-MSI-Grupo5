@@ -40,5 +40,6 @@ insertUser = (name, lastName, dni, typeDni, email, phone , rolUser, password) =>
         error: function (error) {
             swal("Problemas en el servidor");
         },
+        
     });
 }
