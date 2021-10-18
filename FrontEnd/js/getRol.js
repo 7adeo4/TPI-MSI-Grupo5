@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $.ajax({
-      url: "https://localhost:5001/Deportes/ObtenerDeportes",
+      url: "https://localhost:5001/Rol/GetRol",
       type: "GET",
       dataType: "json",
       success: (result) => {

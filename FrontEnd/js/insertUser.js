@@ -14,19 +14,18 @@ $("#submit").click(function () {
 
 insertUser = (name, lastName, dni, typeDni, email, phone , rolUser, password) => {
     command = {
-        name: name,
-        lastName: lastName,
-        dni: dni,
-        calle: calle,
-        typeDni: parseInt(typeDni),
+        nombre: name,
+        apellido: lastName,
+        nroDocumento: dni,
+        idTipoDocumento: parseInt(typeDni),
         email: email,
-        phone: phone,
-        rolUser: parseInt(rolUser),
-        password: password,
+        telefono: phone,
+        idRol: parseInt(rolUser),
+        contrasenia: password,
     };
 
     $.ajax({
-        url: "https://localhost:5001/Socios/CrearSocio",
+        url: "https://localhost:5001/Usuario/AltaUsuario",
         type: "POST",
         dataType: "JSON",
         contentType: "application/json",
