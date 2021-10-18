@@ -5,13 +5,13 @@ $(document).ready(function () {
       dataType: "json",
       success: (result) => {
         if (result.ok) {
-          var html = "<option value=''>Seleccione un rol</option>";
-          $("#rolUser").append(html);
-          select = document.getElementById("rolUser");
+          var html = "<option value=''>Seleccione un tipo de DNI</option>";
+          $("#typeDni").append(html);
+          select = document.getElementById("typeDni");
           for (let i = 0; i < result.return.length; i++) {
             var option = document.createElement("option");
-            option.value = result.return[i].id_rol;
-            option.text = result.return[i].rol;
+            option.value = result.return[i].id_tipo_documento; 
+            option.text = result.return[i].tipo_documento;
             select.add(option);
           }
         } else {
@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
       },
       error: function (error) {
-        swal("Problemas al conseguir los roles");
+        swal("Problemas al conseguir los tipos de DNI");
       },
     });
   });
