@@ -10,7 +10,7 @@ $(document).ready(function () {
           select = document.getElementById("rolUser");
           for (let i = 0; i < result.return.length; i++) {
             var option = document.createElement("option");
-            option.value = result.return[i].id_rol;
+            option.value = result.return[i].idRol;
             option.text = result.return[i].rol;
             select.add(option);
           }

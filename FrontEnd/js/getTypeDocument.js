@@ -10,8 +10,8 @@ $(document).ready(function () {
           select = document.getElementById("typeDni");
           for (let i = 0; i < result.return.length; i++) {
             var option = document.createElement("option");
-            option.value = result.return[i].id_tipo_documento; 
-            option.text = result.return[i].tipo_documento;
+            option.value = result.return[i].idTipoDocumento; 
+            option.text = result.return[i].tipoDocumento1;
             select.add(option);
           }
         } else {
