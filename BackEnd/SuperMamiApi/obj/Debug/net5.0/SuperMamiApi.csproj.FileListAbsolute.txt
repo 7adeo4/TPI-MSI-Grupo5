@@ -40,3 +40,4 @@ C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\b
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
