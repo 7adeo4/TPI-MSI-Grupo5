@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace SuperMamiApi.Models
 {
-    public partial class Role
+    public partial class DocumentType
     {
-        public Role()
+        public DocumentType()
         {
             Users = new HashSet<User>();
         }
 
-        public int IdRol { get; set; }
-        public string Rol { get; set; }
+        public int IdDocumentType { get; set; }
+        public string DocumentType1 { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
     }

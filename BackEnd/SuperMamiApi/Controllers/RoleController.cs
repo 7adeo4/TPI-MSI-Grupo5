@@ -15,34 +15,34 @@ namespace SuperMamiApi.Controllers
 {
     [ApiController]
     [EnableCors("speMsi")]
-    public class TipoDocumentoController : ControllerBase
+    public class RoleController : ControllerBase
     {
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
-        private readonly ILogger<TipoDocumentoController> _logger;
+        private readonly ILogger<RoleController> _logger;
 
-        public TipoDocumentoController(ILogger<TipoDocumentoController> logger)
+        public RoleController(ILogger<RoleController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        [Route("TipoDocumento/GetTipoDocumento")]
-        public ActionResult<ResultadoAPI> GetTipoDocumento()
+        [Route("Role/GetRole")]
+        public ActionResult<ResultAPI> GetRole()
         {
-            var resultado = new ResultadoAPI();
+            var resultado = new ResultAPI();
             try
             {
                 resultado.Ok = true;
-                resultado.Return = db.TipoDocumentos.ToList();
-                resultado.InfoAdicional = "Se cargó la lista correctamente";
-                resultado.CodigoError = 200;
+                resultado.Return = db.Roles.ToList();
+                resultado.AdditionalInfo = "Se cargó la lista correctamente";
+                resultado.ErrorCode = 200;
                 return resultado;
             }
             catch (Exception ex)
             {
                 resultado.Ok = false;
-                resultado.Error = "Error al cargar tipos de documento" + ex.Message;
-                resultado.CodigoError = 400;
+                resultado.Error = "Error al cargar los roles" + ex.Message;
+                resultado.ErrorCode = 400;
                 return resultado;
             }
         }

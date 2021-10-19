@@ -1,11 +1,11 @@
 namespace SuperMamiApi.Resultados
 {
-    public class ResultadoAPI
+    public class ResultAPI
     {
         public bool Ok { get; set; }
         public string Error { get; set; }
-        public int CodigoError { get; set; }
-        public string InfoAdicional { get; set; }
+        public int ErrorCode { get; set; }
+        public string AdditionalInfo { get; set; }
         public object Return { get; set; }
     }
 }
