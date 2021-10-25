@@ -55,11 +55,11 @@ namespace SuperMamiApi.Controllers
             try
             {
 
-                var u = db.Users.ToList().Where(c => c.IdUser == order.IdDeliveryOrder).FirstOrDefault();
-                if (u != null)
+                var dO = db.DeliveryOrders.ToList().Where(c => c.IdDeliveryOrder == order.IdDeliveryOrder).FirstOrDefault();
+                if (dO != null)
                 {
                     resultado.Ok = true;
-                    resultado.Return = u;
+                    resultado.Return = dO;
                     resultado.AdditionalInfo = "Se muestra la orden de entrega correctamente";
                     resultado.ErrorCode = 200;
                     return resultado;
@@ -67,7 +67,7 @@ namespace SuperMamiApi.Controllers
                 else
                 {
                     resultado.Ok = false;
-                    resultado.Error = "Usuario no encontrado";
+                    resultado.Error = "orden de entrega no encontrada";
                     resultado.ErrorCode = 400;
                     return resultado;
                 }
@@ -76,7 +76,7 @@ namespace SuperMamiApi.Controllers
             catch (Exception ex)
             {
                 resultado.Ok = false;
-                resultado.Error = "Error al cargar Usuarios" + ex.Message;
+                resultado.Error = "Error al cargar la orden de entrega" + ex.Message;
                 resultado.ErrorCode = 400;
                 return resultado;
             }
