@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpGet]
-        [Route("Role/GetRole")]
+        [Route("Role/GetAllRoles")]
         public ActionResult<ResultAPI> GetRole()
         {
             var resultado = new ResultAPI();

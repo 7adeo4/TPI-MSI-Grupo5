@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("User/GetUser")]
+        [Route("User/GetUserById")]
         public ActionResult<ResultAPI> Get([FromBody] CommandFindUser user)
         {
             var result = new ResultAPI();
