@@ -9,7 +9,7 @@ namespace SuperMamiApi.Models
     {
         public Branch()
         {
-            Pickups = new HashSet<Pickup>();
+            DeliveryOrders = new HashSet<DeliveryOrder>();
         }
 
         public int IdBranch { get; set; }
@@ -19,6 +19,6 @@ namespace SuperMamiApi.Models
         public int? IdZone { get; set; }
 
         public virtual Zone IdZoneNavigation { get; set; }
-        public virtual ICollection<Pickup> Pickups { get; set; }
+        public virtual ICollection<DeliveryOrder> DeliveryOrders { get; set; }
     }
 }

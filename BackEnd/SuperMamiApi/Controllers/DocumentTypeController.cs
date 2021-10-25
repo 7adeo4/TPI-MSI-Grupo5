@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SuperMamiApi.Commands;
 using SuperMamiApi.Models;
-using SuperMamiApi.Resultados;
+using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpGet]
-        [Route("DocumentType/GetDocumentType")]
+        [Route("DocumentType/GetAllDocumentTypes")]
         public ActionResult<ResultAPI> GetTipoDocumento()
         {
             var resultado = new ResultAPI();

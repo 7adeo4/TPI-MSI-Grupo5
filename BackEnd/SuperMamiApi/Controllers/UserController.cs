@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SuperMamiApi.Commands.UserCommands;
 using SuperMamiApi.Models;
-using SuperMamiApi.Resultados;
+using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace SuperMamiApi.Controllers
 {
@@ -26,7 +25,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("User/GetUser")]
+        [Route("User/GetUserById")]
         public ActionResult<ResultAPI> Get([FromBody] CommandFindUser user)
         {
             var resultado = new ResultAPI();

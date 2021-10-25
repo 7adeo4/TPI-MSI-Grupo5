@@ -22,6 +22,7 @@ namespace SuperMamiApi.Models
         public string Phone { get; set; }
         public int? IdRol { get; set; }
         public string Password { get; set; }
+        public bool? IsActive { get; set; }
 
         public virtual DocumentType IdDocumentTypeNavigation { get; set; }
         public virtual Role IdRolNavigation { get; set; }

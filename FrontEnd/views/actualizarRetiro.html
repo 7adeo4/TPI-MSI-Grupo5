@@ -6,25 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/bootstrap.min.css">
 
-    <title>Register</title>
+    <title>Actualizar Retiro</title>
 </head>
 
 <body style="background-color:rgb(250, 217, 5)">
     <nav class="navbar navbar-light bg-dark d-flex flex-row-reverse">
         <a class="navbar-brand text-light" href="./views/login.html">Iniciar sesion</a>
     </nav>
-
     <div class="d-flex justify-content-center m-3">
-        <img 
-            src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png"
-            alt="" srcset="">
+        <img style="" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png" alt="" srcset="">
     </div>
     <div class="d-flex justify-content-center mt-5">
-        <h2>Registrar Envío</h2>
+        <h2>Actualizar Retiro</h2>
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-6 col-sm-12 col-md-6 col-lg-6 ">
+            <div class=" col-sm-12 col-md-6 col-lg-6 ">
                 <div class=" ">
                     <form class="d-flex justify-content-center align-items-center flex-column mt-5">
                         <div class="col-5 mb-3">
@@ -36,9 +33,9 @@
                             <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
                         </div>
                         <div class="col-5 mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Empresa</label>
+                            <label for="exampleInputEmail1" class="form-label">Sucursal</label>
                             <select class="form-control">
-                                <option value="value1" selected>- Seleccione la Empresa -</option>
+                                <option value="value1" selected>- Seleccione la Sucursal -</option>
                                 <option value="value2">Value 2</option>
                                 <option value="value3">Value 3</option>
                                 <option value="value3">Value 3</option>
@@ -49,22 +46,17 @@
                             <label for="exampleInputEmail1" class="form-label">Fecha Entrega</label>
                             <input type="date" class="form-control" id="idUsuario" aria-describedby="emailHelp">
                         </div>
-                        <div class="row justify-content-center">
-                            <div class="col-5 col-sm-4 col-md-3  mb-3 ">
-                                <label for="exampleInputEmail1" class="form-label">Peso</label>
-                                <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
-                            </div>
-                            <div class="col-5 col-sm-4 col-md-3 mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Volumen</label>
-                                <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
-                            </div>
-                            <div class="col-5 col-sm-4 col-md-3 mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nº de Bolsas</label>
-                                <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
-                            </div>
-
+                        <div class="col-5 mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Estado</label>
+                            <select class="form-control">
+                                <option value="value1" selected>- Seleccione el Estado -</option>
+                                <option value="value2">Value 2</option>
+                                <option value="value3">Value 3</option>
+                                <option value="value3">Value 3</option>
+                                <option value="value3">Value 3</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-primary col-6">Confirmar Envío</button>
+                        <button type="submit" class="btn btn-primary col-6">Actualizar Retiro</button>
                     </form>
                 </div>
             </div>
@@ -95,7 +87,7 @@
                                 <td>-</td>
                             </tr>
                             <tr>
-                                <td>Barrio</td>
+                                <td>Sucursal</td>
                                 <td>-</td>
                             </tr>
                             <tr>
@@ -103,11 +95,15 @@
                                 <td>-</td>
                             </tr>
                             <tr>
-                                <td>Precio del Envío)</td>
+                                <td>Peso</td>
                                 <td>-</td>
                             </tr>
                             <tr>
-                                <td>Es Gratis?</td>
+                                <td>Volumen</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Cantidad Bolsas</td>
                                 <td>-</td>
                             </tr>
                         </tbody>
@@ -116,7 +112,6 @@
             </form>
         </div>
     </div>
-
 </body>
 
 </html>
