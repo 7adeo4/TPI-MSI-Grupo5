@@ -14,7 +14,7 @@ namespace SuperMamiApi.Models
 
         public int IdShippingType { get; set; }
         public string Description { get; set; }
-        public double? MaxWeightCapacity { get; set; }
+        public string MaxWeightCapacity { get; set; }
         public string MaxVolumeCapacity { get; set; }
         public int? MaxBagsCapacity { get; set; }
 
