@@ -1,7 +1,7 @@
 const getTypeDocument = () => {
   $(document).ready(function () {
     $.ajax({
-      url: "https://localhost:5001/TipoDocumento/GetTipoDocumento",
+      url: "https://localhost:5001/DocumentType/GetDocumentType",
       type: "GET",
       dataType: "json",
       success: (result) => {
