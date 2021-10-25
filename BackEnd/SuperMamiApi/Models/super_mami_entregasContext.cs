@@ -247,13 +247,13 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_pickup")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Active).HasColumnName("active");
-
                 entity.Property(e => e.IdDeliveryOrder).HasColumnName("id_delivery_order");
 
                 entity.Property(e => e.IdState).HasColumnName("id_state");
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.HasOne(d => d.IdDeliveryOrderNavigation)
                     .WithMany(p => p.Pickups)
@@ -327,8 +327,6 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Active).HasColumnName("active");
-
                 entity.Property(e => e.IdDeliveryOrder).HasColumnName("id_delivery_order");
 
                 entity.Property(e => e.IdShippingCompany).HasColumnName("id_shipping_company");
@@ -336,6 +334,8 @@ namespace SuperMamiApi.Models
                 entity.Property(e => e.IdState).HasColumnName("id_state");
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.HasOne(d => d.IdDeliveryOrderNavigation)
                     .WithMany(p => p.Shippings)
@@ -369,8 +369,6 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping_company")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Active).HasColumnName("active");
-
                 entity.Property(e => e.Address)
                     .HasMaxLength(50)
                     .HasColumnName("address");
@@ -388,6 +386,8 @@ namespace SuperMamiApi.Models
                     .HasColumnName("email");
 
                 entity.Property(e => e.IdShippingType).HasColumnName("id_shipping_type");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.Property(e => e.Location)
                     .HasMaxLength(50)
@@ -451,13 +451,13 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping_payment")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Active).HasColumnName("active");
-
                 entity.Property(e => e.Date)
                     .HasColumnType("date")
                     .HasColumnName("date");
 
                 entity.Property(e => e.IdShipping).HasColumnName("id_shipping");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.Property(e => e.TotalPrice).HasColumnName("total_price");
 
@@ -520,8 +520,6 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_user")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Active).HasColumnName("active");
-
                 entity.Property(e => e.DocumentNumber)
                     .HasMaxLength(50)
                     .HasColumnName("document_number");
@@ -533,6 +531,8 @@ namespace SuperMamiApi.Models
                 entity.Property(e => e.IdDocumentType).HasColumnName("id_document_type");
 
                 entity.Property(e => e.IdRol).HasColumnName("id_rol");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
