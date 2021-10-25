@@ -1,4 +1,5 @@
-$(document).ready(function () {
+const getTypeDocument = () => {
+  $(document).ready(function () {
     $.ajax({
       url: "https://localhost:5001/TipoDocumento/GetTipoDocumento",
       type: "GET",
@@ -10,7 +11,7 @@ $(document).ready(function () {
           select = document.getElementById("typeDni");
           for (let i = 0; i < result.return.length; i++) {
             var option = document.createElement("option");
-            option.value = result.return[i].idTipoDocumento; 
+            option.value = result.return[i].idTipoDocumento;
             option.text = result.return[i].tipoDocumento1;
             select.add(option);
           }
@@ -23,3 +24,4 @@ $(document).ready(function () {
       },
     });
   });
+}

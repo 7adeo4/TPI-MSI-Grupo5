@@ -19,68 +19,78 @@
         <h2>Crear Cuenta</h2>
     </div>
     <form id="form" class="d-flex justify-content-center align-items-center flex-column mt-5">
-        <div class="col-5 mb-3" id="grupo__name">
+        <div class="col-5 mb-3" id="group__name">
             <label for="name" class="form-label">Nombre</label>
             <div class="d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control form-input" name="name" id="name">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
-        <div class="col-5 mb-3" id="grupo__lastName">
+        <div class="col-5 mb-3" id="group__lastName">
             <label for="lastName" class="form-label">Apellido</label>
             <div class="d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control form-input" name="lastName" id="lastName">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
-        <div class="col-5 mb-3" id="grupo__dni">
+        <div class="col-5 mb-3" id="group__dni">
             <label for="dni" class="form-label">DNI</label>
             <div class="d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control form-input" name="dni" id="dni">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
         <div class="col-5 mb-3">
             <label for="typeDni" class="form-label">Tipo de DNI</label>
             <select id="typeDni" class="form-control"></select>
         </div>
-        <div class="col-5 mb-3" id="grupo__dni">
+        <div class="col-5 mb-3" id="group__email">
             <label for="email" class="form-label">Email</label>
             <div class="d-flex justify-content-center align-items-center">
-                <input type="text" class="form-control form-input" name="email" id="email">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <input type="email" class="form-control form-input" name="email" id="email">
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
-        <div class="col-5 mb-3" id="grupo__phone">
+        <div class="col-5 mb-3" id="group__phone">
             <label for="phone" class="form-label">Telefono</label>
             <div class="d-flex justify-content-center align-items-center">
                 <input type="text" class="form-control form-input" name="phone" id="phone">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
         <div class="col-5 mb-3">
             <label for="rolUser" class="form-label">Rol del usuario</label>
             <select id="rolUser" class="form-control"></select>
         </div>
-        <div class="mb-3 col-5" id="grupo__password">
+        <div class="mb-3 col-5" id="group__password">
             <label for="password" class="form-label">Contraseña</label>
             <div class="d-flex justify-content-center align-items-center">
-                <input type="text" class="form-control form-input" name="password" id="password">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <input type="password" class="form-control form-input" name="password" id="password">
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
-        <div class="mb-3 col-5" id="grupo__confirmPass">
+        <div class="mb-3 col-5" id="group__confirmPass">
             <label for="confirmPass" class="form-label">Repetir Contraseña</label>
             <div class="d-flex justify-content-center align-items-center">
-                <input type="text" class="form-control form-input" name="confirmPass" id="confirmPass">
-                <i class="form__validacion-estado m-1 fas fa-times-circle"></i>
+                <input type="password" class="form-control form-input" name="confirmPass" id="confirmPass">
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
             </div>
         </div>
-        <div class="mb-3 form-check col-5">
-            <input type="checkbox" class="form-check-input" id="acceptTerms">
-            <label class="form-check-label" for="acceptTerms">Aceptar terminos y condiciones</label>
+        <div id="group__terms" class="mb-3 form-check col-5 form__grupo">
+            <input type="checkbox" class="form-check-input form-input" id="terms" name="terms">
+            <label class="form-check-label form-label" for="acceptTerms">Aceptar terminos y condiciones</label>
+            <p class="terms-message" id="terms-message">Acepte los terminos y condiciones</p>
         </div>
-        <button type="submit" class="btn btn-primary col-2" id="submit">Registrarse</button>
+        <div class="mb-3 form__message" id="form__message">
+            <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario correctamente.
+            </p>
+        </div>
+        <div
+            class="col-6 d-flex justify-content-center flex-column align-content-center form__grupo form__grupo-btn-enviar">
+            <button type="submit" class="btn btn-primary form__btn text-center" id="submit">Registrarse</button>
+            <p class="m-3 form__success-message" id="form__success-message">Formulario enviado exitosamente!</p>
+        </div>
+
         <a href="./login.html">¿Ya tienes cuenta?</a>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -91,10 +101,10 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/validations.js"></script>
-    <!-- <script src="../js/getTypeDocument.js"></script>
+    <script src="../js/getTypeDocument.js"></script>
     <script src="../js/getRol.js"></script>
-    <script src="../js/insertUser.js"></script> -->
+    <script  src="../js/insertUser.js"></script> 
+    <script src="../js/validations.js"></script>
 </body>
 
 </html>
