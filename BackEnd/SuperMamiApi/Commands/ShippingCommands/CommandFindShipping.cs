@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-
-#nullable disable
-
-namespace SuperMamiApi.Commands.EnvioCommands
+namespace SuperMamiApi.Commands.ShippingCommands
 {
     public partial class CommandFindShipping
     {
-        public int IdEnvio { get; set; }
+        public int IdShipping { get; set; }
     }
 }
