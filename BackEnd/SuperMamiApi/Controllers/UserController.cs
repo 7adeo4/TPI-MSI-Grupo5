@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SuperMamiApi.Commands.UserCommands;
 using SuperMamiApi.Models;
-using SuperMamiApi.Resultados;
+using SuperMamiApi.results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,34 +29,34 @@ namespace SuperMamiApi.Controllers
         [Route("User/GetUser")]
         public ActionResult<ResultAPI> Get([FromBody] CommandFindUser user)
         {
-            var resultado = new ResultAPI();
+            var result = new ResultAPI();
             try
             {
 
                 var u = db.Users.ToList().Where(c => c.IdUser == user.IdUser).FirstOrDefault();
                 if (u != null)
                 {
-                    resultado.Ok = true;
-                    resultado.Return = u;
-                    resultado.AdditionalInfo = "Se muestra el usuario correctamente";
-                    resultado.ErrorCode = 200;
-                    return resultado;
+                    result.Ok = true;
+                    result.Return = u;
+                    result.AdditionalInfo = "Se muestra el usuario correctamente";
+                    result.ErrorCode = 200;
+                    return result;
                 }
                 else
                 {
-                    resultado.Ok = false;
-                    resultado.Error = "Usuario no encontrado";
-                    resultado.ErrorCode = 400;
-                    return resultado;
+                    result.Ok = false;
+                    result.Error = "Usuario no encontrado";
+                    result.ErrorCode = 400;
+                    return result;
                 }
 
             }
             catch (Exception ex)
             {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar Usuarios" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
+                result.Ok = false;
+                result.Error = "Error al cargar Usuarios" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
             }
         }
 
