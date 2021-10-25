@@ -1,5 +1,7 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
+// getTypeDocument();
+// getRol();
 
 const expresions = {
 	// usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -100,7 +102,7 @@ form.addEventListener('submit', (e) => {
 			document.getElementById('terms-message').classList.add('terms-message-active');
 		}
 		else {
-			insertUser();
+			// insertUser();
 			form.reset();
 
 			document.getElementById('form__success-message').classList.add('form__success-message-active');
