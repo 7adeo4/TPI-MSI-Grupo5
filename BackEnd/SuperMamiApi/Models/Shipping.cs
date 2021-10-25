@@ -18,7 +18,7 @@ namespace SuperMamiApi.Models
         public int? IdState { get; set; }
         public int? IdDeliveryOrder { get; set; }
         public int? IdUser { get; set; }
-        public bool? Activo { get; set; }
+        public bool? Active { get; set; }
 
         public virtual DeliveryOrder IdDeliveryOrderNavigation { get; set; }
         public virtual ShippingCompany IdShippingCompanyNavigation { get; set; }

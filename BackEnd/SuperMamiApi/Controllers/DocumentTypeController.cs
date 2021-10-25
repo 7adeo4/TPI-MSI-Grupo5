@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpGet]
-        [Route("DocumentType/GetDocumentType")]
+        [Route("DocumentType/GetAllDocumentTypes")]
         public ActionResult<ResultAPI> GetTipoDocumento()
         {
             var resultado = new ResultAPI();
