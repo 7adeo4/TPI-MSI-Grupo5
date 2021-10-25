@@ -9,8 +9,9 @@ namespace SuperMamiApi.Models
     {
         public int IdPickupDetail { get; set; }
         public int? IdPickup { get; set; }
-        public double? Weight { get; set; }
-        public double? Volume { get; set; }
+        public string Weight { get; set; }
+        public string Volume { get; set; }
+        public int? BagsQuantity { get; set; }
 
         public virtual Pickup IdPickupNavigation { get; set; }
     }

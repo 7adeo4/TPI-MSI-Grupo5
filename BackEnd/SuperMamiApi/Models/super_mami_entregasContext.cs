@@ -18,6 +18,7 @@ namespace SuperMamiApi.Models
         }
 
         public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<DeliveryOrder> DeliveryOrders { get; set; }
         public virtual DbSet<DocumentType> DocumentTypes { get; set; }
         public virtual DbSet<PgBuffercache> PgBuffercaches { get; set; }
         public virtual DbSet<PgStatStatement> PgStatStatements { get; set; }
@@ -70,13 +71,65 @@ namespace SuperMamiApi.Models
                     .HasColumnName("name");
 
                 entity.Property(e => e.ZipCode)
-                    .HasMaxLength(50)
+                    .HasMaxLength(20)
                     .HasColumnName("zip_code");
 
                 entity.HasOne(d => d.IdZoneNavigation)
                     .WithMany(p => p.Branches)
                     .HasForeignKey(d => d.IdZone)
                     .HasConstraintName("fk_branches_id_zone");
+            });
+
+            modelBuilder.Entity<DeliveryOrder>(entity =>
+            {
+                entity.HasKey(e => e.IdDeliveryOrder)
+                    .HasName("delivery_order_pkey");
+
+                entity.ToTable("delivery_order");
+
+                entity.Property(e => e.IdDeliveryOrder)
+                    .HasColumnName("id_delivery_order")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(50)
+                    .HasColumnName("address");
+
+                entity.Property(e => e.DeliveryDate).HasColumnName("delivery_date");
+
+                entity.Property(e => e.IdBranch).HasColumnName("id_branch");
+
+                entity.Property(e => e.IdZone).HasColumnName("id_zone");
+
+                entity.Property(e => e.IsFree).HasColumnName("is_free");
+
+                entity.Property(e => e.IsOwner).HasColumnName("is_owner");
+
+                entity.Property(e => e.IsShipping).HasColumnName("is_shipping");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.ShippingPrice).HasColumnName("shipping_price");
+
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(50)
+                    .HasColumnName("surname");
+
+                entity.HasOne(d => d.IdBranchNavigation)
+                    .WithMany(p => p.DeliveryOrders)
+                    .HasForeignKey(d => d.IdBranch)
+                    .HasConstraintName("fk_delivery_order_id_branch");
+
+                entity.HasOne(d => d.IdZoneNavigation)
+                    .WithMany(p => p.DeliveryOrders)
+                    .HasForeignKey(d => d.IdZone)
+                    .HasConstraintName("fk_delivery_order_id_zone");
             });
 
             modelBuilder.Entity<DocumentType>(entity =>
@@ -194,36 +247,18 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_pickup")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Day)
-                    .HasColumnType("date")
-                    .HasColumnName("day");
-
-                entity.Property(e => e.DeliveryOrderNumber).HasColumnName("delivery_order_number");
-
-                entity.Property(e => e.Hour)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("hour");
-
-                entity.Property(e => e.IdBranch).HasColumnName("id_branch");
+                entity.Property(e => e.IdDeliveryOrder).HasColumnName("id_delivery_order");
 
                 entity.Property(e => e.IdState).HasColumnName("id_state");
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
 
-                entity.Property(e => e.IsOwner).HasColumnName("is_owner");
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.Surname)
-                    .HasMaxLength(50)
-                    .HasColumnName("surname");
-
-                entity.HasOne(d => d.IdBranchNavigation)
+                entity.HasOne(d => d.IdDeliveryOrderNavigation)
                     .WithMany(p => p.Pickups)
-                    .HasForeignKey(d => d.IdBranch)
-                    .HasConstraintName("fk_pickups_id_branch");
+                    .HasForeignKey(d => d.IdDeliveryOrder)
+                    .HasConstraintName("fk_pickups_id_delivery_order");
 
                 entity.HasOne(d => d.IdStateNavigation)
                     .WithMany(p => p.Pickups)
@@ -247,11 +282,17 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_pickup_detail")
                     .UseIdentityAlwaysColumn();
 
+                entity.Property(e => e.BagsQuantity).HasColumnName("bags_quantity");
+
                 entity.Property(e => e.IdPickup).HasColumnName("id_pickup");
 
-                entity.Property(e => e.Volume).HasColumnName("volume");
+                entity.Property(e => e.Volume)
+                    .HasMaxLength(30)
+                    .HasColumnName("volume");
 
-                entity.Property(e => e.Weight).HasColumnName("weight");
+                entity.Property(e => e.Weight)
+                    .HasMaxLength(30)
+                    .HasColumnName("weight");
 
                 entity.HasOne(d => d.IdPickupNavigation)
                     .WithMany(p => p.PickupDetails)
@@ -286,19 +327,7 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Address)
-                    .HasMaxLength(50)
-                    .HasColumnName("address");
-
-                entity.Property(e => e.Day)
-                    .HasColumnType("date")
-                    .HasColumnName("day");
-
-                entity.Property(e => e.DeliveryOrderNumber).HasColumnName("delivery_order_number");
-
-                entity.Property(e => e.Hour)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("hour");
+                entity.Property(e => e.IdDeliveryOrder).HasColumnName("id_delivery_order");
 
                 entity.Property(e => e.IdShippingCompany).HasColumnName("id_shipping_company");
 
@@ -306,19 +335,12 @@ namespace SuperMamiApi.Models
 
                 entity.Property(e => e.IdUser).HasColumnName("id_user");
 
-                entity.Property(e => e.IdZone).HasColumnName("id_zone");
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
-                entity.Property(e => e.IsOwner).HasColumnName("is_owner");
-
-                entity.Property(e => e.Name)
-                    .HasMaxLength(50)
-                    .HasColumnName("name");
-
-                entity.Property(e => e.Phone).HasColumnName("phone");
-
-                entity.Property(e => e.Surname)
-                    .HasMaxLength(50)
-                    .HasColumnName("surname");
+                entity.HasOne(d => d.IdDeliveryOrderNavigation)
+                    .WithMany(p => p.Shippings)
+                    .HasForeignKey(d => d.IdDeliveryOrder)
+                    .HasConstraintName("fk_shippings_id_delivery_order");
 
                 entity.HasOne(d => d.IdShippingCompanyNavigation)
                     .WithMany(p => p.Shippings)
@@ -334,11 +356,6 @@ namespace SuperMamiApi.Models
                     .WithMany(p => p.Shippings)
                     .HasForeignKey(d => d.IdUser)
                     .HasConstraintName("fk_shippings_id_user");
-
-                entity.HasOne(d => d.IdZoneNavigation)
-                    .WithMany(p => p.Shippings)
-                    .HasForeignKey(d => d.IdZone)
-                    .HasConstraintName("fk_shippings_id_zone");
             });
 
             modelBuilder.Entity<ShippingCompany>(entity =>
@@ -352,11 +369,17 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping_company")
                     .UseIdentityAlwaysColumn();
 
+                entity.Property(e => e.Address)
+                    .HasMaxLength(50)
+                    .HasColumnName("address");
+
                 entity.Property(e => e.BusinessName)
                     .HasMaxLength(50)
                     .HasColumnName("business_name");
 
-                entity.Property(e => e.Cuit).HasColumnName("cuit");
+                entity.Property(e => e.Cuit)
+                    .HasMaxLength(50)
+                    .HasColumnName("cuit");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
@@ -364,21 +387,23 @@ namespace SuperMamiApi.Models
 
                 entity.Property(e => e.IdShippingType).HasColumnName("id_shipping_type");
 
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
+
                 entity.Property(e => e.Location)
                     .HasMaxLength(50)
                     .HasColumnName("location");
 
-                entity.Property(e => e.Number).HasColumnName("number");
-
-                entity.Property(e => e.Phone).HasColumnName("phone");
-
-                entity.Property(e => e.Shift)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("shift");
-
-                entity.Property(e => e.Street)
+                entity.Property(e => e.Phone)
                     .HasMaxLength(50)
-                    .HasColumnName("street");
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.ShiftEndTime)
+                    .HasMaxLength(20)
+                    .HasColumnName("shift_end_time");
+
+                entity.Property(e => e.ShiftStartTime)
+                    .HasMaxLength(20)
+                    .HasColumnName("shift_start_time");
 
                 entity.HasOne(d => d.IdShippingTypeNavigation)
                     .WithMany(p => p.ShippingCompanies)
@@ -397,17 +422,17 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping_detail")
                     .UseIdentityAlwaysColumn();
 
+                entity.Property(e => e.BagsQuantity).HasColumnName("bags_quantity");
+
                 entity.Property(e => e.IdShipping).HasColumnName("id_shipping");
 
-                entity.Property(e => e.IsFree)
-                    .HasColumnType("bit(1)")
-                    .HasColumnName("is_free");
+                entity.Property(e => e.Volume)
+                    .HasMaxLength(30)
+                    .HasColumnName("volume");
 
-                entity.Property(e => e.ShippingPrice).HasColumnName("shipping_price");
-
-                entity.Property(e => e.Volume).HasColumnName("volume");
-
-                entity.Property(e => e.Weight).HasColumnName("weight");
+                entity.Property(e => e.Weight)
+                    .HasMaxLength(30)
+                    .HasColumnName("weight");
 
                 entity.HasOne(d => d.IdShippingNavigation)
                     .WithMany(p => p.ShippingDetails)
@@ -430,14 +455,16 @@ namespace SuperMamiApi.Models
                     .HasColumnType("date")
                     .HasColumnName("date");
 
-                entity.Property(e => e.IdShippingDetail).HasColumnName("id_shipping_detail");
+                entity.Property(e => e.IdShipping).HasColumnName("id_shipping");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.Property(e => e.TotalPrice).HasColumnName("total_price");
 
-                entity.HasOne(d => d.IdShippingDetailNavigation)
+                entity.HasOne(d => d.IdShippingNavigation)
                     .WithMany(p => p.ShippingPayments)
-                    .HasForeignKey(d => d.IdShippingDetail)
-                    .HasConstraintName("fk_shipping_payment_id_shipping_detail");
+                    .HasForeignKey(d => d.IdShipping)
+                    .HasConstraintName("fk_shipping_payment_id_shipping");
             });
 
             modelBuilder.Entity<ShippingType>(entity =>
@@ -458,10 +485,12 @@ namespace SuperMamiApi.Models
                 entity.Property(e => e.MaxBagsCapacity).HasColumnName("max_bags_capacity");
 
                 entity.Property(e => e.MaxVolumeCapacity)
-                    .HasMaxLength(50)
+                    .HasMaxLength(30)
                     .HasColumnName("max_volume_capacity");
 
-                entity.Property(e => e.MaxWeightCapacity).HasColumnName("max_weight_capacity");
+                entity.Property(e => e.MaxWeightCapacity)
+                    .HasMaxLength(30)
+                    .HasColumnName("max_weight_capacity");
             });
 
             modelBuilder.Entity<State>(entity =>
@@ -502,6 +531,8 @@ namespace SuperMamiApi.Models
                 entity.Property(e => e.IdDocumentType).HasColumnName("id_document_type");
 
                 entity.Property(e => e.IdRol).HasColumnName("id_rol");
+
+                entity.Property(e => e.IsActive).HasColumnName("is_active");
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
