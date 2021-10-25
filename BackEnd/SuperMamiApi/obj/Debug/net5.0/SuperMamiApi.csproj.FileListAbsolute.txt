@@ -78,7 +78,6 @@ C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integra
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\staticwebassets\SuperMamiApi.StaticWebAssets.xml
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\scopedcss\bundle\SuperMamiApi.styles.css
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.RazorTargetAssemblyInfo.cache
-C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csproj.CopyComplete
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.dll
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 C:\Users\Pc-Casa\Desktop\TUP\4° Cuatrimestre\Metodologia en sistemas\Tp Integrador\super-mami-entregas\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache

@@ -17,304 +17,246 @@ namespace SuperMamiApi.Models
         {
         }
 
-        public virtual DbSet<Barrio> Barrios { get; set; }
-        public virtual DbSet<DetalleEnvio> DetalleEnvios { get; set; }
-        public virtual DbSet<DetalleRetiro> DetalleRetiros { get; set; }
-        public virtual DbSet<EmpresaTransporte> EmpresaTransportes { get; set; }
-        public virtual DbSet<Envio> Envios { get; set; }
-        public virtual DbSet<Estado> Estados { get; set; }
-        public virtual DbSet<LiquidacionEnvio> LiquidacionEnvios { get; set; }
-        public virtual DbSet<Retiro> Retiros { get; set; }
+        public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<DocumentType> DocumentTypes { get; set; }
+        public virtual DbSet<PgBuffercache> PgBuffercaches { get; set; }
+        public virtual DbSet<PgStatStatement> PgStatStatements { get; set; }
+        public virtual DbSet<Pickup> Pickups { get; set; }
+        public virtual DbSet<PickupDetail> PickupDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Sucursale> Sucursales { get; set; }
-        public virtual DbSet<TipoDocumento> TipoDocumentos { get; set; }
-        public virtual DbSet<TipoEnvio> TipoEnvios { get; set; }
-        public virtual DbSet<Usuario> Usuarios { get; set; }
+        public virtual DbSet<Shipping> Shippings { get; set; }
+        public virtual DbSet<ShippingCompany> ShippingCompanies { get; set; }
+        public virtual DbSet<ShippingDetail> ShippingDetails { get; set; }
+        public virtual DbSet<ShippingPayment> ShippingPayments { get; set; }
+        public virtual DbSet<ShippingType> ShippingTypes { get; set; }
+        public virtual DbSet<State> States { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Zone> Zones { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("User ID=prog3; Password=Admin1234;Server=localhost; Database=super_mami_entregas;Integrated Security=true;Pooling=true");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseNpgsql("User ID=administrador@dbtpimsi; Password=Contra123*; SslMode=Prefer;Server=dbtpimsi.postgres.database.azure.com; Database=super_mami_entregas;Integrated Security=true;Pooling=true");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "Spanish_Argentina.1252");
+            modelBuilder.HasPostgresExtension("pg_buffercache")
+                .HasPostgresExtension("pg_stat_statements")
+                .HasAnnotation("Relational:Collation", "English_United States.1252");
 
-            modelBuilder.Entity<Barrio>(entity =>
+            modelBuilder.Entity<Branch>(entity =>
             {
-                entity.HasKey(e => e.IdBarrio)
-                    .HasName("barrios_pkey");
+                entity.HasKey(e => e.IdBranch)
+                    .HasName("branches_pkey");
 
-                entity.ToTable("barrios");
+                entity.ToTable("branches");
 
-                entity.Property(e => e.IdBarrio)
-                    .HasColumnName("id_barrio")
+                entity.Property(e => e.IdBranch)
+                    .HasColumnName("id_branch")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Barrio1)
+                entity.Property(e => e.Address)
                     .HasMaxLength(50)
-                    .HasColumnName("barrio");
+                    .HasColumnName("address");
+
+                entity.Property(e => e.IdZone).HasColumnName("id_zone");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.ZipCode)
+                    .HasMaxLength(50)
+                    .HasColumnName("zip_code");
+
+                entity.HasOne(d => d.IdZoneNavigation)
+                    .WithMany(p => p.Branches)
+                    .HasForeignKey(d => d.IdZone)
+                    .HasConstraintName("fk_branches_id_zone");
             });
 
-            modelBuilder.Entity<DetalleEnvio>(entity =>
+            modelBuilder.Entity<DocumentType>(entity =>
             {
-                entity.HasKey(e => e.IdDetalleEnvio)
-                    .HasName("detalle_envio_pkey");
+                entity.HasKey(e => e.IdDocumentType)
+                    .HasName("document_type_pkey");
 
-                entity.ToTable("detalle_envio");
+                entity.ToTable("document_type");
 
-                entity.Property(e => e.IdDetalleEnvio)
-                    .HasColumnName("id_detalle_envio")
+                entity.Property(e => e.IdDocumentType)
+                    .HasColumnName("id_document_type")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.EsGratuito)
-                    .HasColumnType("bit(1)")
-                    .HasColumnName("es_gratuito");
-
-                entity.Property(e => e.IdEnvio).HasColumnName("id_envio");
-
-                entity.Property(e => e.MontoEnvio).HasColumnName("monto_envio");
-
-                entity.Property(e => e.Peso).HasColumnName("peso");
-
-                entity.Property(e => e.Volumen).HasColumnName("volumen");
-
-                entity.HasOne(d => d.IdEnvioNavigation)
-                    .WithMany(p => p.DetalleEnvios)
-                    .HasForeignKey(d => d.IdEnvio)
-                    .HasConstraintName("fk_detalle_envio_id_envio");
+                entity.Property(e => e.DocumentType1)
+                    .HasMaxLength(50)
+                    .HasColumnName("document_type");
             });
 
-            modelBuilder.Entity<DetalleRetiro>(entity =>
+            modelBuilder.Entity<PgBuffercache>(entity =>
             {
-                entity.HasKey(e => e.IdDetalleRetiro)
-                    .HasName("detalle_retiro_pkey");
+                entity.HasNoKey();
 
-                entity.ToTable("detalle_retiro");
+                entity.ToTable("pg_buffercache");
 
-                entity.Property(e => e.IdDetalleRetiro)
-                    .HasColumnName("id_detalle_retiro")
-                    .UseIdentityAlwaysColumn();
+                entity.Property(e => e.Bufferid).HasColumnName("bufferid");
 
-                entity.Property(e => e.IdRetiro).HasColumnName("id_retiro");
+                entity.Property(e => e.Isdirty).HasColumnName("isdirty");
 
-                entity.Property(e => e.Peso).HasColumnName("peso");
+                entity.Property(e => e.PinningBackends).HasColumnName("pinning_backends");
 
-                entity.Property(e => e.Volumen).HasColumnName("volumen");
+                entity.Property(e => e.Relblocknumber).HasColumnName("relblocknumber");
 
-                entity.HasOne(d => d.IdRetiroNavigation)
-                    .WithMany(p => p.DetalleRetiros)
-                    .HasForeignKey(d => d.IdRetiro)
-                    .HasConstraintName("fk_detalle_retiro_id_retiro");
+                entity.Property(e => e.Reldatabase)
+                    .HasColumnType("oid")
+                    .HasColumnName("reldatabase");
+
+                entity.Property(e => e.Relfilenode)
+                    .HasColumnType("oid")
+                    .HasColumnName("relfilenode");
+
+                entity.Property(e => e.Relforknumber).HasColumnName("relforknumber");
+
+                entity.Property(e => e.Reltablespace)
+                    .HasColumnType("oid")
+                    .HasColumnName("reltablespace");
+
+                entity.Property(e => e.Usagecount).HasColumnName("usagecount");
             });
 
-            modelBuilder.Entity<EmpresaTransporte>(entity =>
+            modelBuilder.Entity<PgStatStatement>(entity =>
             {
-                entity.HasKey(e => e.IdEmpresa)
-                    .HasName("empresa_transporte_pkey");
+                entity.HasNoKey();
 
-                entity.ToTable("empresa_transporte");
+                entity.ToTable("pg_stat_statements");
 
-                entity.Property(e => e.IdEmpresa)
-                    .HasColumnName("id_empresa")
-                    .UseIdentityAlwaysColumn();
+                entity.Property(e => e.BlkReadTime).HasColumnName("blk_read_time");
 
-                entity.Property(e => e.Calle)
-                    .HasMaxLength(50)
-                    .HasColumnName("calle");
+                entity.Property(e => e.BlkWriteTime).HasColumnName("blk_write_time");
 
-                entity.Property(e => e.Cuit).HasColumnName("cuit");
+                entity.Property(e => e.Calls).HasColumnName("calls");
 
-                entity.Property(e => e.Email)
-                    .HasMaxLength(50)
-                    .HasColumnName("email");
+                entity.Property(e => e.Dbid)
+                    .HasColumnType("oid")
+                    .HasColumnName("dbid");
 
-                entity.Property(e => e.Horario)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("horario");
+                entity.Property(e => e.LocalBlksDirtied).HasColumnName("local_blks_dirtied");
 
-                entity.Property(e => e.IdTipoEnvio).HasColumnName("id_tipo_envio");
+                entity.Property(e => e.LocalBlksHit).HasColumnName("local_blks_hit");
 
-                entity.Property(e => e.Localidad)
-                    .HasMaxLength(50)
-                    .HasColumnName("localidad");
+                entity.Property(e => e.LocalBlksRead).HasColumnName("local_blks_read");
 
-                entity.Property(e => e.Numero).HasColumnName("numero");
+                entity.Property(e => e.LocalBlksWritten).HasColumnName("local_blks_written");
 
-                entity.Property(e => e.RazonSocial)
-                    .HasMaxLength(50)
-                    .HasColumnName("razon_social");
+                entity.Property(e => e.MaxTime).HasColumnName("max_time");
 
-                entity.Property(e => e.Telefono).HasColumnName("telefono");
+                entity.Property(e => e.MeanTime).HasColumnName("mean_time");
 
-                entity.HasOne(d => d.IdTipoEnvioNavigation)
-                    .WithMany(p => p.EmpresaTransportes)
-                    .HasForeignKey(d => d.IdTipoEnvio)
-                    .HasConstraintName("fk_empresa_transporte_id_tipo_envio");
+                entity.Property(e => e.MinTime).HasColumnName("min_time");
+
+                entity.Property(e => e.Query).HasColumnName("query");
+
+                entity.Property(e => e.Queryid).HasColumnName("queryid");
+
+                entity.Property(e => e.Rows).HasColumnName("rows");
+
+                entity.Property(e => e.SharedBlksDirtied).HasColumnName("shared_blks_dirtied");
+
+                entity.Property(e => e.SharedBlksHit).HasColumnName("shared_blks_hit");
+
+                entity.Property(e => e.SharedBlksRead).HasColumnName("shared_blks_read");
+
+                entity.Property(e => e.SharedBlksWritten).HasColumnName("shared_blks_written");
+
+                entity.Property(e => e.StddevTime).HasColumnName("stddev_time");
+
+                entity.Property(e => e.TempBlksRead).HasColumnName("temp_blks_read");
+
+                entity.Property(e => e.TempBlksWritten).HasColumnName("temp_blks_written");
+
+                entity.Property(e => e.TotalTime).HasColumnName("total_time");
+
+                entity.Property(e => e.Userid)
+                    .HasColumnType("oid")
+                    .HasColumnName("userid");
             });
 
-            modelBuilder.Entity<Envio>(entity =>
+            modelBuilder.Entity<Pickup>(entity =>
             {
-                entity.HasKey(e => e.IdEnvio)
-                    .HasName("envios_pkey");
+                entity.HasKey(e => e.IdPickup)
+                    .HasName("pickups_pkey");
 
-                entity.ToTable("envios");
+                entity.ToTable("pickups");
 
-                entity.Property(e => e.IdEnvio)
-                    .HasColumnName("id_envio")
+                entity.Property(e => e.IdPickup)
+                    .HasColumnName("id_pickup")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Apellido)
-                    .HasMaxLength(50)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.Dia)
+                entity.Property(e => e.Day)
                     .HasColumnType("date")
-                    .HasColumnName("dia");
+                    .HasColumnName("day");
 
-                entity.Property(e => e.Direccion)
-                    .HasMaxLength(50)
-                    .HasColumnName("direccion");
+                entity.Property(e => e.DeliveryOrderNumber).HasColumnName("delivery_order_number");
 
-                entity.Property(e => e.EsTitular).HasColumnName("es_titular");
-
-                entity.Property(e => e.Horario)
+                entity.Property(e => e.Hour)
                     .HasColumnType("time without time zone")
-                    .HasColumnName("horario");
+                    .HasColumnName("hour");
 
-                entity.Property(e => e.IdBarrio).HasColumnName("id_barrio");
+                entity.Property(e => e.IdBranch).HasColumnName("id_branch");
 
-                entity.Property(e => e.IdEmpresa).HasColumnName("id_empresa");
+                entity.Property(e => e.IdState).HasColumnName("id_state");
 
-                entity.Property(e => e.IdEstado).HasColumnName("id_estado");
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
 
-                entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
+                entity.Property(e => e.IsOwner).HasColumnName("is_owner");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .HasColumnName("nombre");
+                    .HasColumnName("name");
 
-                entity.Property(e => e.NroOrdenEntrega).HasColumnName("nro_orden_entrega");
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(50)
+                    .HasColumnName("surname");
 
-                entity.Property(e => e.Telefono).HasColumnName("telefono");
+                entity.HasOne(d => d.IdBranchNavigation)
+                    .WithMany(p => p.Pickups)
+                    .HasForeignKey(d => d.IdBranch)
+                    .HasConstraintName("fk_pickups_id_branch");
 
-                entity.HasOne(d => d.IdBarrioNavigation)
-                    .WithMany(p => p.Envios)
-                    .HasForeignKey(d => d.IdBarrio)
-                    .HasConstraintName("fk_envios_id_barrio");
+                entity.HasOne(d => d.IdStateNavigation)
+                    .WithMany(p => p.Pickups)
+                    .HasForeignKey(d => d.IdState)
+                    .HasConstraintName("fk_pickups_id_state");
 
-                entity.HasOne(d => d.IdEmpresaNavigation)
-                    .WithMany(p => p.Envios)
-                    .HasForeignKey(d => d.IdEmpresa)
-                    .HasConstraintName("fk_envios_id_empresa");
-
-                entity.HasOne(d => d.IdEstadoNavigation)
-                    .WithMany(p => p.Envios)
-                    .HasForeignKey(d => d.IdEstado)
-                    .HasConstraintName("fk_envios_id_estado");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Envios)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("fk_envios_id_usuario");
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Pickups)
+                    .HasForeignKey(d => d.IdUser)
+                    .HasConstraintName("fk_pickups_id_user");
             });
 
-            modelBuilder.Entity<Estado>(entity =>
+            modelBuilder.Entity<PickupDetail>(entity =>
             {
-                entity.HasKey(e => e.IdEstado)
-                    .HasName("estados_pkey");
+                entity.HasKey(e => e.IdPickupDetail)
+                    .HasName("pickup_detail_pkey");
 
-                entity.ToTable("estados");
+                entity.ToTable("pickup_detail");
 
-                entity.Property(e => e.IdEstado)
-                    .HasColumnName("id_estado")
+                entity.Property(e => e.IdPickupDetail)
+                    .HasColumnName("id_pickup_detail")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.Estado1)
-                    .HasMaxLength(30)
-                    .HasColumnName("estado");
-            });
+                entity.Property(e => e.IdPickup).HasColumnName("id_pickup");
 
-            modelBuilder.Entity<LiquidacionEnvio>(entity =>
-            {
-                entity.HasKey(e => e.IdLiquidacion)
-                    .HasName("liquidacion_envios_pkey");
+                entity.Property(e => e.Volume).HasColumnName("volume");
 
-                entity.ToTable("liquidacion_envios");
+                entity.Property(e => e.Weight).HasColumnName("weight");
 
-                entity.Property(e => e.IdLiquidacion)
-                    .HasColumnName("id_liquidacion")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("date")
-                    .HasColumnName("fecha");
-
-                entity.Property(e => e.IdDetalleEnvio).HasColumnName("id_detalle_envio");
-
-                entity.Property(e => e.MontoTotal).HasColumnName("monto_total");
-
-                entity.HasOne(d => d.IdDetalleEnvioNavigation)
-                    .WithMany(p => p.LiquidacionEnvios)
-                    .HasForeignKey(d => d.IdDetalleEnvio)
-                    .HasConstraintName("fk_liquidacion_envios_id_detalle_envio");
-            });
-
-            modelBuilder.Entity<Retiro>(entity =>
-            {
-                entity.HasKey(e => e.IdRetiro)
-                    .HasName("retiros_pkey");
-
-                entity.ToTable("retiros");
-
-                entity.Property(e => e.IdRetiro)
-                    .HasColumnName("id_retiro")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Apellido)
-                    .HasMaxLength(50)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.Dia)
-                    .HasColumnType("date")
-                    .HasColumnName("dia");
-
-                entity.Property(e => e.EsTitular).HasColumnName("es_titular");
-
-                entity.Property(e => e.Horario)
-                    .HasColumnType("time without time zone")
-                    .HasColumnName("horario");
-
-                entity.Property(e => e.IdEstado).HasColumnName("id_estado");
-
-                entity.Property(e => e.IdSucursal).HasColumnName("id_sucursal");
-
-                entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
-
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(50)
-                    .HasColumnName("nombre");
-
-                entity.Property(e => e.NroOrdenEntrega).HasColumnName("nro_orden_entrega");
-
-                entity.HasOne(d => d.IdEstadoNavigation)
-                    .WithMany(p => p.Retiros)
-                    .HasForeignKey(d => d.IdEstado)
-                    .HasConstraintName("fk_retiros_id_estado");
-
-                entity.HasOne(d => d.IdSucursalNavigation)
-                    .WithMany(p => p.Retiros)
-                    .HasForeignKey(d => d.IdSucursal)
-                    .HasConstraintName("fk_retiros_id_sucursal");
-
-                entity.HasOne(d => d.IdUsuarioNavigation)
-                    .WithMany(p => p.Retiros)
-                    .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("fk_retiros_id_usuario");
+                entity.HasOne(d => d.IdPickupNavigation)
+                    .WithMany(p => p.PickupDetails)
+                    .HasForeignKey(d => d.IdPickup)
+                    .HasConstraintName("fk_pickup_detail_id_pickup");
             });
 
             modelBuilder.Entity<Role>(entity =>
@@ -333,125 +275,275 @@ namespace SuperMamiApi.Models
                     .HasColumnName("rol");
             });
 
-            modelBuilder.Entity<Sucursale>(entity =>
+            modelBuilder.Entity<Shipping>(entity =>
             {
-                entity.HasKey(e => e.IdSucursal)
-                    .HasName("sucursales_pkey");
+                entity.HasKey(e => e.IdShipping)
+                    .HasName("shippings_pkey");
 
-                entity.ToTable("sucursales");
+                entity.ToTable("shippings");
 
-                entity.Property(e => e.IdSucursal)
-                    .HasColumnName("id_sucursal")
+                entity.Property(e => e.IdShipping)
+                    .HasColumnName("id_shipping")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.CodPostal)
+                entity.Property(e => e.Address)
                     .HasMaxLength(50)
-                    .HasColumnName("cod_postal");
+                    .HasColumnName("address");
 
-                entity.Property(e => e.Direccion)
+                entity.Property(e => e.Day)
+                    .HasColumnType("date")
+                    .HasColumnName("day");
+
+                entity.Property(e => e.DeliveryOrderNumber).HasColumnName("delivery_order_number");
+
+                entity.Property(e => e.Hour)
+                    .HasColumnType("time without time zone")
+                    .HasColumnName("hour");
+
+                entity.Property(e => e.IdShippingCompany).HasColumnName("id_shipping_company");
+
+                entity.Property(e => e.IdState).HasColumnName("id_state");
+
+                entity.Property(e => e.IdUser).HasColumnName("id_user");
+
+                entity.Property(e => e.IdZone).HasColumnName("id_zone");
+
+                entity.Property(e => e.IsOwner).HasColumnName("is_owner");
+
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .HasColumnName("direccion");
+                    .HasColumnName("name");
 
-                entity.Property(e => e.IdBarrio).HasColumnName("id_barrio");
+                entity.Property(e => e.Phone).HasColumnName("phone");
 
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Surname)
                     .HasMaxLength(50)
-                    .HasColumnName("nombre");
+                    .HasColumnName("surname");
 
-                entity.HasOne(d => d.IdBarrioNavigation)
-                    .WithMany(p => p.Sucursales)
-                    .HasForeignKey(d => d.IdBarrio)
-                    .HasConstraintName("fk_sucursales_id_barrio");
+                entity.HasOne(d => d.IdShippingCompanyNavigation)
+                    .WithMany(p => p.Shippings)
+                    .HasForeignKey(d => d.IdShippingCompany)
+                    .HasConstraintName("fk_shippings_id_shipping_company");
+
+                entity.HasOne(d => d.IdStateNavigation)
+                    .WithMany(p => p.Shippings)
+                    .HasForeignKey(d => d.IdState)
+                    .HasConstraintName("fk_shippings_id_state");
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.Shippings)
+                    .HasForeignKey(d => d.IdUser)
+                    .HasConstraintName("fk_shippings_id_user");
+
+                entity.HasOne(d => d.IdZoneNavigation)
+                    .WithMany(p => p.Shippings)
+                    .HasForeignKey(d => d.IdZone)
+                    .HasConstraintName("fk_shippings_id_zone");
             });
 
-            modelBuilder.Entity<TipoDocumento>(entity =>
+            modelBuilder.Entity<ShippingCompany>(entity =>
             {
-                entity.HasKey(e => e.IdTipoDocumento)
-                    .HasName("tipo_documento_pkey");
+                entity.HasKey(e => e.IdShippingCompany)
+                    .HasName("shipping_company_pkey");
 
-                entity.ToTable("tipo_documento");
+                entity.ToTable("shipping_company");
 
-                entity.Property(e => e.IdTipoDocumento)
-                    .HasColumnName("id_tipo_documento")
+                entity.Property(e => e.IdShippingCompany)
+                    .HasColumnName("id_shipping_company")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.TipoDocumento1)
+                entity.Property(e => e.BusinessName)
                     .HasMaxLength(50)
-                    .HasColumnName("tipo_documento");
-            });
+                    .HasColumnName("business_name");
 
-            modelBuilder.Entity<TipoEnvio>(entity =>
-            {
-                entity.HasKey(e => e.IdTipoEnvio)
-                    .HasName("tipo_envio_pkey");
-
-                entity.ToTable("tipo_envio");
-
-                entity.Property(e => e.IdTipoEnvio)
-                    .HasColumnName("id_tipo_envio")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.CantidadBolsasMax).HasColumnName("cantidad_bolsas_max");
-
-                entity.Property(e => e.CapacidadPesoMax).HasColumnName("capacidad_peso_max");
-
-                entity.Property(e => e.CapacidadVolumenMax)
-                    .HasMaxLength(50)
-                    .HasColumnName("capacidad_volumen_max");
-
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(50)
-                    .HasColumnName("descripcion");
-            });
-
-            modelBuilder.Entity<Usuario>(entity =>
-            {
-                entity.HasKey(e => e.IdUsuario)
-                    .HasName("usuarios_pkey");
-
-                entity.ToTable("usuarios");
-
-                entity.Property(e => e.IdUsuario)
-                    .HasColumnName("id_usuario")
-                    .UseIdentityAlwaysColumn();
-
-                entity.Property(e => e.Apellido)
-                    .HasMaxLength(50)
-                    .HasColumnName("apellido");
-
-                entity.Property(e => e.Contrasenia)
-                    .HasMaxLength(50)
-                    .HasColumnName("contrasenia");
+                entity.Property(e => e.Cuit).HasColumnName("cuit");
 
                 entity.Property(e => e.Email)
                     .HasMaxLength(50)
                     .HasColumnName("email");
 
+                entity.Property(e => e.IdShippingType).HasColumnName("id_shipping_type");
+
+                entity.Property(e => e.Location)
+                    .HasMaxLength(50)
+                    .HasColumnName("location");
+
+                entity.Property(e => e.Number).HasColumnName("number");
+
+                entity.Property(e => e.Phone).HasColumnName("phone");
+
+                entity.Property(e => e.Shift)
+                    .HasColumnType("time without time zone")
+                    .HasColumnName("shift");
+
+                entity.Property(e => e.Street)
+                    .HasMaxLength(50)
+                    .HasColumnName("street");
+
+                entity.HasOne(d => d.IdShippingTypeNavigation)
+                    .WithMany(p => p.ShippingCompanies)
+                    .HasForeignKey(d => d.IdShippingType)
+                    .HasConstraintName("fk_shipping_company_id_shipping_type");
+            });
+
+            modelBuilder.Entity<ShippingDetail>(entity =>
+            {
+                entity.HasKey(e => e.IdShippingDetail)
+                    .HasName("shipping_detail_pkey");
+
+                entity.ToTable("shipping_detail");
+
+                entity.Property(e => e.IdShippingDetail)
+                    .HasColumnName("id_shipping_detail")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.IdShipping).HasColumnName("id_shipping");
+
+                entity.Property(e => e.IsFree)
+                    .HasColumnType("bit(1)")
+                    .HasColumnName("is_free");
+
+                entity.Property(e => e.ShippingPrice).HasColumnName("shipping_price");
+
+                entity.Property(e => e.Volume).HasColumnName("volume");
+
+                entity.Property(e => e.Weight).HasColumnName("weight");
+
+                entity.HasOne(d => d.IdShippingNavigation)
+                    .WithMany(p => p.ShippingDetails)
+                    .HasForeignKey(d => d.IdShipping)
+                    .HasConstraintName("fk_shipping_detail_id_shipping");
+            });
+
+            modelBuilder.Entity<ShippingPayment>(entity =>
+            {
+                entity.HasKey(e => e.IdShippingPayment)
+                    .HasName("shipping_payment_pkey");
+
+                entity.ToTable("shipping_payment");
+
+                entity.Property(e => e.IdShippingPayment)
+                    .HasColumnName("id_shipping_payment")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.Date)
+                    .HasColumnType("date")
+                    .HasColumnName("date");
+
+                entity.Property(e => e.IdShippingDetail).HasColumnName("id_shipping_detail");
+
+                entity.Property(e => e.TotalPrice).HasColumnName("total_price");
+
+                entity.HasOne(d => d.IdShippingDetailNavigation)
+                    .WithMany(p => p.ShippingPayments)
+                    .HasForeignKey(d => d.IdShippingDetail)
+                    .HasConstraintName("fk_shipping_payment_id_shipping_detail");
+            });
+
+            modelBuilder.Entity<ShippingType>(entity =>
+            {
+                entity.HasKey(e => e.IdShippingType)
+                    .HasName("shipping_type_pkey");
+
+                entity.ToTable("shipping_type");
+
+                entity.Property(e => e.IdShippingType)
+                    .HasColumnName("id_shipping_type")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(50)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.MaxBagsCapacity).HasColumnName("max_bags_capacity");
+
+                entity.Property(e => e.MaxVolumeCapacity)
+                    .HasMaxLength(50)
+                    .HasColumnName("max_volume_capacity");
+
+                entity.Property(e => e.MaxWeightCapacity).HasColumnName("max_weight_capacity");
+            });
+
+            modelBuilder.Entity<State>(entity =>
+            {
+                entity.HasKey(e => e.IdState)
+                    .HasName("states_pkey");
+
+                entity.ToTable("states");
+
+                entity.Property(e => e.IdState)
+                    .HasColumnName("id_state")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.State1)
+                    .HasMaxLength(30)
+                    .HasColumnName("state");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.IdUser)
+                    .HasName("users_pkey");
+
+                entity.ToTable("users");
+
+                entity.Property(e => e.IdUser)
+                    .HasColumnName("id_user")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.DocumentNumber)
+                    .HasMaxLength(50)
+                    .HasColumnName("document_number");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.IdDocumentType).HasColumnName("id_document_type");
+
                 entity.Property(e => e.IdRol).HasColumnName("id_rol");
 
-                entity.Property(e => e.IdTipoDocumento).HasColumnName("id_tipo_documento");
-
-                entity.Property(e => e.Nombre)
+                entity.Property(e => e.Name)
                     .HasMaxLength(50)
-                    .HasColumnName("nombre");
+                    .HasColumnName("name");
 
-                entity.Property(e => e.NroDocumento)
+                entity.Property(e => e.Password)
                     .HasMaxLength(50)
-                    .HasColumnName("nro_documento");
+                    .HasColumnName("password");
 
-                entity.Property(e => e.Telefono)
+                entity.Property(e => e.Phone)
                     .HasMaxLength(50)
-                    .HasColumnName("telefono");
+                    .HasColumnName("phone");
+
+                entity.Property(e => e.Surname)
+                    .HasMaxLength(50)
+                    .HasColumnName("surname");
+
+                entity.HasOne(d => d.IdDocumentTypeNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.IdDocumentType)
+                    .HasConstraintName("fk_users_id_document_type");
 
                 entity.HasOne(d => d.IdRolNavigation)
-                    .WithMany(p => p.Usuarios)
+                    .WithMany(p => p.Users)
                     .HasForeignKey(d => d.IdRol)
-                    .HasConstraintName("fk_usuarios_id_rol");
+                    .HasConstraintName("fk_users_id_rol");
+            });
 
-                entity.HasOne(d => d.IdTipoDocumentoNavigation)
-                    .WithMany(p => p.Usuarios)
-                    .HasForeignKey(d => d.IdTipoDocumento)
-                    .HasConstraintName("fk_usuarios_id_tipo_documento");
+            modelBuilder.Entity<Zone>(entity =>
+            {
+                entity.HasKey(e => e.IdZone)
+                    .HasName("zones_pkey");
+
+                entity.ToTable("zones");
+
+                entity.Property(e => e.IdZone)
+                    .HasColumnName("id_zone")
+                    .UseIdentityAlwaysColumn();
+
+                entity.Property(e => e.Zone1)
+                    .HasMaxLength(50)
+                    .HasColumnName("zone");
             });
 
             OnModelCreatingPartial(modelBuilder);
