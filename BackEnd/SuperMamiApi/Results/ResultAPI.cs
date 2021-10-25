@@ -1,4 +1,4 @@
-namespace SuperMamiApi.Resultados
+namespace SuperMamiApi.Results
 {
     public class ResultAPI
     {
