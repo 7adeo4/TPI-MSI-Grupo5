@@ -33,11 +33,11 @@
 //             try
 //             {
 
-//                 var u = db.Shippings.ToList().Where(c => c.IdShipping == shipping.IdShipping).FirstOrDefault();
-//                 if (u != null)
+//                 var s = db.Shippings.ToList().Where(c => c.IdShipping == shipping.IdShipping).FirstOrDefault();
+//                 if (s != null)
 //                 {
 //                     resultado.Ok = true;
-//                     resultado.Return = u;
+//                     resultado.Return = s;
 //                     resultado.AdditionalInfo = "Se muestra el envío correctamente";
 //                     resultado.ErrorCode = 200;
 //                     return resultado;
