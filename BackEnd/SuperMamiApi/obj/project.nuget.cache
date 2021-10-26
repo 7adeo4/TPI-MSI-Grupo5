@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3J97JDsgQibuuwEq70NFg83aCvQcLra074yB29ExEr5OlKhRwMppZ4CQLd+gxWAGI/toPUlyKd0o4cI2A8fnkg==",
+  "dgSpecHash": "OCX3mltByrGbUFPFFWcdpk3QP61h7GAYkLfhOZVAXgdFKvQ8kgHDrGOyZP3X57iuWIqrs4uBq1UV8cfNMtkpfg==",
   "success": true,
-  "projectFilePath": "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+  "projectFilePath": "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Agus\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Agus\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

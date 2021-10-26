@@ -78,7 +78,6 @@ c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\s
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\staticwebassets\SuperMamiApi.StaticWebAssets.xml
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\scopedcss\bundle\SuperMamiApi.styles.css
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.RazorTargetAssemblyInfo.cache
-c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csproj.CopyComplete
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.dll
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
