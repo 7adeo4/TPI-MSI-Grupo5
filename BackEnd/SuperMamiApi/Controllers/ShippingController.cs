@@ -6,7 +6,7 @@
 // using Microsoft.Extensions.Logging;
 // using SuperMamiApi.Commands.ShippingCommands;
 // using SuperMamiApi.Models;
-// using SuperMamiApi.Resultados;
+// using SuperMamiApi.Results;
 // using Microsoft.AspNetCore.Cors;
 // using Microsoft.EntityFrameworkCore;
 
@@ -26,18 +26,18 @@
 //         }
 
 //          [HttpPost]
-//         [Route("Shipping/GetShipping")]
+//         [Route("Shipping/GetShippingById")]
 //         public ActionResult<ResultAPI> Get([FromBody] CommandFindShipping shipping)
 //         {
 //             var resultado = new ResultAPI();
 //             try
 //             {
 
-//                 var u = db.Shippings.ToList().Where(c => c.IdShipping == shipping.IdShipping).FirstOrDefault();
-//                 if (u != null)
+//                 var s = db.Shippings.ToList().Where(c => c.IdShipping == shipping.IdShipping).FirstOrDefault();
+//                 if (s != null)
 //                 {
 //                     resultado.Ok = true;
-//                     resultado.Return = u;
+//                     resultado.Return = s;
 //                     resultado.AdditionalInfo = "Se muestra el envío correctamente";
 //                     resultado.ErrorCode = 200;
 //                     return resultado;

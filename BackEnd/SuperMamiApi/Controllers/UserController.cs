@@ -10,7 +10,6 @@ using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace SuperMamiApi.Controllers
 {
     [ApiController]
