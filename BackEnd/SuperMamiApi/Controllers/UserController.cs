@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SuperMamiApi.Commands.UserCommands;
 using SuperMamiApi.Models;
-using SuperMamiApi.results;
+using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 
@@ -75,6 +75,7 @@ namespace SuperMamiApi.Controllers
             u.Phone = command.Phone;
             u.IdRol = command.IdRol;
             u.Password = command.Password;
+            
 
             try
             {
