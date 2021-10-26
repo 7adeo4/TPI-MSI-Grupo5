@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
+    "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
+    "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "projectUniqueName": "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
         "projectName": "SuperMamiApi",
-        "projectPath": "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "projectPath": "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
         "packagesPath": "C:\\Users\\Agus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
+        "outputPath": "c:\\Users\\Agus\\Desktop\\MSI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Agus\\AppData\\Roaming\\NuGet\\NuGet.Config"
