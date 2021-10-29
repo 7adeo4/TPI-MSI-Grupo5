@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/c55fb45212.js" crossorigin="anonymous"></script>
-    <title>Register</title>
+    <title>Registrar Envio</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
               </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav m-1" >
-                    <a class="nav-item nav-link Active" href="#">Registrar Envio</a>
+                    <a class="nav-item nav-link Active disabled" href="./shippingRegister.html">Registrar Envio</a>
                     <a class="nav-item nav-link" href="./updateSending.html">Actualizar Envío</a>
                     <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
                     <a class="nav-item nav-link" href="./updateWithdrawal.html">Actualizar Retiro</a>
@@ -37,14 +37,20 @@
     <div class="d-flex justify-content-center mt-5">
         <h2>Registrar Envio</h2>
     </div>
-    <form class="d-flex justify-content-center align-items-center flex-column mt-5">
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nº de Pedido</label>
-            <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
+    <form id="form" class="d-flex justify-content-center align-items-center flex-column mt-5">
+        <div class="col-5 mb-3" id="group__order">
+            <label for="order" class="form-label">Nº de Pedido</label>
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" class="form-control form-input" name="order" id="order">
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
+            </div>
         </div>
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Monto</label>
-            <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
+        <div class="col-5 mb-3" id="group__amount">
+            <label for="amount" class="form-label">Monto</label>
+            <div class="d-flex justify-content-center align-items-center">
+                <input type="text" class="form-control form-input" name="amount" id="amount">
+                <i class="form__validation-state m-1 fas fa-times-circle"></i>
+            </div>
         </div>
         <div class="col-5 mb-3">
             <label for="exampleInputEmail1" class="form-label">Empresa</label>

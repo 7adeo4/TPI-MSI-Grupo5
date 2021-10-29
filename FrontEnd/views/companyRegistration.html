@@ -6,16 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
 
-    <title>Register</title>
+    <title>Registrar Empresas</title>
 </head>
 
-<body style="background-color:rgb(250, 217, 5)">
-    <nav class="navbar navbar-light bg-dark d-flex flex-row-reverse">
-        <a class="navbar-brand text-light" href="./views/login.html">Iniciar sesion</a>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./home.html">
+                <i style="font-size:30px" class="text-white fas fa-home"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="navbar-nav m-1" >
+                    <a class="nav-item nav-link" href="./shippingRegister.html">Registrar Envio</a>
+                    <a class="nav-item nav-link" href="./updateSending.html">Actualizar Envío</a>
+                    <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
+                    <a class="nav-item nav-link" href="./updateWithdrawal.html">Actualizar Retiro</a>
+                    <a class="nav-item nav-link" href="reports.html">Reportes de Envios/Retiros</a>
+                    <a class="nav-item nav-link" href="./companyReports.html">Reportes de Empresas</a>
+                    <a class="nav-item nav-link active disabled" href="./companyRegistration.html">Registro de Empresas</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <div class="d-flex justify-content-center m-3">
-        <img src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png" alt="" srcset="">
+    <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
+        <img class="col-lg-4 col-8" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png">
     </div>
     <div class="d-flex justify-content-center mt-5">
         <h2>Registrar Empresa</h2>
