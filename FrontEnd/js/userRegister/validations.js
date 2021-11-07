@@ -100,6 +100,7 @@ form.addEventListener('submit', (e) => {
 	if (campos.dni && campos.name && campos.password && campos.email && campos.lastName && campos.phone) {
 		if (!terms.checked) {
 			document.getElementById('terms-message').classList.add('terms-message-active');
+			setTimeout(() => {document.getElementById('terms-message').classList.remove('terms-message-active');}, 5000)
 		}
 		else {
 			// insertUser();

@@ -20,7 +20,7 @@
 	display: block;
 }
 
-.form__grupo-btn-enviar {
+/* .form__grupo-btn-enviar {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -39,7 +39,7 @@
 
 .form__btn:hover {
 	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
-}
+} */
 
 .form__validation-state {
 	z-index: 100;
