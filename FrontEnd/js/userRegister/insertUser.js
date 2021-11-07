@@ -1,4 +1,4 @@
-$("#submit").click(function () {
+insertUser = () => {
     let name = $("#name").val();
     let lastName = $("#lastName").val();
     let dni = $("#dni").val();
@@ -8,10 +8,6 @@ $("#submit").click(function () {
     let rolUser = $("#rolUser").val();
     let password = $("#password").val();
     
-    insertUser(name,lastName, dni, typeDni, email, phone, rolUser, password);
-});
-
-insertUser = (name, lastName, dni, typeDni, email, phone , rolUser, password) => {
     command = {
         nombre: name,
         apellido: lastName,
