@@ -15,12 +15,12 @@ namespace SuperMamiApi.Controllers
 {
     [ApiController]
     [EnableCors("speMsi")]
-    public class EnvioController : ControllerBase
+    public class ShippingController : ControllerBase
     {
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
-        private readonly ILogger<EnvioController> _logger;
+        private readonly ILogger<ShippingController> _logger;
 
-        public EnvioController(ILogger<EnvioController> logger)
+        public ShippingController(ILogger<ShippingController> logger)
         {
             _logger = logger;
         }
@@ -30,18 +30,19 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> GetAllShippings()
         {
             var resultado = new ResultAPI();
-            try
+            var s = db.Shippings.ToList().Where(c => c.IsActive == true).FirstOrDefault();
+            if (s != null)
             {
                 resultado.Ok = true;
-                resultado.Return = db.Shippings.ToList();
+                resultado.Return = s;
                 resultado.AdditionalInfo = "Se cargó la lista correctamente";
                 resultado.ErrorCode = 200;
                 return resultado;
             }
-            catch (Exception ex)
+            else
             {
                 resultado.Ok = false;
-                resultado.Error = "Error al cargar los envíos" + ex.Message;
+                resultado.Error = "Error al cargar los envíos";
                 resultado.ErrorCode = 400;
                 return resultado;
             }
@@ -139,39 +140,48 @@ namespace SuperMamiApi.Controllers
         {
             ResultAPI result = new ResultAPI();
             Shipping s = new Shipping();
+            try
+            {
+                if (s.IdShippingCompany <= 0)
+                {
+                    result.Ok = false;
+                    result.Error = "Esa empresa de envíos no existe";
+                    return result;
+                }
+                if (s.IdState <= 0)
+                {
+                    result.Ok = false;
+                    result.Error = "Ese estado de envíos no existe";
+                    return result;
+                }
 
-            if (s.IdShippingCompany <= 0)
+                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+                if (shipp != null)
+                {
+                    shipp.IdShippingCompany = command.IdShippingCompany;
+                    shipp.IdState = command.IdState;
+
+                    db.Shippings.Update(shipp);
+                    db.SaveChanges();
+                    result.Ok = true;
+                    result.Return = db.Shippings.ToList();
+                    return result;
+                }
+                else
+                {
+                    result.Ok = false;
+                    result.ErrorCode = 200;
+                    result.Error = "Envío no encontrado, revise el Nro de Orden";
+                    return result;
+                }
+            }
+            catch (Exception ex)
             {
                 result.Ok = false;
-                result.Error = "Esa empresa de envíos no existe";
-                return result;
-            }
-            if (s.IdState <= 0)
-            {
-                result.Ok = false;
-                result.Error = "Ese estado de envíos no existe";
+                result.Error = "Algo salió mal al actualizar el Envío. Error: " + ex.ToString();
                 return result;
             }
 
-            var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
-            if (shipp != null)
-            {
-                shipp.IdShippingCompany = command.IdShippingCompany;
-                shipp.IdState = command.IdState;
-
-                db.Shippings.Update(shipp);
-                db.SaveChanges();
-                result.Ok = true;
-                result.Return = db.Shippings.ToList();
-                return result;
-            }
-            else
-            {
-                result.Ok = false;
-                result.ErrorCode = 200;
-                result.Error = "Envío no encontrado, revise el Nro de Orden";
-                return result;
-            }
 
         }
 
@@ -181,28 +191,40 @@ namespace SuperMamiApi.Controllers
         {
             ResultAPI result = new ResultAPI();
             Shipping s = new Shipping();
-            var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
-            if (shipp != null)
-            {
-                shipp.IsActive = false;
 
-                db.Shippings.Update(shipp);
-                db.SaveChanges();
-                result.Ok = true;
-                result.Return = db.Shippings.ToList();
-                return result;
+            try
+            {
+                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+                if (shipp != null)
+                {
+                    shipp.IsActive = false;
+
+                    db.Shippings.Update(shipp);
+                    db.SaveChanges();
+                    result.Ok = true;
+                    result.Return = db.Shippings.ToList();
+                    return result;
+                }
+                else
+                {
+                    result.Ok = false;
+                    result.ErrorCode = 200;
+                    result.Error = "Envío no encontrado, revise el Nro de Orden";
+                    return result;
+                }
             }
-            else
+            catch (Exception ex)
             {
                 result.Ok = false;
-                result.ErrorCode = 200;
-                result.Error = "Envío no encontrado, revise el Nro de Orden";
+                result.Error = "Algo salió mal al eliminar el Envío. Error: " + ex.ToString();
                 return result;
             }
+
+
         }
     }
 
-    //dotnet ef dbcontext scaffold "User ID=administrador@dbtpimsi; Password=Contra123*; SslMode=Prefer;Server=dbtpimsi.postgres.database.azure.com; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models
+    //dotnet ef dbcontext scaffold "User ID=administrador@dbtpimsi2; Password=Contra123*; SslMode=Prefer;Server=dbtpimsi2.postgres.database.azure.com; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models
 }
 
 
