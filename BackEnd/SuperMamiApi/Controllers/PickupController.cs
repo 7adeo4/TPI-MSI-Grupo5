@@ -26,8 +26,8 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("Pickup/GetPickup")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindPickup pickup)
+        [Route("Pickup/GetPickupById")]
+        public ActionResult<ResultAPI> GetById([FromBody] CommandFindPickup pickup)
         {
             var result = new ResultAPI();
             try
@@ -68,10 +68,10 @@ namespace SuperMamiApi.Controllers
             Pickup r = new Pickup();
 
             r.IdDeliveryOrder = command.IdDeliveryOrder;
-            //Ver estado por defecto, lo toma como cero
+            
             r.IdState = 1;
             r.IdUser = command.IdUser;
-            r.Active = true;
+            r.IsActive = true;
 
 
             try
@@ -154,6 +154,71 @@ namespace SuperMamiApi.Controllers
                 result.Ok = false;
                 result.ErrorCode = 200;
                 result.Error = "Retiro no encontrado, revise el Documento";
+                return result;
+            }
+        }
+
+        [HttpPut]
+        [Route("Pickup/DeletePickup")]
+        public ActionResult<ResultAPI> DeleteUser([FromBody] CommandDeletePickup command)
+        {
+            ResultAPI result = new ResultAPI();
+            Pickup r = new Pickup();
+
+
+            if (r.IdDeliveryOrder <= 0)
+            {
+                result.Ok = false;
+                result.Error = "Ese retiro no existe";
+                return result;
+            }
+            
+
+            var pick = db.Pickups.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+            if (pick != null)
+            {
+                 
+                
+                pick.IdDeliveryOrder = command.IdDeliveryOrder;
+                pick.IsActive = false;
+                
+                
+                db.Pickups.Update(pick);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = db.Pickups.ToList();
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Retiro no encontrado, revise el Documento";
+                return result;
+            }
+        }
+
+        [HttpGet]
+        [Route("Pickup/GetAll")]
+        public ActionResult<ResultAPI> GetAll()
+        {
+            var result = new ResultAPI();
+            try
+            {
+
+                    result.Ok = true;
+                    result.Return = db.Pickups.ToList();
+                    result.AdditionalInfo = "Se muestra el retiro correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                
+
+            }
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Error al cargar retiros" + ex.Message;
+                result.ErrorCode = 400;
                 return result;
             }
         }

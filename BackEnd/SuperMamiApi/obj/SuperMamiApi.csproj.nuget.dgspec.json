@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
+    "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
+    "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "projectUniqueName": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
         "projectName": "SuperMamiApi",
-        "projectPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "projectPath": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
         "packagesPath": "C:\\Users\\carme\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
+        "outputPath": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\carme\\AppData\\Roaming\\NuGet\\NuGet.Config",

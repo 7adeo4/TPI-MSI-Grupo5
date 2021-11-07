@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZIinq669guQ88W1XaROtzaRbSCowAcPOUGjfsYyrSFD5s/U/WxXhLnfDWnIblFliGeRe18g1ey8AJiP5/9TM0g==",
+  "dgSpecHash": "24tOBswwdxi7q6EMIrXvu4CZ4cncp8v/JY2xste0jxooEs5+eLnvRtQeNAbEJ4gcxUvHcU4iLu+vvIFerKafyA==",
   "success": true,
-  "projectFilePath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+  "projectFilePath": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carme\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\carme\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",

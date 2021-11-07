@@ -41,6 +41,13 @@ C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\o
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csprojAssemblyReference.cache
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.AssemblyInfoInputs.cache
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.AssemblyInfo.cs
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csproj.CoreCompileInputs.cache
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\appsettings.json
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\SuperMamiApi.exe
@@ -67,13 +74,6 @@ C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodologí
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csprojAssemblyReference.cache
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.AssemblyInfoInputs.cache
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.AssemblyInfo.cs
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.csproj.CoreCompileInputs.cache
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\staticwebassets\SuperMamiApi.StaticWebAssets.Manifest.cache
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\staticwebassets\SuperMamiApi.StaticWebAssets.xml
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\scopedcss\bundle\SuperMamiApi.styles.css
