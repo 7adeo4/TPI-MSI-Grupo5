@@ -1,39 +1,34 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SuperMamiApi.Commands;
 using SuperMamiApi.Models;
 using SuperMamiApi.Results;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.EntityFrameworkCore;
-
 
 namespace SuperMamiApi.Controllers
 {
     [ApiController]
     [EnableCors("speMsi")]
-    public class DocumentTypeController : ControllerBase
+    public class BranchController : ControllerBase
     {
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
-        private readonly ILogger<DocumentTypeController> _logger;
+        private readonly ILogger<BranchController> _logger;
 
-        public DocumentTypeController(ILogger<DocumentTypeController> logger)
+        public BranchController(ILogger<BranchController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet]
-        [Route("DocumentType/GetAllDocumentTypes")]
-        public ActionResult<ResultAPI> GetTipoDocumento()
+        [Route("Branch/GetAllBranches")]
+        public ActionResult<ResultAPI> GetBranch()
         {
             var resultado = new ResultAPI();
             try
             {
                 resultado.Ok = true;
-                resultado.Return = db.DocumentTypes.ToList();
+                resultado.Return = db.Branches.ToList();
                 resultado.AdditionalInfo = "Se cargó la lista correctamente";
                 resultado.ErrorCode = 200;
                 return resultado;
@@ -41,7 +36,7 @@ namespace SuperMamiApi.Controllers
             catch (Exception ex)
             {
                 resultado.Ok = false;
-                resultado.Error = "Error al cargar tipos de documento" + ex.Message;
+                resultado.Error = "Error al cargar las sucursales" + ex.Message;
                 resultado.ErrorCode = 400;
                 return resultado;
             }
