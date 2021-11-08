@@ -10,6 +10,7 @@ namespace SuperMamiApi.Commands.UserCommands
         public string Phone { get; set; }
         public int? IdRol { get; set; }
         public string Password { get; set; }
+        public bool? IsActive { get; set; }
 
     }
 }

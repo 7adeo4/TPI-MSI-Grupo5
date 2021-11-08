@@ -1,13 +1,21 @@
+using System;
+using System.Linq;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SuperMamiApi.Models;
+using SuperMamiApi.Results;
+
 namespace SuperMamiApi.Controllers
 {
     [ApiController]
     [EnableCors("speMsi")]
-    public class StateController : controllerBase
+    public class StateController : ControllerBase
     {
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
-        private readonly ILogger<ShippingController> _logger;
+        private readonly ILogger<StateController> _logger;
 
-        public ShippingController(ILogger<ShippingController> logger)
+        public StateController(ILogger<StateController> logger)
         {
             _logger = logger;
         }
@@ -16,22 +24,24 @@ namespace SuperMamiApi.Controllers
         [Route("State/GetAllStates")]
         public ActionResult<ResultAPI> GetAllStates()
         {
-            var resultado = new ResultAPI();
-            var s = db.State.ToList().Where(c => c.IsActive == true).FirstOrDefault();
-            if (s != null)
+             var result = new ResultAPI();
+            try
             {
-                resultado.Ok = true;
-                resultado.Return = s;
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
-                return resultado;
+
+                    result.Ok = true;
+                    result.Return = db.States.ToList();
+                    result.AdditionalInfo = "Se muestra la empresa de envío correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                
+
             }
-            else
+            catch (Exception ex)
             {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar los estados";
-                resultado.ErrorCode = 400;
-                return resultado;
+                result.Ok = false;
+                result.Error = "Error al cargar la empresa de envío" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
             }
         }
     }
