@@ -1,4 +1,5 @@
-$(document).ready(function () {
+const getRol = () => {
+  $(document).ready(function () {
     $.ajax({
       url: "https://localhost:5001/Rol/GetRol",
       type: "GET",
@@ -23,5 +24,4 @@ $(document).ready(function () {
       },
     });
   });
-
-  
+}

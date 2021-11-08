@@ -1,8 +1,13 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
+<<<<<<< HEAD
       "C:\\Users\\carme\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\carme\\.nuget\\packages"
+=======
+      "C:\\Users\\Pc-Casa\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Pc-Casa\\.nuget\\packages"
+>>>>>>> main
     ]
   }
 }
