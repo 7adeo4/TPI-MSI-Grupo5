@@ -64,7 +64,7 @@ namespace SuperMamiApi.Controllers
 
         [HttpPost]
         [Route("ShippingCompany/RegisterShippingCompany")]
-        public ActionResult<ResultAPI> RegisterPickup([FromBody] CommandRegisterShippingCompany command)
+        public ActionResult<ResultAPI> RegisterShippingCompany([FromBody] CommandRegisterShippingCompany command)
         {
             ResultAPI result = new ResultAPI();
             ShippingCompany s = new ShippingCompany();
@@ -259,7 +259,7 @@ namespace SuperMamiApi.Controllers
 
         [HttpPut]
         [Route("ShippingCompany/DeleteShippingCompany")]
-        public ActionResult<ResultAPI> DeleteUser([FromBody] CommandFindShippingCompany command)
+        public ActionResult<ResultAPI> DeleteCompany([FromBody] CommandFindShippingCompany command)
         {
             ResultAPI result = new ResultAPI();
             ShippingCompany s = new ShippingCompany();
