@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,9 @@ namespace SuperMamiApi
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddControllers().AddJsonOptions(x =>
+            x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -75,4 +79,4 @@ namespace SuperMamiApi
     }
 }
 
-// dotnet ef dbcontext scaffold "User ID=prog3; Password=Admin1234;Server=localhost; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models
+   //dotnet ef dbcontext scaffold "User ID=administrador@dbtpimsi2; Password=Contra123*; SslMode=Prefer;Server=dbtpimsi2.postgres.database.azure.com; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models
