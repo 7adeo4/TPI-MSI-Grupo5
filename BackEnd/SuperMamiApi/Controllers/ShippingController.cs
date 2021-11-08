@@ -219,10 +219,10 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Algo salió mal al eliminar el Envío. Error: " + ex.ToString();
                 return result;
             }
-
-
         }
-    }
+        
+        }
+    
 
     //dotnet ef dbcontext scaffold "User ID=administrador@dbtpimsi2; Password=Contra123*; SslMode=Prefer;Server=dbtpimsi2.postgres.database.azure.com; Database=super_mami_entregas;Integrated Security=true;Pooling=true" Npgsql.EntityFrameworkCore.PostgreSQL --output-dir Models
 }
