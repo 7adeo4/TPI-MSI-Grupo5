@@ -82,6 +82,9 @@ c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\S
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache
+<<<<<<< HEAD
+C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\linq2db.dll
+=======
 C:\Users\Usuario\Documents\GitHub\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\appsettings.json
@@ -125,3 +128,4 @@ C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodologí
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache
+>>>>>>> main
