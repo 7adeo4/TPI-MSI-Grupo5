@@ -321,6 +321,42 @@ namespace SuperMamiApi.Controllers
                 return result;
             }
         }
+
+        [HttpGet]
+        [Route("ShippingCompany/GetPriceRangeByMonth")]
+        public ActionResult<ResultAPI> GetPriceRangeByMonth(int year)
+        {
+
+            var query = from doo in db.DeliveryOrders
+                         where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
+                         group doo by doo.DeliveryDate into g
+                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice), Facturación_mínima = g.Min(z => z.ShippingPrice) };
+
+            // var query = from s in db.Shippings
+            //             where s.IdShipping == id
+            //             select s;
+
+            var result = new ResultAPI();
+            try
+            {
+                if (query != null)
+                {
+                    result.Ok = true;
+                    result.Return = query;
+                    result.AdditionalInfo = "Se cargó la lista correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
+            }
+            return result;
+        }
     }
 }
 

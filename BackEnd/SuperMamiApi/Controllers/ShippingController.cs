@@ -1,3 +1,4 @@
+using System.Reflection;
 using System.Data.Common;
 using System;
 using System.Collections.Generic;
@@ -33,13 +34,12 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> GetAllShippings()
         {
             var resultado = new ResultAPI();
-            var s = db.Shippings.ToList().Where(c => c.IsActive == true).FirstOrDefault();
+            var s = db.Shippings.ToList();
             if (s != null)
             {
                 resultado.Ok = true;
                 resultado.Return = s;
                 resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
                 return resultado;
             }
             else
@@ -66,7 +66,6 @@ namespace SuperMamiApi.Controllers
                     resultado.Ok = true;
                     resultado.Return = s;
                     resultado.AdditionalInfo = "Se muestra el envío correctamente";
-                    resultado.ErrorCode = 200;
                     return resultado;
                 }
                 else
@@ -104,7 +103,7 @@ namespace SuperMamiApi.Controllers
                 if (command.IdDeliveryOrder <= 0)
                 {
                     result.Ok = false;
-                    result.Error = "Ese nro de entrega no existe";
+                    result.Error = "Esa orden de entrega no existe";
                     return result;
                 }
                 if (command.IdUser <= 0)
@@ -114,24 +113,24 @@ namespace SuperMamiApi.Controllers
                     return result;
                 }
                 // DETAIL
-                if (command.Weight == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Ese nro de entrega no existe";
-                    return result;
-                }
-                if (command.Volume == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Ese nro de entrega no existe";
-                    return result;
-                }
-                if (command.BagsQuantity == 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Ese nro de entrega no existe";
-                    return result;
-                }
+                // if (command.Weight == "")
+                // {
+                //     result.Ok = false;
+                //     result.Error = "El peso no puede estar vacio";
+                //     return result;
+                // }
+                // if (command.Volume == "")
+                // {
+                //     result.Ok = false;
+                //     result.Error = "El volumen no puede estar vacio";
+                //     return result;
+                // }
+                // if (command.BagsQuantity == 0)
+                // {
+                //     result.Ok = false;
+                //     result.Error = "La cantidad de bolsas no puede estar vacio";
+                //     return result;
+                // }
 
                 Shipping s = new Shipping();
                 s.IdShippingCompany = command.IdShippingCompany;
@@ -149,15 +148,12 @@ namespace SuperMamiApi.Controllers
                 sp.Volume = command.Volume;
                 sp.BagsQuantity = command.BagsQuantity;
 
-
-                // var query = from sh in db.Shippings
-                //             join spd in db.ShippingDetails on s.IdShipping equals sp.IdShipping
-                //             select s;
-
-                var shippings = db.Shippings.ToList();
+                db.ShippingDetails.Add(sp);
+                db.SaveChanges();
 
                 result.Ok = true;
-                result.Return = shippings;
+                result.Return = db.Shippings.ToList();
+                result.AdditionalInfo = "Se cargó la lista correctamente";
             }
 
             catch (Exception ex)
@@ -228,7 +224,14 @@ namespace SuperMamiApi.Controllers
                 var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
                 if (shipp != null)
                 {
-                    shipp.IsActive = false;
+                    if (shipp.IsActive == true)
+                    {
+                        shipp.IsActive = false;
+                    }
+                    else
+                    {
+                        shipp.IsActive = true;
+                    }
 
                     db.Shippings.Update(shipp);
                     db.SaveChanges();
@@ -255,8 +258,8 @@ namespace SuperMamiApi.Controllers
 
 
         [HttpGet]
-        [Route("Shipping/GetAvgShippingType")]
-        public ActionResult<ResultAPI> GetAvgShippingType(int id)
+        [Route("Shipping/GetCountShippingType")]
+        public ActionResult<ResultAPI> GetCountShippingType()
         {
 
             var query = from s in db.Shippings
@@ -269,23 +272,26 @@ namespace SuperMamiApi.Controllers
             //             where s.IdShipping == id
             //             select s;
 
-            var resultado = new ResultAPI();
+            var result = new ResultAPI();
+            try
+            {
+                if (query != null)
+                {
+                    result.Ok = true;
+                    result.Return = query;
+                    result.AdditionalInfo = "Se cargó la lista correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+            }
 
-            if (query != null)
+            catch (Exception ex)
             {
-                resultado.Ok = true;
-                resultado.Return = query;
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
-                return resultado;
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
             }
-            else
-            {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar los envíos";
-                resultado.ErrorCode = 400;
-                return resultado;
-            }
+            return result;
         }
 
 
@@ -304,23 +310,11 @@ namespace SuperMamiApi.Controllers
                          select s).Count();
             try
             {
-
-                if (query != null)
-                {
-
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-                else
-                {
-                    result.Ok = false;
-                    result.ErrorCode = 200;
-                    result.Error = "Envío no encontrado";
-                    return result;
-                }
+                result.Ok = true;
+                result.Return = query;
+                result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
+                result.ErrorCode = 200;
+                return result;
             }
             catch (Exception ex)
             {
@@ -328,6 +322,42 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
                 return result;
             }
+        }
+
+        [HttpGet]
+        [Route("Shipping/GetPriceRangeByMonth")]
+        public ActionResult<ResultAPI> GetPriceRangeByMonth(int year)
+        {
+
+            var query = from doo in db.DeliveryOrders
+                         where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
+                         group doo by doo.DeliveryDate into g
+                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice), Facturación_mínima = g.Min(z => z.ShippingPrice) };
+
+            // var query = from s in db.Shippings
+            //             where s.IdShipping == id
+            //             select s;
+
+            var result = new ResultAPI();
+            try
+            {
+                if (query != null)
+                {
+                    result.Ok = true;
+                    result.Return = query;
+                    result.AdditionalInfo = "Se cargó la lista correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
+            }
+            return result;
         }
     }
 }
