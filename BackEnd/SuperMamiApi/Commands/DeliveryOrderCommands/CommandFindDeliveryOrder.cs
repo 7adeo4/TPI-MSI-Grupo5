@@ -1,6 +1,6 @@
 using System;
 
-namespace SuperMamiApi.Models
+namespace SuperMamiApi.Commands.DeliveryOrderCommands
 {
     public partial class CommandFindDeliveryOrder
     {
