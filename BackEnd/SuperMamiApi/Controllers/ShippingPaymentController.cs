@@ -65,7 +65,7 @@ namespace SuperMamiApi.Controllers
                 s.TotalPrice = tp;
                 s.Date = date;
                 s.IsActive = true;
-                s.IdShipping = 2;
+                s.IdShipping = 11;
 
 
 
