@@ -146,33 +146,32 @@ namespace SuperMamiApi.Controllers
         [Route("User/UpdateUser")]
         public ActionResult<ResultAPI> UpdateUser([FromBody] CommandUpdateUser command)
         {
-            ResultAPI result = new ResultAPI();
-            User u = new User();
-            if (u.Name == "")
+            ResultAPI result = new ResultAPI();            
+            if (command.Name == "")
             {
                 result.Ok = false;
                 result.Error = "Ingrese el nombre del usuario porfavor";
                 return result;
             }
-            if (u.Surname == "")
+            if (command.Surname == "")
             {
                 result.Ok = false;
                 result.Error = "Ingrese el apellido del usuario porfavor";
                 return result;
             }
-            if (u.Email == "")
+            if (command.Email == "")
             {
                 result.Ok = false;
                 result.Error = "Ingrese el email del usuario porfavor";
                 return result;
             }
-            if (u.Phone == "")
+            if (command.Phone == "")
             {
                 result.Ok = false;
                 result.Error = "Ingrese un número válido para el usuario porfavor";
                 return result;
             }
-            if (u.Password == "")
+            if (command.Password == "")
             {
                 result.Ok = false;
                 result.Error = "Ingrese una contraseña válida";

@@ -82,3 +82,4 @@ c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\S
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\ref\SuperMamiApi.dll
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 c:\Users\Agus\Desktop\MSI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache
+C:\Users\Camilo Rissi\Desktop\SuperMamiAPI\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\linq2db.dll
