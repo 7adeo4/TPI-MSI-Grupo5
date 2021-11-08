@@ -109,26 +109,26 @@ namespace SuperMamiApi.Controllers
 
         [HttpPut]
         [Route("Pickup/UpdatePickup")]
-        public ActionResult<ResultAPI> UpdateUser([FromBody] CommandUpdatePickup command)
+        public ActionResult<ResultAPI> UpdatePickup([FromBody] CommandUpdatePickup command)
         {
             ResultAPI result = new ResultAPI();
-            Pickup r = new Pickup();
+            
 
 
-            if (r.IdPickup <= 0)
+            if (command.IdPickup <= 0)
             {
                 result.Ok = false;
                 result.Error = "Ese retiro no existe";
                 return result;
             }
-            if (r.IdDeliveryOrder <= 0)
+            if (command.IdDeliveryOrder <= 0)
             {
                 result.Ok = false;
                 result.Error = "Esa orden de entrega no existe";
                 return result;
             }
 
-            if (r.IdState <= 0)
+            if (command.IdState <= 0)
             {
                 result.Ok = false;
                 result.Error = "Ese usuario no existe";
@@ -146,7 +146,7 @@ namespace SuperMamiApi.Controllers
                 db.Pickups.Update(pick);
                 db.SaveChanges();
                 result.Ok = true;
-                result.Return = db.Users.ToList();
+                result.Return = db.Pickups.ToList();
                 return result;
             }
             else
