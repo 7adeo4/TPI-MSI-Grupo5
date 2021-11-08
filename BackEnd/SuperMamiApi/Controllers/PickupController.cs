@@ -205,9 +205,9 @@ namespace SuperMamiApi.Controllers
             var result = new ResultAPI();
             try
             {
-
+                var s = db.Pickups.ToList().Where(c => c.IsActive == true).FirstOrDefault();
                     result.Ok = true;
-                    result.Return = db.Pickups.ToList();
+                    result.Return = s;
                     result.AdditionalInfo = "Se muestra el retiro correctamente";
                     result.ErrorCode = 200;
                     return result;
