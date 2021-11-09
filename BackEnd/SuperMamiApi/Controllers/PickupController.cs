@@ -65,37 +65,49 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> RegisterPickup([FromBody] CommandRegisterPickup command)
         {
             ResultAPI result = new ResultAPI();
-            Pickup r = new Pickup();
-
-            r.IdDeliveryOrder = command.IdDeliveryOrder;
-            
-            r.IdState = 1;
-            r.IdUser = command.IdUser;
-            r.IsActive = true;
 
 
             try
             {
-                if (r.IdDeliveryOrder <= 0)
+                if (command.IdDeliveryOrder <= 0)
                 {
                     result.Ok = false;
                     result.Error = "Esa orden de entrega no existe";
                     return result;
                 }
 
-                if (r.IdUser <= 0)
+                if (command.IdUser <= 0)
                 {
                     result.Ok = false;
                     result.Error = "Ese usuario no existe";
                     return result;
                 }
 
+                 
+                Pickup r = new Pickup();
+
+                r.IdDeliveryOrder = command.IdDeliveryOrder;
+                r.IdState = 1;
+                r.IdUser = command.IdUser;
+                r.IsActive = true;
 
                 db.Pickups.Add(r);
                 db.SaveChanges();
-                result.Ok = true;
-                var pickup = db.Pickups.ToList();
 
+                PickupDetail pd = new PickupDetail();
+
+                pd.IdPickup = r.IdPickup;
+                pd.Weight = command.Weight;
+                pd.Volume = command.Volume;
+                pd.BagsQuantity = command.BagsQuantity;
+
+                db.PickupDetails.Add(pd);
+                db.SaveChanges();
+
+
+
+                result.Ok = true;
+                var pickup = db.Pickups.ToList();                
                 result.Return = pickup;
             }
 
@@ -104,6 +116,7 @@ namespace SuperMamiApi.Controllers
                 result.Ok = false;
                 result.Error = "Algo salió mal al cargar el retiro. Error: " + ex.ToString();
             }
+
             return result;
         }
 
@@ -112,7 +125,7 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> UpdatePickup([FromBody] CommandUpdatePickup command)
         {
             ResultAPI result = new ResultAPI();
-            
+
 
 
             if (command.IdPickup <= 0)
@@ -138,11 +151,11 @@ namespace SuperMamiApi.Controllers
             var pick = db.Pickups.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
             if (pick != null)
             {
-                 
+
                 pick.IdPickup = command.IdPickup;
                 pick.IdDeliveryOrder = command.IdDeliveryOrder;
                 pick.IdState = command.IdState;
-                
+
                 db.Pickups.Update(pick);
                 db.SaveChanges();
                 result.Ok = true;
@@ -172,17 +185,17 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Ese retiro no existe";
                 return result;
             }
-            
+
 
             var pick = db.Pickups.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
             if (pick != null)
             {
-                 
-                
+
+
                 pick.IdDeliveryOrder = command.IdDeliveryOrder;
                 pick.IsActive = false;
-                
-                
+
+
                 db.Pickups.Update(pick);
                 db.SaveChanges();
                 result.Ok = true;
@@ -206,12 +219,12 @@ namespace SuperMamiApi.Controllers
             try
             {
                 var s = db.Pickups.ToList().Where(c => c.IsActive == true).FirstOrDefault();
-                    result.Ok = true;
-                    result.Return = s;
-                    result.AdditionalInfo = "Se muestra el retiro correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                
+                result.Ok = true;
+                result.Return = s;
+                result.AdditionalInfo = "Se muestra el retiro correctamente";
+                result.ErrorCode = 200;
+                return result;
+
 
             }
             catch (Exception ex)

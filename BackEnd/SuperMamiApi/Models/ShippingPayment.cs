@@ -11,7 +11,7 @@ namespace SuperMamiApi.Models
         public int? IdShipping { get; set; }
         public double? TotalPrice { get; set; }
         public DateTime Date { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Shipping IdShippingNavigation { get; set; }
     }
