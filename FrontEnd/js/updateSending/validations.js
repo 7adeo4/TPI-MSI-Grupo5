@@ -1,7 +1,8 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
-const company = document.getElementById('company');
+const selects = document.querySelectorAll('#form select');
 getCompany();
+getStatus();
 
 const expresions = {
     user: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -14,11 +15,9 @@ const expresions = {
 const attributes = {
     user: false,
     order: false,
-    weight: false,
-    volume: false,
-    bags: false,
     date: false,
-    company: false
+    company: false,
+    status: false
 }
 
 const validateform = (e) => {
@@ -29,20 +28,14 @@ const validateform = (e) => {
         case "order":
             validate(expresions.order, e.target, 'order');
             break;
-        // case "weight":
-        //     validate(expresions.weight, e.target, 'weight');
-        //     break;
-        // case "volume":
-        //     validate(expresions.volume, e.target, 'volume');
-        //     break;
-        // case "bags":
-        //     validate(expresions.bags, e.target, 'bags');
-        //     break;
         case "date":
             validateDate();
             break;
         case "company":
             validateCompany();
+            break;
+        case "status":
+            validateStatus();
             break;
     }
 }
@@ -81,6 +74,7 @@ const validateDate = () => {
 }
 
 const validateCompany = () => {
+    const company = document.getElementById('company');
     if (company.value == "" || company.value == 0) {
         document.getElementById(`group__company`).classList.add('form__group-incorrect');
         document.getElementById(`group__company`).classList.remove('form__group-correct');
@@ -95,26 +89,34 @@ const validateCompany = () => {
         attributes.company = true;
     }
 }
-
-// const validateFormat = () => {
-// 	let vol = document.getElementById('volume')
-// 	let wei = document.getElementById('weight')
-// 	let bag = document.getElementById('bags')
-
-// 	if(vol.value != 0 || wei.value != 0) bag.disabled = false
-// }
-// validateFormat();
-
+const validateStatus = () => {
+    const status = document.getElementById('status');
+    if (status.value == "" || status.value == 0) {
+        document.getElementById(`group__status`).classList.add('form__group-incorrect');
+        document.getElementById(`group__status`).classList.remove('form__group-correct');
+        document.querySelector(`#group__status i`).classList.add('fa-times-circle');
+        document.querySelector(`#group__status i`).classList.remove('fa-check-circle');
+        attributes.status = false;
+    } else {
+        document.getElementById(`group__status`).classList.remove('form__group-incorrect');
+        document.getElementById(`group__status`).classList.add('form__group-correct');
+        document.querySelector(`#group__status i`).classList.remove('fa-times-circle');
+        document.querySelector(`#group__status i`).classList.add('fa-check-circle');
+        attributes.status = true;
+    }
+}
 inputs.forEach((input) => {
     input.addEventListener('keyup', validateform);
     input.addEventListener('blur', validateform);
 });
-company.addEventListener('keyup', validateform);
-company.addEventListener('blur', validateform);
+selects.forEach((select) => {
+	select.addEventListener('keyup', validateform);
+	select.addEventListener('blur', validateform);
+});
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (attributes.user && attributes.order &&  attributes.date && attributes.company) {
+    if (attributes.user && attributes.order && attributes.date && attributes.company && attributes.status) {
         form.reset();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
         setTimeout(() => {

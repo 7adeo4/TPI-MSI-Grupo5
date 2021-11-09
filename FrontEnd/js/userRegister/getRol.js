@@ -1,27 +1,24 @@
 const getRol = () => {
-  $(document).ready(function () {
-    $.ajax({
-      url: "https://localhost:5001/Rol/GetRol",
-      type: "GET",
-      dataType: "json",
-      success: (result) => {
-        if (result.ok) {
-          var html = "<option value=''>Seleccione un rol</option>";
-          $("#rolUser").append(html);
-          select = document.getElementById("rolUser");
-          for (let i = 0; i < result.return.length; i++) {
-            var option = document.createElement("option");
-            option.value = result.return[i].idRol;
-            option.text = result.return[i].rol;
-            select.add(option);
-          }
-        } else {
-          swal(result.error);
-        }
-      },
-      error: function (error) {
-        swal("Problemas al conseguir los roles");
-      },
-    });
-  });
+  
+  const url = 'https://pokeapi.co/api/v2/pokemon';
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      let rol = document.getElementById("rolUser");
+      let html = document.createElement("option")
+      html.value = "";
+      html.text = "Seleccione un rol";
+      rol.appendChild(html);
+      for (let i = 0; i < 5; i++) {
+        let option = document.createElement("option");
+        option.value = data.results[i].idRol;
+        option.text = data.results[i].rol;
+        rol.add(option);
+      }
+    })
+    .catch(error =>{
+      swal("Error al traer los roles")
+      console.log(error)
+    })
 }
