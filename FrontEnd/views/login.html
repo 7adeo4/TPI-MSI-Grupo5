@@ -10,7 +10,6 @@
 </head>
 
 <body style="background-color:rgb(250, 217, 5)">
-
     <div class="d-flex justify-content-center m-3">
         <img src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png" alt="" >
     </div>
@@ -18,9 +17,9 @@
         <h2>Iniciar Sesion</h2>
     </div>
 
-    <form class="d-flex justify-content-center align-items-center flex-column mt-5">
+    <form id="form" class="d-flex justify-content-center align-items-center flex-column mt-5">
         <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Usuario</label>
+            <label for="exampleInputEmail1" class="form-label">Email</label>
             <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
         </div>
         <div class="mb-3 col-5">
@@ -31,12 +30,12 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Mantenerme logueado</label>
         </div>
-        <button type="submit" class="btn btn-primary col-2">Ingresar</button>
+        <button type="submit" class="btn btn-outline-info mb-2 col-2">Ingresar</button>
         <a href="./userRegister.html">No tienes cuenta?</a>
     </form>
 
 
-
+<script src="../js/login/login.js"></script>
 </body>
 
 </html>
