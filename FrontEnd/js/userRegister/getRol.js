@@ -1,24 +1,23 @@
 const getRol = () => {
-  
-  const url = 'https://pokeapi.co/api/v2/pokemon';
+  const url = "https://localhost:5001/Role/GetAllRoles";
 
   fetch(url)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       let rol = document.getElementById("rolUser");
-      let html = document.createElement("option")
+      let html = document.createElement("option");
       html.value = "";
       html.text = "Seleccione un rol";
-      rol.appendChild(html);
-      for (let i = 0; i < 5; i++) {
+      rol.appendChild(html);      
+      for (let i = 0; i < data.return.$values.length; i++) {
         let option = document.createElement("option");
-        option.value = data.results[i].idRol;
-        option.text = data.results[i].rol;
+        option.value = data.return.$values[i].idRol;
+        option.text = data.return.$values[i].rol;
         rol.add(option);
       }
     })
-    .catch(error =>{
-      swal("Error al traer los roles")
-      console.log(error)
-    })
-}
+    .catch((error) => {
+      swal("Error al traer los roles");
+      console.log(error);
+    });
+};

@@ -19,7 +19,7 @@ insertUser = () => {
         password: password,
     };
 
-    fetch("https://localhost:5001/Usuario/AltaUsuario", {
+    fetch("https://localhost:5001/User/RegisterUser", {
         method: 'POST',
         body: JSON.stringify(command),
         headers: {
