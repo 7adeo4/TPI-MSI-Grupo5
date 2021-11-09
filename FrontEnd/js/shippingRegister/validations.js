@@ -17,7 +17,6 @@ const attributes = {
     weight: false,
     volume: false,
     bags: false,
-    date: false,
     company: false
 }
 
@@ -62,23 +61,6 @@ const validate = (expresion, input, attribute) => {
         attributes[attribute] = false;
     }
 }
-const validateDate = () => {
-    const date = document.getElementById('date');
-    const dateNow = new Date();
-    if (date.value < dateNow.toISOString()) {
-        document.getElementById(`group__date`).classList.add('form__group-incorrect');
-        document.getElementById(`group__date`).classList.remove('form__group-correct');
-        document.querySelector(`#group__date i`).classList.add('fa-times-circle');
-        document.querySelector(`#group__date i`).classList.remove('fa-check-circle');
-        attributes.date = false;
-    } else {
-        document.getElementById(`group__date`).classList.remove('form__group-incorrect');
-        document.getElementById(`group__date`).classList.add('form__group-correct');
-        document.querySelector(`#group__date i`).classList.remove('fa-times-circle');
-        document.querySelector(`#group__date i`).classList.add('fa-check-circle');
-        attributes.date = true;
-    }
-}
 
 const validateCompany = () => {
     if (company.value == "" || company.value == 0) {
@@ -114,7 +96,7 @@ company.addEventListener('blur', validateform);
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (attributes.user && attributes.order &&  attributes.date && attributes.company) {
+    if (attributes.user && attributes.order &&  attributes.company) {
         form.reset();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
         setTimeout(() => {
