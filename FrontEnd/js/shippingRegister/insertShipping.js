@@ -1,22 +1,21 @@
 insertUser = () => {
-    let name = document.getElementById("name").value;
-    let lastName = document.getElementById("lastName").value;
-    let dni = document.getElementById("dni").value;
-    let typeDni = document.getElementById("typeDni").value;
-    let email = document.getElementById("email").value;
-    let phone = document.getElementById("phone").value;
-    let rolUser = document.getElementById("rolUser").value;
-    let password = document.getElementById("password").value;
+    let user = document.getElementById("user").value;
+    let order = document.getElementById("order").value;
+    let company = document.getElementById("company").value;
+    let date = document.getElementById("date").value;
+    let weight = document.getElementById("weight").value;
+    let volume = document.getElementById("volume").value;
+    let bags = document.getElementById("bags").value;
+    
 
     command = {
-        name: name,
-        surname: lastName,
-        documentNumber: dni,
-        idDocumentType: parseInt(typeDni),
-        email: email,
-        phone: phone,
-        idRol: parseInt(rolUser),
-        password: password,
+        idShippingCompany: parseInt(company),
+        idDeliveryOrder: parseInt(order),
+        idUser: parseInt(user),
+        weight: weight,
+        volume: volume,        
+        bagsQuantity: parseInt(bags),
+        
     };
 
     fetch("https://localhost:5001/Usuario/AltaUsuario", {
