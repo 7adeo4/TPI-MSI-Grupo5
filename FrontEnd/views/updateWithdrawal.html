@@ -53,28 +53,16 @@
                             <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
                         </div>
                         <div class="col-5 mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Sucursal</label>
-                            <select class="form-control">
-                                <option value="value1" selected>- Seleccione la Sucursal -</option>
-                                <option value="value2">Value 2</option>
-                                <option value="value3">Value 3</option>
-                                <option value="value3">Value 3</option>
-                                <option value="value3">Value 3</option>
-                            </select>
+                            <label for="branch" class="form-label">Sucursal</label>
+                            <select type="text" class="form-control form-input" name="branch" id="branch"></select>                                                           
                         </div>
                         <div class="col-5 mb-3">
                             <label for="exampleInputEmail1" class="form-label">Fecha Entrega</label>
                             <input type="date" class="form-control" id="idUsuario" aria-describedby="emailHelp">
                         </div>
                         <div class="col-5 mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Estado</label>
-                            <select class="form-control">
-                                <option value="value1" selected>- Seleccione el Estado -</option>
-                                <option value="value2">Value 2</option>
-                                <option value="value3">Value 3</option>
-                                <option value="value3">Value 3</option>
-                                <option value="value3">Value 3</option>
-                            </select>
+                            <label for="state" class="form-label">Estado</label>
+                            <select type="text" class="form-control form-input" name="state" id="state"></select>
                         </div>
                         <button type="submit" class="btn btn-primary col-6">Actualizar Retiro</button>
                     </form>
@@ -132,6 +120,8 @@
             </form>
         </div>
     </div>
+    <script src="../js/updateWithdrawal/getBranch.js"></script>
+    <script src="../js/updateWithdrawal/getState.js"></script>
 </body>
 
 </html>
