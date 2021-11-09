@@ -129,3 +129,4 @@ C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodologí
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.pdb
 C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\obj\Debug\net5.0\SuperMamiApi.genruntimeconfig.cache
 >>>>>>> main
+C:\Users\carme\Escritorio\nivelacion TECNICATURA\CUARTO CUATRIMESTRE\Metodología de sistemas I\TP INTEGRADOR\TPI-MSI-Grupo5\BackEnd\SuperMamiApi\bin\Debug\net5.0\linq2db.dll

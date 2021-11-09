@@ -12,5 +12,11 @@ namespace SuperMamiApi.Commands.PickupCommands
         public int? IdUser { get; set; }
         public bool? IsActive { get; set; }
 
+
+         
+        public string Weight { get; set; }
+        public string Volume { get; set; }
+        public int? BagsQuantity { get; set; }
+
     }
 }
