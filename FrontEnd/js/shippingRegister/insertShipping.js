@@ -19,7 +19,7 @@ insertUser = () => {
         password: password,
     };
 
-    fetch("https://localhost:5001/User/RegisterUser", {
+    fetch("https://localhost:5001/Usuario/AltaUsuario", {
         method: 'POST',
         body: JSON.stringify(command),
         headers: {
@@ -31,12 +31,9 @@ insertUser = () => {
             console.log(data)
             if (data === 'error') console.log(result.error);
             else swal('Datos ingresados correctamente');
-            window.location.replace('Home.html');
         })
-        .catch(error => {
-            console.log(error)
-            swal("Problemas con el servidor")
-        })
+        .catch(error => {console.log(error)
+            swal("Problemas con el servidor")})
 
 
 

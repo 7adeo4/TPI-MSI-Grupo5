@@ -84,7 +84,47 @@ namespace SuperMamiApi.Controllers
         }
 
 
+        [HttpPost]
+        [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
+        public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
+        {
+            ResultAPI result = new ResultAPI();
 
+            var resultado = new ResultAPI();
+            var query = from doo in db.DeliveryOrders
+                        where doo.DeliveryDate.Year == p_anio
+                        group doo.DeliveryDate.Year by doo.DeliveryDate.Year into g
+                        select new
+                        {
+                            Año = g.Key,
+                            Cantidad_envíos = (from s1 in db.Shippings
+                                               join d1 in db.DeliveryOrders on
+                                               s1.IdDeliveryOrder equals d1.IdDeliveryOrder
+                                               where s1.IsActive == true && d1.DeliveryDate.Year == p_anio
+                                               select s1.IdShipping).Count(),
+                            Cantidad_retiros =
+                                                (from p1 in db.Pickups
+                                                 join d2 in db.DeliveryOrders on
+                                                 p1.IdDeliveryOrder equals d2.IdDeliveryOrder
+                                                 where p1.IsActive == true && d2.DeliveryDate.Year == p_anio
+                                                 select p1.IdPickup).Count()
+                        };
+
+            try
+            {
+                result.Ok = true;
+                result.Return = query;
+                result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
+                result.ErrorCode = 200;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
+            }
+        }
 
     }
 }

@@ -302,8 +302,7 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> GetCountShippingsByDate([FromBody] int month)
         {
             ResultAPI result = new ResultAPI();
-
-
+         
             var query = (from s in db.Shippings
                          join d in db.DeliveryOrders on s.IdDeliveryOrder equals d.IdDeliveryOrder
                          where d.DeliveryDate.Month == month
@@ -324,20 +323,17 @@ namespace SuperMamiApi.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("Shipping/GetPriceRangeByMonth")]
-        public ActionResult<ResultAPI> GetPriceRangeByMonth(int year)
+        public ActionResult<ResultAPI> GetPriceRangeByMonth([FromBody] int year)
         {
 
             var query = from doo in db.DeliveryOrders
                          where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
                          group doo by doo.DeliveryDate into g
-                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice), Facturación_mínima = g.Min(z => z.ShippingPrice) };
-
-            // var query = from s in db.Shippings
-            //             where s.IdShipping == id
-            //             select s;
-
+                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice),
+                            Facturación_mínima = g.Min(z => z.ShippingPrice) };
+    
             var result = new ResultAPI();
             try
             {
@@ -359,5 +355,6 @@ namespace SuperMamiApi.Controllers
             }
             return result;
         }
+
     }
 }
