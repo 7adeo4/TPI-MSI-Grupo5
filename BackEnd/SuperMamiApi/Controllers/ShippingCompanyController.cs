@@ -89,7 +89,7 @@ namespace SuperMamiApi.Controllers
                     result.Error = "Complete el nombre de la empresa, por favor.";
                     return result;
                 }
-                 if (s.Address == "")
+                if (s.Address == "")
                 {
                     result.Ok = false;
                     result.Error = "Complete la dirección de la empresa, por favor.";
@@ -101,7 +101,7 @@ namespace SuperMamiApi.Controllers
                     result.Error = "Complete la Localidad de la empresa, por favor.";
                     return result;
                 }
-                if (s.Phone =="")
+                if (s.Phone == "")
                 {
                     result.Ok = false;
                     result.Error = "Complete el teléfono de la empresa, por favor.";
@@ -119,7 +119,7 @@ namespace SuperMamiApi.Controllers
                     result.Error = "Complete el CUIT de la empresa, por favor.";
                     return result;
                 }
-                if (s.ShiftStartTime =="")
+                if (s.ShiftStartTime == "")
                 {
                     result.Ok = false;
                     result.Error = "Complete la hora de inicio del turno de la empresa, por favor.";
@@ -130,7 +130,7 @@ namespace SuperMamiApi.Controllers
                     result.Ok = false;
                     result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
                     return result;
-                }  
+                }
 
 
                 if (s.IdShippingType <= 0)
@@ -162,74 +162,74 @@ namespace SuperMamiApi.Controllers
         public ActionResult<ResultAPI> UpdateShippingCompany([FromBody] CommandUpdateShippingCompany command)
         {
             ResultAPI result = new ResultAPI();
-            
 
 
-                 if (command.IdShippingCompany <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Esa empresa de envío no existe";
-                    return result;
-                }
-                if (command.BusinessName == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete el nombre de la empresa, por favor.";
-                    return result;
-                }
-                 if (command.Address == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete la dirección de la empresa, por favor.";
-                    return result;
-                }
-                if (command.Location == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete la Localidad de la empresa, por favor.";
-                    return result;
-                }
-                if (command.Phone == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete el teléfono de la empresa, por favor.";
-                    return result;
-                }
-                if (command.Email == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete el email de la empresa, por favor.";
-                    return result;
-                }
-                if (command.Cuit == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete el CUIT de la empresa, por favor.";
-                    return result;
-                }
-                if (command.ShiftStartTime == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete la hora de inicio del turno de la empresa, por favor.";
-                    return result;
-                }
-                if (command.ShiftEndTime == "")
-                {
-                    result.Ok = false;
-                    result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
-                    return result;
-                }        
-                if (command.IdShippingType <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Ese tipo de envío no existe";
-                    return result;
-                }
+
+            if (command.IdShippingCompany <= 0)
+            {
+                result.Ok = false;
+                result.Error = "Esa empresa de envío no existe";
+                return result;
+            }
+            if (command.BusinessName == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete el nombre de la empresa, por favor.";
+                return result;
+            }
+            if (command.Address == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete la dirección de la empresa, por favor.";
+                return result;
+            }
+            if (command.Location == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete la Localidad de la empresa, por favor.";
+                return result;
+            }
+            if (command.Phone == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete el teléfono de la empresa, por favor.";
+                return result;
+            }
+            if (command.Email == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete el email de la empresa, por favor.";
+                return result;
+            }
+            if (command.Cuit == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete el CUIT de la empresa, por favor.";
+                return result;
+            }
+            if (command.ShiftStartTime == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete la hora de inicio del turno de la empresa, por favor.";
+                return result;
+            }
+            if (command.ShiftEndTime == "")
+            {
+                result.Ok = false;
+                result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
+                return result;
+            }
+            if (command.IdShippingType <= 0)
+            {
+                result.Ok = false;
+                result.Error = "Ese tipo de envío no existe";
+                return result;
+            }
 
             var ship = db.ShippingCompanies.Where(c => c.IdShippingCompany == command.IdShippingCompany).FirstOrDefault();
             if (ship != null)
             {
-                 
+
                 ship.BusinessName = command.BusinessName;
                 ship.Address = command.Address;
                 ship.Location = command.Location;
@@ -239,9 +239,9 @@ namespace SuperMamiApi.Controllers
                 ship.ShiftStartTime = command.ShiftStartTime;
                 ship.ShiftEndTime = command.ShiftEndTime;
                 ship.IdShippingType = command.IdShippingType;
-                
-               
-                
+
+
+
                 db.ShippingCompanies.Update(ship);
                 db.SaveChanges();
                 result.Ok = true;
@@ -271,17 +271,17 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Esa empresa de envío no existe";
                 return result;
             }
-            
+
 
             var ship = db.ShippingCompanies.Where(c => c.IdShippingCompany == command.IdShippingCompany).FirstOrDefault();
             if (ship != null)
             {
-                 
-                
+
+
                 ship.IdShippingCompany = command.IdShippingCompany;
                 ship.IsActive = false;
-                
-                
+
+
                 db.ShippingCompanies.Update(ship);
                 db.SaveChanges();
                 result.Ok = true;
@@ -305,12 +305,12 @@ namespace SuperMamiApi.Controllers
             try
             {
 
-                    result.Ok = true;
-                    result.Return = db.ShippingCompanies.ToList();
-                    result.AdditionalInfo = "Se muestra la empresa de envío correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                
+                result.Ok = true;
+                result.Return = db.ShippingCompanies.ToList();
+                result.AdditionalInfo = "Se muestra la empresa de envío correctamente";
+                result.ErrorCode = 200;
+                return result;
+
 
             }
             catch (Exception ex)
@@ -323,14 +323,21 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpGet]
-        [Route("ShippingCompany/GetPriceRangeByMonth")]
-        public ActionResult<ResultAPI> GetPriceRangeByMonth(int year)
+        [Route("ShippingCompany/GetPercentageShippingsByCompany")]
+        public ActionResult<ResultAPI> GetPercentageShippingsByCompany()
         {
 
-            var query = from doo in db.DeliveryOrders
-                         where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
-                         group doo by doo.DeliveryDate into g
-                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice), Facturación_mínima = g.Min(z => z.ShippingPrice) };
+
+            var query = from s in db.Shippings
+                        join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
+                        group new { sc.BusinessName, s.IdShippingCompany } by sc.BusinessName into g
+                        select new
+                        {
+                            nombre_empresa = g.Key,
+                            porcentaje = Math.Round((Convert.ToDouble(g.Select(z => z.IdShippingCompany).Count()) * 100) /
+                                                                                        (Math.Round(Convert.ToDouble((from s in db.Shippings
+                                                                                                                      select s.IdShippingCompany).Count()))), 2)
+                        };
 
             // var query = from s in db.Shippings
             //             where s.IdShipping == id
