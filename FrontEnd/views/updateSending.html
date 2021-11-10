@@ -20,19 +20,28 @@
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav m-1">
-                    <a class="nav-item nav-link" href="./shippingRegister.html">Registrar Envio</a>
-                    <a class="nav-item nav-link active disabled" href="./updateSending.html">Actualizar Envío</a>
-                    <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
-                    <a class="nav-item nav-link" href="./updateWithdrawal.html">Actualizar Retiro</a>
-                    <a class="nav-item nav-link" href="reports.html">Reportes de Envios/Retiros</a>
-                    <a class="nav-item nav-link" href="./companyReports.html">Reportes de Empresas</a>
-                    <a class="nav-item nav-link" href="./companyRegistration.html">Registro de Empresas</a>
+            <div class="collapse row navbar-collapse" id="navbarNavDropdown">
+                <div class="navbar-nav d-flex justify-content-evenly">
+                    <div class="navbar-nav m-1">
+                        <a class="nav-item nav-link" href="./shippingRegister.html">Registrar Envio</a>
+                        <a class="nav-item nav-link active disabled" href="./updateSending.html">Actualizar Envío</a>
+                        <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
+                        <a class="nav-item nav-link" href="./updateWithdrawal.html">Actualizar
+                            Retiro</a>
+                        <a class="nav-item nav-link" href="reports.html">Reportes de Envios/Retiros</a>
+                        <a class="nav-item nav-link" href="./companyReports.html">Reportes de
+                            Empresas</a>
+                        <a class="nav-item nav-link" href="./companyRegistration.html">Registro de
+                            Empresas</a>
+                    </div>
+                    <label class="text-center align-self-center mb-3 mb-lg-0 mx-1 text-light border-bottom"
+                        id="userEmail"></label>
+                    <button id="closeSesion" class=" btn btn-outline-warning text-light mx-3">Cerrar Sesion</button>
                 </div>
             </div>
         </div>
     </nav>
+
 
     <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
         <img class="col-lg-4 col-8" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png">
@@ -106,8 +115,8 @@
             </div>
             <div>
                 <div class="col-12 col-lg-12 d-flex justify-content-center flex-column align-items-center">
-                    <button type="submit" class="btn btn-outline-dark col-12 col-lg-4 col-sm-10"
-                        id="submit">Actualizar envio</button>
+                    <button type="submit" class="btn btn-outline-dark col-12 col-lg-4 col-sm-10" id="submit">Actualizar
+                        envio</button>
                     <p class="m-3 form__success-message text-center" id="form__success-message">Formulario enviado
                         exitosamente!</p>
                 </div>

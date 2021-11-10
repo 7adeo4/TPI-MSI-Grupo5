@@ -1,10 +1,11 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const company = document.getElementById('company');
+getEmail()
 getCompany();
 
 const expresions = {
-    user: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    // user: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     order: /^\d{1,10000}$/,
     weight: /^\d{1,10000}$/,
     volume: /^\d{1,10000}$/,
@@ -12,7 +13,7 @@ const expresions = {
 }
 
 const attributes = {
-    user: false,
+
     order: false,
     weight: false,
     volume: false,
@@ -22,9 +23,6 @@ const attributes = {
 
 const validateform = (e) => {
     switch (e.target.name) {
-        case "user":
-            validate(expresions.user, e.target, 'user');
-            break;
         case "order":
             validate(expresions.order, e.target, 'order');
             break;
@@ -96,7 +94,7 @@ company.addEventListener('blur', validateform);
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (attributes.user && attributes.order &&  attributes.company) {
+    if (attributes.order ) {
         form.reset();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
         setTimeout(() => {

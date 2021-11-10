@@ -1,8 +1,8 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const selects = document.querySelectorAll('#form select');
-getTypeDocument();
-getRol();
+// getTypeDocument();
+// getRol();
 
 const expresions = {
 	// usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -137,12 +137,15 @@ selects.forEach((select) => {
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const terms = document.getElementById('terms');
-	if (attributes.dni && attributes.name && attributes.password && attributes.email && attributes.lastName && attributes.phone && attributes.rolUser && attributes.typeDni) {
+	if (attributes.dni && attributes.name && attributes.password && attributes.email && attributes.lastName && attributes.phone ) {
+		
 		if (!terms.checked) {
 			document.getElementById('terms-message').classList.add('terms-message-active');
 		}
 		else {
-			insertUser();
+			// insertUser();
+			setEmail();
+            window.location.replace('Home.html');
 			form.reset();
 			document.getElementById('form__success-message').classList.add('form__success-message-active');
 			setTimeout(() => {
