@@ -46,42 +46,181 @@
     <div class="d-flex justify-content-center mt-5">
         <h2>Registrar Empresa</h2>
     </div>
-    <form class="d-flex justify-content-center align-items-center flex-column mt-5">
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Razon Social</label>
-            <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
+    <form id="form" class=" container-fluid mt-5">
+        <div class='row'>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__reason">
+                        <label for="reason" class="form-label">Razon social</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="reason" id="reason">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__cuit">
+                        <label for="cuit" class="form-label">C.U.I.T</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="cuit" id="cuit">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__location">
+                        <label for="location" class="form-label">Localidad</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="location" id="location">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__street">
+                        <label for="street" class="form-label">Calle</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="street" id="street">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__height">
+                        <label for="height" class="form-label">Altura</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="height" id="height">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__salary">
+                        <label for="salary" class="form-label">Salario</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="salary" id="salary"></input>
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__name">
+                        <label for="name" class="form-label">Nombre</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="name" id="name">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__lastName">
+                        <label for="lastName" class="form-label">Apellido</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="lastName" id="lastName">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__email">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="email" class="form-control form-input" name="email" id="email">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__phone">
+                        <label for="phone" class="form-label">Telefono</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="phone" id="phone">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="mb-3 form__message" id="form__message">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+                        correctamente.
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div
+                    class="col-12 col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center flex-column align-content-center">
+                    <button type="submit" class="btn btn-outline-dark text-center" id="submit">Registrarse</button>
+                    <p class="m-3 form__success-message text-center" id="form__success-message">Formulario enviado
+                        exitosamente!</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <a href="./login.html">¿Ya tienes cuenta?</a>
+            </div>
         </div>
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Calle</label>
-            <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
-        </div>
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Numero</label>
-            <input type="email" class="form-control" id="idUsuario" aria-describedby="emailHelp">
-        </div>
-        <div class="col-5 mb-3">
-            <label for="exampleInputEmail1" class="form-label">Tipo de Envio</label>
-            <select class="form-control">
-                <option value="value1" selected>- Seleccione el Tipo -</option>
-                <option value="value2">Value 2</option>
-                <option value="value3">Value 3</option>
-                <option value="value3">Value 3</option>
-                <option value="value3">Value 3</option>
-            </select>
-        </div>
-        <div class="mb-3 col-5">
-            <label for="exampleInputPassword1" class="form-label">Localidad</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 col-5">
-            <label for="exampleInputPassword1" class="form-label">E-mail</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 col-5">
-            <label for="exampleInputPassword1" class="form-label">C.U.I.T</label>
-            <input type="text" class="form-control" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary col-2">Registrar</button>
     </form>
 </body>
 
