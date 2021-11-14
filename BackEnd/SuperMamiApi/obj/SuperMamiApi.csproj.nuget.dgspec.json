@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
+    "C:\\Users\\Pc-Casa\\Desktop\\TUP\\4° Cuatrimestre\\Metodologia en sistemas\\Tp Integrador\\super-mami-entregas\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
+    "C:\\Users\\Pc-Casa\\Desktop\\TUP\\4° Cuatrimestre\\Metodologia en sistemas\\Tp Integrador\\super-mami-entregas\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "projectUniqueName": "C:\\Users\\Pc-Casa\\Desktop\\TUP\\4° Cuatrimestre\\Metodologia en sistemas\\Tp Integrador\\super-mami-entregas\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
         "projectName": "SuperMamiApi",
-        "projectPath": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
-        "packagesPath": "C:\\Users\\carme\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
+        "projectPath": "C:\\Users\\Pc-Casa\\Desktop\\TUP\\4° Cuatrimestre\\Metodologia en sistemas\\Tp Integrador\\super-mami-entregas\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+        "packagesPath": "C:\\Users\\Pc-Casa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pc-Casa\\Desktop\\TUP\\4° Cuatrimestre\\Metodologia en sistemas\\Tp Integrador\\super-mami-entregas\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\carme\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Pc-Casa\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -85,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

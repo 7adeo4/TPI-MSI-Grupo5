@@ -1,9 +1,8 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
-const company = document.getElementById('company');
-const closeSesion = document.getElementById('closeSesion');
+const branch = document.getElementById('branch');
 getEmail()
-getCompany();
+// getBranch();
 
 const expresions = {
     // user: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -19,7 +18,7 @@ const attributes = {
     weight: false,
     volume: false,
     bags: false,
-    company: false
+    branch: false
 }
 
 const validateform = (e) => {
@@ -39,8 +38,8 @@ const validateform = (e) => {
         case "date":
             validateDate();
             break;
-        case "company":
-            validateCompany();
+        case "branch":
+            validateBranch();
             break;
     }
 }
@@ -61,43 +60,41 @@ const validate = (expresion, input, attribute) => {
     }
 }
 
-const validateCompany = () => {
-    if (company.value == "" || company.value == 0) {
-        document.getElementById(`group__company`).classList.add('form__group-incorrect');
-        document.getElementById(`group__company`).classList.remove('form__group-correct');
-        document.querySelector(`#group__company i`).classList.add('fa-times-circle');
-        document.querySelector(`#group__company i`).classList.remove('fa-check-circle');
-        attributes.company = false;
+const validateBranch = () => {
+    if (branch.value == "" || branch.value == 0) {
+        document.getElementById(`group__branch`).classList.add('form__group-incorrect');
+        document.getElementById(`group__branch`).classList.remove('form__group-correct');
+        document.querySelector(`#group__branch i`).classList.add('fa-times-circle');
+        document.querySelector(`#group__branch i`).classList.remove('fa-check-circle');
+        attributes.branch = false;
     } else {
-        document.getElementById(`group__company`).classList.remove('form__group-incorrect');
-        document.getElementById(`group__company`).classList.add('form__group-correct');
-        document.querySelector(`#group__company i`).classList.remove('fa-times-circle');
-        document.querySelector(`#group__company i`).classList.add('fa-check-circle');
-        attributes.company = true;
+        document.getElementById(`group__branch`).classList.remove('form__group-incorrect');
+        document.getElementById(`group__branch`).classList.add('form__group-correct');
+        document.querySelector(`#group__branch i`).classList.remove('fa-times-circle');
+        document.querySelector(`#group__branch i`).classList.add('fa-check-circle');
+        attributes.branch = true;
     }
 }
 
-// const validateFormat = () => {
-// 	let vol = document.getElementById('volume')
-// 	let wei = document.getElementById('weight')
-// 	let bag = document.getElementById('bags')
+const validateFormat = () => {
+	let vol = document.getElementById('volume')
+	let wei = document.getElementById('weight')
+	let bag = document.getElementById('bags')
 
-// 	if(vol.value != 0 || wei.value != 0) bag.disabled = false
-// }
-// validateFormat();
-
-// closeSesion.addEventListener('onclick', goLogOut);
+	if(vol.value != 0 || wei.value != 0) bag.disabled = false
+}
+validateFormat();
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', validateform);
     input.addEventListener('blur', validateform);
 });
-company.addEventListener('keyup', validateform);
-company.addEventListener('blur', validateform);
+branch.addEventListener('keyup', validateform);
+branch.addEventListener('blur', validateform);
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (attributes.order && attributes.company) {
+    if (attributes.order && attributes.branch) {
         form.reset();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
         setTimeout(() => {
