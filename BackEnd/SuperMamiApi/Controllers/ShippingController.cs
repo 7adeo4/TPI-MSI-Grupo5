@@ -113,12 +113,12 @@ namespace SuperMamiApi.Controllers
                     return result;
                 }
                 // DETAIL
-                // if (command.Weight == "")
-                // {
-                //     result.Ok = false;
-                //     result.Error = "El peso no puede estar vacio";
-                //     return result;
-                // }
+                if (command.Weight <= 0)
+                {
+                    result.Ok = false;
+                    result.Error = "El peso no puede estar vacio";
+                    return result;
+                }
                 // if (command.Volume == "")
                 // {
                 //     result.Ok = false;
@@ -145,8 +145,8 @@ namespace SuperMamiApi.Controllers
                 ShippingDetail sp = new ShippingDetail();
                 sp.IdShipping = s.IdShipping;
                 sp.Weight = command.Weight;
-                sp.Volume = command.Volume;
-                sp.BagsQuantity = command.BagsQuantity;
+                sp.Comment = command.Comment;
+                
 
                 db.ShippingDetails.Add(sp);
                 db.SaveChanges();

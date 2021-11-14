@@ -7,9 +7,8 @@ namespace SuperMamiApi.Commands.ShippingCommands
         public int? IdDeliveryOrder { get; set; }
         public int? IdUser { get; set; }
         // DETAIL        
-        public string Weight { get; set; }
-        public string Volume { get; set; }
-        public int? BagsQuantity { get; set; }
+        public string Comment { get; set; }
+        public int? Weight { get; set; }
 
     }
 }
