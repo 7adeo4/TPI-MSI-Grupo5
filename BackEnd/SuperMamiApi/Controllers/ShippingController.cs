@@ -119,6 +119,21 @@ namespace SuperMamiApi.Controllers
                     result.Error = "El peso no puede estar vacio";
                     return result;
                 }
+<<<<<<< HEAD
+=======
+                // if (command.Volume == "")
+                // {
+                //     result.Ok = false;
+                //     result.Error = "El volumen no puede estar vacio";
+                //     return result;
+                // }
+                // if (command.BagsQuantity == 0)
+                // {
+                //     result.Ok = false;
+                //     result.Error = "La cantidad de bolsas no puede estar vacio";
+                //     return result;
+                // }
+>>>>>>> main
 
                 Shipping s = new Shipping();
                 s.IdShippingCompany = command.IdShippingCompany;
@@ -134,6 +149,10 @@ namespace SuperMamiApi.Controllers
                 sp.IdShipping = s.IdShipping;
                 sp.Weight = command.Weight;
                 sp.Comment = command.Comment;
+<<<<<<< HEAD
+=======
+                
+>>>>>>> main
 
                 db.ShippingDetails.Add(sp);
                 db.SaveChanges();

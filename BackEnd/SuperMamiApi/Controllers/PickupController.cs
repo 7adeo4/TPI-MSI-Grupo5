@@ -225,7 +225,6 @@ namespace SuperMamiApi.Controllers
                 result.ErrorCode = 200;
                 return result;
 
-
             }
             catch (Exception ex)
             {
@@ -235,6 +234,43 @@ namespace SuperMamiApi.Controllers
                 return result;
             }
         }
+
+        //LISTADO
+        [HttpGet]
+        [Route("Pickup/GetListJoin")]
+        public ActionResult<ResultAPI> GetListJoin()
+        {
+
+            var query = from p in db.Pickups
+                        join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup 
+                        where p.IsActive == true
+                        group p by new {p.IdPickup, p.IdDeliveryOrder, p.IdState, pd.Weight} into g
+                        select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, IdState = g.Key, Weight = g.Key};
+
+            var result = new ResultAPI();
+            try
+            {
+                if (query != null)
+                {
+                    result.Ok = true;
+                    result.Return = query;
+                    result.AdditionalInfo = "Se cargó la lista correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
+            }
+            return result;
+        }
+
+
+
     }
 }
 

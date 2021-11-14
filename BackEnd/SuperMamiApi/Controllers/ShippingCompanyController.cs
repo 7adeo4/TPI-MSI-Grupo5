@@ -1,3 +1,7 @@
+using System.Reflection.Metadata.Ecma335;
+using System.Reflection.Metadata;
+using System.Diagnostics.Tracing;
+using System.Data.Common;
 using System.ComponentModel.Design;
 using System.Data;
 using System;
@@ -79,6 +83,9 @@ namespace SuperMamiApi.Controllers
             s.ShiftEndTime = command.ShiftEndTime;
             s.IdShippingType = command.IdShippingType;
             s.IsActive = true;
+            s.Salary = command.Salary;
+            s.ContactName =command.ContactName;
+            s.MaxShippingsPerDay = command.MaxShippingsPerDay;
 
 
             try
@@ -136,7 +143,26 @@ namespace SuperMamiApi.Controllers
                 if (s.IdShippingType <= 0)
                 {
                     result.Ok = false;
-                    result.Error = "Ese tipo de envío";
+                    result.Error = "Ese tipo de envío no existe";
+                    return result;
+                }
+
+                 if (s.Salary <=0)
+                {
+                    result.Ok = false;
+                    result.Error = " Ingrese el salario";
+                    return result;
+                }
+                 if (s.ContactName == "")
+                {
+                    result.Ok = false;
+                    result.Error = "Complete el nombre del contacto, por favor.";
+                    return result;
+                }
+                 if (s.MaxShippingsPerDay <=0)
+                {
+                    result.Ok = false;
+                    result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
                     return result;
                 }
 
@@ -225,6 +251,24 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Ese tipo de envío no existe";
                 return result;
             }
+            if (command.Salary <=0)
+                {
+                    result.Ok = false;
+                    result.Error = " Ingrese el salario";
+                    return result;
+                }
+            if (command.ContactName == "")
+                {
+                    result.Ok = false;
+                    result.Error = "Complete el nombre del contacto, por favor.";
+                    return result;
+                }
+                 if (command.MaxShippingsPerDay <=0)
+                {
+                    result.Ok = false;
+                    result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
+                    return result;
+                }
 
             var ship = db.ShippingCompanies.Where(c => c.IdShippingCompany == command.IdShippingCompany).FirstOrDefault();
             if (ship != null)
@@ -239,6 +283,9 @@ namespace SuperMamiApi.Controllers
                 ship.ShiftStartTime = command.ShiftStartTime;
                 ship.ShiftEndTime = command.ShiftEndTime;
                 ship.IdShippingType = command.IdShippingType;
+                ship.Salary = command.Salary;
+                ship.ContactName =command.ContactName;
+                ship.MaxShippingsPerDay = command.MaxShippingsPerDay;
 
 
 
