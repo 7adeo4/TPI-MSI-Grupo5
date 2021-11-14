@@ -1,6 +1,7 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const company = document.getElementById('company');
+const closeSesion = document.getElementById('closeSesion');
 getEmail()
 getCompany();
 
@@ -76,14 +77,16 @@ const validateCompany = () => {
     }
 }
 
-const validateFormat = () => {
-	let vol = document.getElementById('volume')
-	let wei = document.getElementById('weight')
-	let bag = document.getElementById('bags')
+// const validateFormat = () => {
+// 	let vol = document.getElementById('volume')
+// 	let wei = document.getElementById('weight')
+// 	let bag = document.getElementById('bags')
 
-	if(vol.value != 0 || wei.value != 0) bag.disabled = false
-}
-validateFormat();
+// 	if(vol.value != 0 || wei.value != 0) bag.disabled = false
+// }
+// validateFormat();
+
+// closeSesion.addEventListener('onclick', goLogOut);
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', validateform);

@@ -1,8 +1,8 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const selects = document.querySelectorAll('#form select');
-// getTypeDocument();
-// getRol();
+getTypeDocument();
+getRol();
 
 const expresions = {
 	// usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
@@ -13,7 +13,6 @@ const expresions = {
 	phone: /^\d{9,14}$/, // 7 a 14 numeros.
 	dni: /^\d{7,10}$/ // 7 a 14 numeros.
 }
-
 const attributes = {
 	name: false,
 	lastName: false,
@@ -24,7 +23,6 @@ const attributes = {
 	rolUser: false,
 	typeDni: false,
 }
-
 const validateform = (e) => {
 	switch (e.target.name) {
 		case "name":
@@ -57,7 +55,6 @@ const validateform = (e) => {
 			break;
 	}
 }
-
 const validate = (expresion, input, attribute) => {
 	if (expresion.test(input.value)) {
 		document.getElementById(`group__${attribute}`).classList.remove('form__group-incorrect');
@@ -123,29 +120,25 @@ const validateRolUser = () => {
 		attributes.rolUser = true;
 	}
 }
-
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validateform);
 	input.addEventListener('blur', validateform);
 });
-
 selects.forEach((select) => {
 	select.addEventListener('keyup', validateform);
 	select.addEventListener('blur', validateform);
 });
-
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
 	const terms = document.getElementById('terms');
 	if (attributes.dni && attributes.name && attributes.password && attributes.email && attributes.lastName && attributes.phone ) {
-		
 		if (!terms.checked) {
 			document.getElementById('terms-message').classList.add('terms-message-active');
 		}
 		else {
-			// insertUser();
+			insertUser();
 			setEmail();
-            window.location.replace('Home.html');
+			// goLogOut();
 			form.reset();
 			document.getElementById('form__success-message').classList.add('form__success-message-active');
 			setTimeout(() => {

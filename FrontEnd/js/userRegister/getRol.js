@@ -4,6 +4,7 @@ const getRol = () => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       let rol = document.getElementById("rolUser");
       let html = document.createElement("option");
       html.value = "";

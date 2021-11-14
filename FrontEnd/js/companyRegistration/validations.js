@@ -1,6 +1,7 @@
 const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const selects = document.querySelectorAll('#form select');
+const closeSesion = document.getElementById('closeSesion');
 // getTypeDocument();
 // getRol();
 
@@ -83,6 +84,8 @@ const validateRolUser = () => {
         attributes.rolUser = true;
     }
 }
+
+// closeSesion.addEventListener('onclick', goLogOut);
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', validateform);
