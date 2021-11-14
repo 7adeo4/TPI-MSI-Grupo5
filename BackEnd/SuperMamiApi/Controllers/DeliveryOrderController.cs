@@ -9,7 +9,6 @@ using SuperMamiApi.Models;
 using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
-using LinqToDB;
 
 
 namespace SuperMamiApi.Controllers
@@ -18,7 +17,6 @@ namespace SuperMamiApi.Controllers
     [EnableCors("speMsi")]
     public class DeliveryOrderController : ControllerBase
     {
-
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
         private readonly ILogger<DeliveryOrderController> _logger;
 
@@ -82,66 +80,51 @@ namespace SuperMamiApi.Controllers
                 resultado.ErrorCode = 400;
                 return resultado;
             }
+
         }
 
-        [HttpPost]
-        [Route("DeliveryOrder/GetMonthlyBillingsForAParticularYear")]
-        public ActionResult<ResultAPI> GetMonthlyBillingsForAParticularYear([FromBody] CommandGetMonthlyBillingsForAParticularYear command)
-        {
-            var resultado = new ResultAPI();
-
-            var querry = from doo in db.DeliveryOrders
-                         where doo.DeliveryDate.Year == command.Year
-                         group doo by doo.DeliveryDate into g
-                         select new { Mes_de_facturación = g.Key.Month, Facturación_máxima = g.Max(z => z.ShippingPrice), Facturación_mínima = g.Min(z => z.ShippingPrice) };
-
-            try
-            {
-                resultado.Ok = true;
-                resultado.Return = querry;
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
-                return resultado;
-            }
-            catch (Exception ex)
-            {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar las sucursales" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
-            }
-        }
 
         [HttpPost]
         [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
-        public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] CommandGetMonthlyBillingsForAParticularYear command)
+        public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
         {
-            var resultado = new ResultAPI();
+            ResultAPI result = new ResultAPI();
 
-            var querry = from doo in db.DeliveryOrders
-                         join s in db.Shippings on doo.IdDeliveryOrder equals s.IdDeliveryOrder
-                         join p in db.Pickups on doo.IdDeliveryOrder equals p.IdDeliveryOrder
-                         where p.IsActive == true || s.IsActive == true
-                         group new {doo.IdDeliveryOrder,s.IdShipping,p.IdPickup} by doo.DeliveryDate into g
-                         select new { Año = g.Key.Year.ToString(), Cantidad_envíos = g.Select(z => z.IdShipping).Distinct().Count(), Cantidad_retiros = g.Select(z => z.IdPickup).Distinct().Count() };
+            var resultado = new ResultAPI();
+            var query = from doo in db.DeliveryOrders
+                        where doo.DeliveryDate.Year == p_anio
+                        group doo.DeliveryDate.Year by doo.DeliveryDate.Year into g
+                        select new
+                        {
+                            Año = g.Key,
+                            Cantidad_envíos = (from s1 in db.Shippings
+                                               join d1 in db.DeliveryOrders on
+                                               s1.IdDeliveryOrder equals d1.IdDeliveryOrder
+                                               where s1.IsActive == true && d1.DeliveryDate.Year == p_anio
+                                               select s1.IdShipping).Count(),
+                            Cantidad_retiros =
+                                                (from p1 in db.Pickups
+                                                 join d2 in db.DeliveryOrders on
+                                                 p1.IdDeliveryOrder equals d2.IdDeliveryOrder
+                                                 where p1.IsActive == true && d2.DeliveryDate.Year == p_anio
+                                                 select p1.IdPickup).Count()
+                        };
 
             try
             {
-                resultado.Ok = true;
-                resultado.Return = querry;
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
-                return resultado;
+                result.Ok = true;
+                result.Return = query;
+                result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
+                result.ErrorCode = 200;
+                return result;
             }
             catch (Exception ex)
             {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar las sucursales" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
             }
         }
+
     }
 }
-
-

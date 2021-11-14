@@ -1,0 +1,228 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/validationStyles.css">
+    <script src="https://kit.fontawesome.com/c55fb45212.js" crossorigin="anonymous"></script>
+    <title>Registrar Empresas</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./home.html">
+                <i style="font-size:30px" class="text-white fas fa-home"></i>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse row navbar-collapse" id="navbarNavDropdown">
+                <div class="navbar-nav d-flex justify-content-evenly">
+                    <div class="navbar-nav m-1">
+                        <a class="nav-item nav-link" href="./shippingRegister.html">Registrar Envio</a>
+                        <a class="nav-item nav-link" href="./updateSending.html">Actualizar Envío</a>
+                        <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
+                        <a class="nav-item nav-link" href="./updateWithdrawal.html">Actualizar Retiro</a>
+                        <a class="nav-item nav-link" href="reports.html">Reportes de Envios/Retiros</a>
+                        <a class="nav-item nav-link" href="./companyReports.html">Reportes de Empresas</a>
+                        <a class="nav-item nav-link active disabled" href="./companyRegistration.html">Registro de
+                            Empresas</a>
+                    </div>
+                    <label class="text-center align-self-center mb-3 mb-lg-0 mx-1 text-light border-bottom"
+                        id="userEmail"></label>
+                    <button id="closeSesion" onclick="goLogOut()" class="btn btn-outline-warning text-light mx-3">Cerrar Sesion</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
+        <img class="col-lg-4 col-8" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png">
+    </div>
+    <div class="d-flex justify-content-center mt-5">
+        <h2>Registrar Empresa</h2>
+    </div>
+    <form id="form" class=" container-fluid mt-5">
+        <div class='row'>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__reason">
+                        <label for="reason" class="form-label">Razon social</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="reason" id="reason">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__cuit">
+                        <label for="cuit" class="form-label">C.U.I.T</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="cuit" id="cuit">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__location">
+                        <label for="location" class="form-label">Localidad</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="location" id="location">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__street">
+                        <label for="street" class="form-label">Calle</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="street" id="street">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__height">
+                        <label for="height" class="form-label">Altura</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="height" id="height">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__salary">
+                        <label for="salary" class="form-label">Salario</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="salary" id="salary"></input>
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__name">
+                        <label for="name" class="form-label">Nombre</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="name" id="name">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__lastName">
+                        <label for="lastName" class="form-label">Apellido</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="lastName" id="lastName">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__email">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="email" class="form-control form-input" name="email" id="email">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="col-12 col-lg-10 col-sm-10 mb-3" id="group__phone">
+                        <label for="phone" class="form-label">Telefono</label>
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="text" class="form-control form-input" name="phone" id="phone">
+                            <i class="form__validation-state m-1 fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="packages" id="packages">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="d-flex justify-content-center">
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Default radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                    <div class="form-check m-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Default checked radio
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="mb-3 form__message" id="form__message">
+                    <p><i class="fas fa-exclamation-triangle"></i> <b>Error:</b> Por favor rellena el formulario
+                        correctamente.
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div
+                    class="col-12 col-lg-4 col-md-6 col-sm-6 d-flex justify-content-center flex-column align-content-center">
+                    <button type="submit" class="btn btn-outline-dark text-center" id="submit">Registrarse</button>
+                    <p class="m-3 form__success-message text-center" id="form__success-message">Formulario enviado
+                        exitosamente!</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <a href="./login.html">¿Ya tienes cuenta?</a>
+            </div>
+        </div>
+    </form>
+    <script src="../js/keepLoggedIn.js"></script>
+</body>
+
+</html>

@@ -22,7 +22,10 @@ namespace SuperMamiApi.Models
         public string ShiftStartTime { get; set; }
         public string ShiftEndTime { get; set; }
         public int? IdShippingType { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
+        public double? Salary { get; set; }
+        public string ContactName { get; set; }
+        public int? MaxShippingsPerDay { get; set; }
 
         public virtual ShippingType IdShippingTypeNavigation { get; set; }
         public virtual ICollection<Shipping> Shippings { get; set; }

@@ -21,10 +21,10 @@ namespace SuperMamiApi.Models
         public DateTime DeliveryDate { get; set; }
         public int? IdZone { get; set; }
         public int? IdBranch { get; set; }
-        public bool? IsOwner { get; set; }
-        public bool? IsShipping { get; set; }
+        public bool IsOwner { get; set; }
+        public bool IsShipping { get; set; }
         public double? ShippingPrice { get; set; }
-        public bool? IsFree { get; set; }
+        public bool IsFree { get; set; }
 
         public virtual Branch IdBranchNavigation { get; set; }
         public virtual Zone IdZoneNavigation { get; set; }

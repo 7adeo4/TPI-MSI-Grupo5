@@ -23,103 +23,6 @@
           "lib/netcoreapp3.1/linq2db.dll": {}
         }
       },
-      "linq2db.PostgreSQL/3.5.1": {
-        "type": "package",
-        "dependencies": {
-          "Npgsql": "5.0.10",
-          "linq2db": "3.5.1"
-        },
-        "contentFiles": {
-          "contentFiles/any/any/LinqToDB.Templates/CopyMe.PostgreSQL.tt.txt": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/DataAnnotations.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/DataModel.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/EditableObject.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/Equatable.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/Humanizer.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/LinqToDB.PostgreSQL.Tools.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/LinqToDB.PostgreSQL.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/LinqToDB.Tools.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/LinqToDB.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/MultipleFiles.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/NotifyDataErrorInfo.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/NotifyPropertyChanged.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/ObsoleteAttributes.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/PluralizationService.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/T4Model.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          },
-          "contentFiles/any/any/LinqToDB.Templates/Validation.ttinclude": {
-            "buildAction": "None",
-            "codeLanguage": "any",
-            "copyToOutput": false
-          }
-        },
-        "build": {
-          "build/linq2db.PostgreSQL.props": {}
-        }
-      },
       "Microsoft.AspNetCore.Cors/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -634,61 +537,6 @@
         "lib/netstandard2.1/linq2db.xml",
         "linq2db.3.5.1.nupkg.sha512",
         "linq2db.nuspec"
-      ]
-    },
-    "linq2db.PostgreSQL/3.5.1": {
-      "sha512": "f/btwS5zR20hcvubwK/k0dzj0JqHucE4hn1FgU/gX//h6FyRdEPk2fGl9XIeS/Sg7cnTznQZkpSvSI0XEEnntw==",
-      "type": "package",
-      "path": "linq2db.postgresql/3.5.1",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "MIT-LICENSE.txt",
-        "build/linq2db.PostgreSQL.props",
-        "content/LinqToDB.Templates/CopyMe.PostgreSQL.tt.txt",
-        "content/LinqToDB.Templates/DataAnnotations.ttinclude",
-        "content/LinqToDB.Templates/DataModel.ttinclude",
-        "content/LinqToDB.Templates/EditableObject.ttinclude",
-        "content/LinqToDB.Templates/Equatable.ttinclude",
-        "content/LinqToDB.Templates/Humanizer.ttinclude",
-        "content/LinqToDB.Templates/LinqToDB.PostgreSQL.Tools.ttinclude",
-        "content/LinqToDB.Templates/LinqToDB.PostgreSQL.ttinclude",
-        "content/LinqToDB.Templates/LinqToDB.Tools.ttinclude",
-        "content/LinqToDB.Templates/LinqToDB.ttinclude",
-        "content/LinqToDB.Templates/MultipleFiles.ttinclude",
-        "content/LinqToDB.Templates/NotifyDataErrorInfo.ttinclude",
-        "content/LinqToDB.Templates/NotifyPropertyChanged.ttinclude",
-        "content/LinqToDB.Templates/ObsoleteAttributes.ttinclude",
-        "content/LinqToDB.Templates/PluralizationService.ttinclude",
-        "content/LinqToDB.Templates/T4Model.ttinclude",
-        "content/LinqToDB.Templates/Validation.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/CopyMe.PostgreSQL.tt.txt",
-        "contentFiles/any/any/LinqToDB.Templates/DataAnnotations.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/DataModel.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/EditableObject.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/Equatable.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/Humanizer.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/LinqToDB.PostgreSQL.Tools.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/LinqToDB.PostgreSQL.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/LinqToDB.Tools.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/LinqToDB.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/MultipleFiles.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/NotifyDataErrorInfo.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/NotifyPropertyChanged.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/ObsoleteAttributes.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/PluralizationService.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/T4Model.ttinclude",
-        "contentFiles/any/any/LinqToDB.Templates/Validation.ttinclude",
-        "images/icon.png",
-        "linq2db.postgresql.3.5.1.nupkg.sha512",
-        "linq2db.postgresql.nuspec",
-        "tools/Humanizer.dll",
-        "tools/Microsoft.Bcl.AsyncInterfaces.dll",
-        "tools/Npgsql.dll",
-        "tools/System.Text.Json.dll",
-        "tools/System.Threading.Tasks.Extensions.dll",
-        "tools/linq2db.dll"
       ]
     },
     "Microsoft.AspNetCore.Cors/2.2.0": {
@@ -1547,23 +1395,23 @@
       "Microsoft.EntityFrameworkCore.Design >= 5.0.11",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 5.0.10",
       "Swashbuckle.AspNetCore >= 5.6.3",
-      "linq2db.PostgreSQL >= 3.5.1"
+      "linq2db >= 3.5.1"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tomas\\.nuget\\packages\\": {}
+    "C:\\Users\\carme\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tomas\\OneDrive\\Documentos\\GitHub\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+      "projectUniqueName": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
       "projectName": "SuperMamiApi",
-      "projectPath": "C:\\Users\\tomas\\OneDrive\\Documentos\\GitHub\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
-      "packagesPath": "C:\\Users\\tomas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tomas\\OneDrive\\Documentos\\GitHub\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
+      "projectPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+      "packagesPath": "C:\\Users\\carme\\.nuget\\packages\\",
+      "outputPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\carme\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1611,7 +1459,7 @@
             "target": "Package",
             "version": "[5.6.3, )"
           },
-          "linq2db.PostgreSQL": {
+          "linq2db": {
             "target": "Package",
             "version": "[3.5.1, )"
           }
@@ -1634,7 +1482,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

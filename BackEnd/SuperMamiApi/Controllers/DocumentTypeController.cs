@@ -34,8 +34,7 @@ namespace SuperMamiApi.Controllers
             {
                 resultado.Ok = true;
                 resultado.Return = db.DocumentTypes.ToList();
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
+                resultado.AdditionalInfo = "Se cargó la lista correctamente";            
                 return resultado;
             }
             catch (Exception ex)
