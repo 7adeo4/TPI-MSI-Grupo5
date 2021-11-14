@@ -13,6 +13,9 @@ namespace SuperMamiApi.Commands.ShippingCompanyCommands
         public string ShiftStartTime { get; set; }
         public string ShiftEndTime { get; set; }
         public int? IdShippingType { get; set; }
+        public double? Salary { get; set; }
+        public string ContactName { get; set; }
+        public int? MaxShippingsPerDay { get; set; }
         
     }
 } 

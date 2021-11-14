@@ -9,9 +9,9 @@ namespace SuperMamiApi.Models
     {
         public int IdShippingDetail { get; set; }
         public int? IdShipping { get; set; }
-        public string Weight { get; set; }
-        public string Volume { get; set; }
-        public int? BagsQuantity { get; set; }
+        public string Old { get; set; }
+        public string Comment { get; set; }
+        public int? Weight { get; set; }
 
         public virtual Shipping IdShippingNavigation { get; set; }
     }

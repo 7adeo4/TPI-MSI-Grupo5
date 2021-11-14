@@ -99,6 +99,7 @@ form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (attributes.order && attributes.company) {
         form.reset();
+        insertShipping();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
         setTimeout(() => {
             document.getElementById('form__success-message').classList.remove('form__success-message-active');

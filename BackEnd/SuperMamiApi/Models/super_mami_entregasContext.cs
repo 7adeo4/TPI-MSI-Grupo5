@@ -377,6 +377,10 @@ namespace SuperMamiApi.Models
                     .HasMaxLength(50)
                     .HasColumnName("business_name");
 
+                entity.Property(e => e.ContactName)
+                    .HasMaxLength(50)
+                    .HasColumnName("contact_name");
+
                 entity.Property(e => e.Cuit)
                     .HasMaxLength(50)
                     .HasColumnName("cuit");
@@ -393,9 +397,13 @@ namespace SuperMamiApi.Models
                     .HasMaxLength(50)
                     .HasColumnName("location");
 
+                entity.Property(e => e.MaxShippingsPerDay).HasColumnName("max_shippings_per_day");
+
                 entity.Property(e => e.Phone)
                     .HasMaxLength(50)
                     .HasColumnName("phone");
+
+                entity.Property(e => e.Salary).HasColumnName("salary");
 
                 entity.Property(e => e.ShiftEndTime)
                     .HasMaxLength(20)
@@ -422,17 +430,17 @@ namespace SuperMamiApi.Models
                     .HasColumnName("id_shipping_detail")
                     .UseIdentityAlwaysColumn();
 
-                entity.Property(e => e.BagsQuantity).HasColumnName("bags_quantity");
+                entity.Property(e => e.Comment)
+                    .HasMaxLength(30)
+                    .HasColumnName("comment");
 
                 entity.Property(e => e.IdShipping).HasColumnName("id_shipping");
 
-                entity.Property(e => e.Volume)
+                entity.Property(e => e.Old)
                     .HasMaxLength(30)
-                    .HasColumnName("volume");
+                    .HasColumnName("old");
 
-                entity.Property(e => e.Weight)
-                    .HasMaxLength(30)
-                    .HasColumnName("weight");
+                entity.Property(e => e.Weight).HasColumnName("weight");
 
                 entity.HasOne(d => d.IdShippingNavigation)
                     .WithMany(p => p.ShippingDetails)
