@@ -15,15 +15,15 @@ namespace TestProject1
         [ExpectedException(typeof(InvalidOperationException))]
         public void RecuperarUsuario()
         {
-            UserController controller = new UserController();
+            // UserController controller = new UserController();
 
-            CommandFindUser user = new CommandFindUser();
+            // CommandFindUser user = new CommandFindUser();
 
-            string a = "aa";
+            // string a = "aa";
 
-            user.IdUser = 1;
+            // user.IdUser = 1;
 
-            controller.Get(user);
+            // controller.Get(user);
                        
         
 
@@ -38,15 +38,15 @@ namespace TestProject1
         [ExpectedException(typeof(SystemException))]
         public void RecuperarUsuario()
         {
-            UserController controller = new UserController();
+            // UserController controller = new UserController();
 
-            CommandFindUser user = new CommandFindUser();
+            // CommandFindUser user = new CommandFindUser();
 
-            string a = "aa";
+            // string a = "aa";
 
-            user.IdUser = a;
+            // user.IdUser = a;
 
-            controller.Get(user);
+            // controller.Get(user);
 
 
 

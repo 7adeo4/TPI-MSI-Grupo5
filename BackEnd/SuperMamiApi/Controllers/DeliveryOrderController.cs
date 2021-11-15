@@ -48,6 +48,42 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
+        [Route("DeliveryOrder/UpdateDeliveryOrder")]
+        public ActionResult<ResultAPI> UpdateDeliveryOrder([FromBody] CommandUpdateDeliveryOrder command)
+        {
+            ResultAPI result = new ResultAPI();          
+
+            // if (s.IdShippingCompany <= 0)
+            // {
+            //     result.Ok = false;
+            //     result.Error = "Esa empresa de envío no existe";
+            //     return result;
+            // }
+
+            var delOrd = db.DeliveryOrders.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder && c.IsShipping == false).FirstOrDefault();
+            if (delOrd != null)
+            {
+
+                delOrd.IdBranch = command.IdBranch;                
+
+
+                db.DeliveryOrders.Update(delOrd);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = db.DeliveryOrders.ToList();
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Empresa no encontrada";
+                return result;
+            }
+        }
+
+
+        [HttpPost]
         [Route("DeliveryOrder/GetDeliveryOrderByID")]
         public ActionResult<ResultAPI> Get([FromBody] CommandFindDeliveryOrder order)
         {

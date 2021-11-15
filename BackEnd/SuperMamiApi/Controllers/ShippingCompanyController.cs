@@ -373,7 +373,7 @@ namespace SuperMamiApi.Controllers
         [Route("ShippingCompany/GetPercentageShippingsByCompany")]
         public ActionResult<ResultAPI> GetPercentageShippingsByCompany()
         {
-
+            
 
             var query = from s in db.Shippings
                         join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
