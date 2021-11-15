@@ -67,21 +67,54 @@ namespace SuperMamiApi.Controllers
         [Route("User/GetAllUsers")]
         public ActionResult<ResultAPI> GetAllUsers()
         {
-            var resultado = new ResultAPI();
+            var result = new ResultAPI();
             try
             {
-                resultado.Ok = true;
-                resultado.Return = db.Users.ToList();
-                resultado.AdditionalInfo = "Se cargó la lista correctamente";
-                resultado.ErrorCode = 200;
-                return resultado;
+                result.Ok = true;
+                result.Return = db.Users.ToList();
+                result.AdditionalInfo = "Se cargó la lista correctamente";
+                result.ErrorCode = 200;
+                return result;
             }
             catch (Exception ex)
             {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar los usuarios" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
+                result.Ok = false;
+                result.Error = "Error al cargar los usuarios" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
+            }
+        }
+
+        [HttpGet]
+        [Route("User/GetUserByEmailPass")]
+        public ActionResult<ResultAPI> GetUserByEmailPass(CommandValidateUser user)
+        {
+            var result = new ResultAPI();            
+            try
+            {
+                 var u = db.Users.ToList().Where(c => c.Email == user.Email && c.Password == user.Password).FirstOrDefault();
+                if (u != null)
+                {
+                    result.Ok = true;
+                    result.Return = u;
+                    result.AdditionalInfo = "Se muestra el usuario correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+                else
+                {
+                    result.Ok = false;
+                    result.Error = "Usuario no encontrado";
+                    result.ErrorCode = 400;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Error al cargar los usuarios" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
             }
         }
 
