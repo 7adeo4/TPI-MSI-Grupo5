@@ -30,7 +30,7 @@ namespace SuperMamiApi.Controllers
 
         [HttpPost]
         [Route("User/GetUserById")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindUser user)
+        public ActionResult<ResultAPI> GetUserById([FromBody] CommandFindUser user)
         {
             var result = new ResultAPI();
             try
@@ -63,6 +63,28 @@ namespace SuperMamiApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("User/GetAllUsers")]
+        public ActionResult<ResultAPI> GetAllUsers()
+        {
+            var resultado = new ResultAPI();
+            try
+            {
+                resultado.Ok = true;
+                resultado.Return = db.Users.ToList();
+                resultado.AdditionalInfo = "Se cargó la lista correctamente";
+                resultado.ErrorCode = 200;
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                resultado.Ok = false;
+                resultado.Error = "Error al cargar los usuarios" + ex.Message;
+                resultado.ErrorCode = 400;
+                return resultado;
+            }
+        }
+
         [HttpPost]
         [Route("User/RegisterUser")]
         public ActionResult<ResultAPI> RegisterUser([FromBody] CommandRegisterUser command)
@@ -78,11 +100,11 @@ namespace SuperMamiApi.Controllers
             u.Phone = command.Phone;
             u.IdRol = command.IdRol;
             u.Password = command.Password;
-            
+
 
             try
             {
-                 if (u.IdDocumentType <= 0)
+                if (u.IdDocumentType <= 0)
                 {
                     result.Ok = false;
                     result.Error = "Ese tipo de documento no existe";
@@ -151,7 +173,7 @@ namespace SuperMamiApi.Controllers
         [Route("User/UpdateUser")]
         public ActionResult<ResultAPI> UpdateUser([FromBody] CommandUpdateUser command)
         {
-            ResultAPI result = new ResultAPI();            
+            ResultAPI result = new ResultAPI();
             if (command.Name == "")
             {
                 result.Ok = false;

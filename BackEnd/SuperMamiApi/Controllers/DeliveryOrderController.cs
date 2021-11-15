@@ -48,42 +48,40 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("DeliveryOrder/GetDeliveryOrderByID")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindDeliveryOrder order)
+        [Route("DeliveryOrder/UpdateDeliveryOrder")]
+        public ActionResult<ResultAPI> UpdateDeliveryOrder([FromBody] CommandUpdateDeliveryOrder command)
         {
-            var resultado = new ResultAPI();
-            try
+            ResultAPI result = new ResultAPI();          
+
+            // if (s.IdShippingCompany <= 0)
+            // {
+            //     result.Ok = false;
+            //     result.Error = "Esa empresa de envío no existe";
+            //     return result;
+            // }
+
+            var delOrd = db.DeliveryOrders.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder && c.IsShipping == false).FirstOrDefault();
+            if (delOrd != null)
             {
 
-                var dO = db.DeliveryOrders.ToList().Where(c => c.IdDeliveryOrder == order.IdDeliveryOrder).FirstOrDefault();
-                if (dO != null)
-                {
-                    resultado.Ok = true;
-                    resultado.Return = dO;
-                    resultado.AdditionalInfo = "Se muestra la orden de entrega correctamente";
-                    resultado.ErrorCode = 200;
-                    return resultado;
-                }
-                else
-                {
-                    resultado.Ok = false;
-                    resultado.Error = "orden de entrega no encontrada";
-                    resultado.ErrorCode = 400;
-                    return resultado;
-                }
+                delOrd.IdBranch = command.IdBranch;                
 
+
+                db.DeliveryOrders.Update(delOrd);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = db.DeliveryOrders.ToList();
+                return result;
             }
-            catch (Exception ex)
+            else
             {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar la orden de entrega" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Empresa no encontrada";
+                return result;
             }
-
         }
-
-
+        
         [HttpPost]
         [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
         public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
