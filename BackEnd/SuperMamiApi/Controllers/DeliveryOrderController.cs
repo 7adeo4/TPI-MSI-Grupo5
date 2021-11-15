@@ -81,45 +81,7 @@ namespace SuperMamiApi.Controllers
                 return result;
             }
         }
-
-
-        [HttpPost]
-        [Route("DeliveryOrder/GetDeliveryOrderByID")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindDeliveryOrder order)
-        {
-            var resultado = new ResultAPI();
-            try
-            {
-
-                var dO = db.DeliveryOrders.ToList().Where(c => c.IdDeliveryOrder == order.IdDeliveryOrder).FirstOrDefault();
-                if (dO != null)
-                {
-                    resultado.Ok = true;
-                    resultado.Return = dO;
-                    resultado.AdditionalInfo = "Se muestra la orden de entrega correctamente";
-                    resultado.ErrorCode = 200;
-                    return resultado;
-                }
-                else
-                {
-                    resultado.Ok = false;
-                    resultado.Error = "orden de entrega no encontrada";
-                    resultado.ErrorCode = 400;
-                    return resultado;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar la orden de entrega" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
-            }
-
-        }
-
-
+        
         [HttpPost]
         [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
         public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
