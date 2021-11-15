@@ -14,9 +14,9 @@ namespace SuperMamiApi.Commands.PickupCommands
 
 
          
-        public string Weight { get; set; }
+        
         public string Volume { get; set; }
-        public int? BagsQuantity { get; set; }
+        
 
     }
 }

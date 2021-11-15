@@ -96,10 +96,9 @@ namespace SuperMamiApi.Controllers
 
                 PickupDetail pd = new PickupDetail();
 
-                pd.IdPickup = r.IdPickup;
-                pd.Weight = command.Weight;
+                pd.IdPickup = r.IdPickup;                
                 pd.Volume = command.Volume;
-                pd.BagsQuantity = command.BagsQuantity;
+                
 
                 db.PickupDetails.Add(pd);
                 db.SaveChanges();
