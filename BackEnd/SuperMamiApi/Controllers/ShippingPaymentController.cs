@@ -192,8 +192,8 @@ namespace SuperMamiApi.Controllers
 
 
         [HttpGet]
-        [Route("ShippingPayment/GetTotalPriceForYear")]
-        public ActionResult<ResultAPI> GetTotalPriceForYear()
+        [Route("ShippingPayment/GetTotalPricePerYear")]
+        public ActionResult<ResultAPI> GetTotalPricePerYear()
         {
 
            var query = from s in db.ShippingPayments
@@ -227,8 +227,8 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("ShippingPayment/GetTotalPriceForShippingCompany")]
-        public ActionResult<ResultAPI> GetTotalPriceForShippingCompany([FromBody] int anio)
+        [Route("ShippingPayment/GetTotalPricePerShippingCompany")]
+        public ActionResult<ResultAPI> GetTotalPricePerShippingCompany([FromBody] int anio)
         {
 
            var query = from s in db.Shippings 
@@ -267,20 +267,6 @@ namespace SuperMamiApi.Controllers
             }
             return result;
         }
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
 }
 

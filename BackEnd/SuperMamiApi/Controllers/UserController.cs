@@ -19,6 +19,10 @@ namespace SuperMamiApi.Controllers
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
         private readonly ILogger<UserController> _logger;
 
+        public UserController()
+        {
+        }
+
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;

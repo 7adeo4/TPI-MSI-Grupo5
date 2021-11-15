@@ -119,21 +119,6 @@ namespace SuperMamiApi.Controllers
                     result.Error = "El peso no puede estar vacio";
                     return result;
                 }
-<<<<<<< HEAD
-=======
-                // if (command.Volume == "")
-                // {
-                //     result.Ok = false;
-                //     result.Error = "El volumen no puede estar vacio";
-                //     return result;
-                // }
-                // if (command.BagsQuantity == 0)
-                // {
-                //     result.Ok = false;
-                //     result.Error = "La cantidad de bolsas no puede estar vacio";
-                //     return result;
-                // }
->>>>>>> main
 
                 Shipping s = new Shipping();
                 s.IdShippingCompany = command.IdShippingCompany;
@@ -149,10 +134,6 @@ namespace SuperMamiApi.Controllers
                 sp.IdShipping = s.IdShipping;
                 sp.Weight = command.Weight;
                 sp.Comment = command.Comment;
-<<<<<<< HEAD
-=======
-                
->>>>>>> main
 
                 db.ShippingDetails.Add(sp);
                 db.SaveChanges();
@@ -273,8 +254,8 @@ namespace SuperMamiApi.Controllers
                         join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
                         join doo in db.DeliveryOrders on s.IdDeliveryOrder equals doo.IdDeliveryOrder
                         where s.IsActive == true
-                        group s by new {s.IdShipping, s.IdDeliveryOrder, sc.BusinessName, doo.DeliveryDate, sd.Comment, sd.Weight, s.IdState} into g
-                        select new { IdShipping = g.Key, IdDeliveryOrder = g.Key, BusinessName = g.Key, DeliveryDate = g.Key, Comment = g.Key, Weight = g.Key, State = g.Key};
+                        group s by new { s.IdShipping, s.IdDeliveryOrder, sc.BusinessName, doo.DeliveryDate, sd.Comment, sd.Weight, s.IdState } into g
+                        select new { IdShipping = g.Key, IdDeliveryOrder = g.Key, BusinessName = g.Key, DeliveryDate = g.Key, Comment = g.Key, Weight = g.Key, State = g.Key };
 
             var result = new ResultAPI();
             try
@@ -297,6 +278,40 @@ namespace SuperMamiApi.Controllers
             }
             return result;
         }
+
+        //OBTENER CANTIDAD ENVIOS POR EMPRESA EN EL DIA
+        [HttpPost]
+        [Route("Shipping/GetShippingsByCompanyCountToday")]
+        public ActionResult<ResultAPI> GetShippingsByCompanyCountToday([FromBody] int id)
+        {
+            var query = (from s in db.Shippings
+                         join doo in db.DeliveryOrders on s.IdDeliveryOrder equals doo.IdDeliveryOrder
+                         where s.IdShippingCompany == id && doo.DeliveryDate.Month == DateTime.Now.Month
+                            && doo.DeliveryDate.Day == DateTime.Now.Day && doo.DeliveryDate.Year == DateTime.Now.Year
+                         select s).Count();
+
+            var result = new ResultAPI();
+            try
+            {
+                if (query != null)
+                {
+                    result.Ok = true;
+                    result.Return = query;
+                    result.AdditionalInfo = "Se cargó la lista correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                return result;
+            }
+            return result;
+        }
+
 
 
 
