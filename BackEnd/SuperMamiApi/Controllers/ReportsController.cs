@@ -189,7 +189,6 @@ namespace SuperMamiApi.Controllers
                     return result;
                 }
             }
-
             catch (Exception ex)
             {
                 result.Ok = false;
@@ -199,7 +198,4 @@ namespace SuperMamiApi.Controllers
             return result;
         }
     }
-
-
-
 }
