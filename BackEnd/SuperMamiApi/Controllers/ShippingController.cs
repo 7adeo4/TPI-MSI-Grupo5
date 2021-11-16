@@ -199,7 +199,7 @@ namespace SuperMamiApi.Controllers
         //     }
         // }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Shipping/DeleteShipping")]
         public ActionResult<ResultAPI> DeleteShipping([FromBody] CommandDeleteShipping command)
         {
@@ -208,7 +208,7 @@ namespace SuperMamiApi.Controllers
 
             try
             {
-                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
                 if (shipp != null)
                 {
                     if (shipp.IsActive == true)
@@ -253,14 +253,11 @@ namespace SuperMamiApi.Controllers
             var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
             if (shipp != null)
             {
-                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
-                if (shipp != null)
+                if (shipp.IsActive == true)
                 {
-                    if (shipp.IsActive == true)
-                    {
-                        shipp.IsActive = false;
-                    }
-                    
+                    shipp.IsActive = false;
+                }
+
 
                 if (shipp.IdState == 1)
                 {
@@ -285,6 +282,8 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Retiro no encontrado, revise el Documento";
                 return result;
             }
+
+
         }
 
         //LISTADO
@@ -296,9 +295,10 @@ namespace SuperMamiApi.Controllers
             var query = from s in db.Shippings
                         join sd in db.ShippingDetails on s.IdShipping equals sd.IdShipping
                         join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
-                        join doo in db.DeliveryOrders on s.IdDeliveryOrder equals doo.IdDeliveryOrder
+                        join doo in db.DeliveryOrders on s.IdDeliveryOrder equals doo.IdDeliveryOrder 
+                        join st in db.States on s.IdState equals st.IdState
                         where s.IsActive == true
-                        group s by new { s.IdShipping, s.IdDeliveryOrder, sc.BusinessName, doo.DeliveryDate, sd.Comment, sd.Weight, s.IdState } into g
+                        group s by new { s.IdShipping, s.IdDeliveryOrder, sc.BusinessName, doo.DeliveryDate, sd.Comment, sd.Weight, st.State1 } into g
                         select new { IdShipping = g.Key, IdDeliveryOrder = g.Key, BusinessName = g.Key, DeliveryDate = g.Key, Comment = g.Key, Weight = g.Key, State = g.Key };
 
             var result = new ResultAPI();
