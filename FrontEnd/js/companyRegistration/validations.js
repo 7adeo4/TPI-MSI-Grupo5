@@ -14,8 +14,8 @@ const expresions = {
     street: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
     phone: /^\d{9,14}$/, // 7 a 14 numeros.
-    cuit: /^\d{7,20}$/, // 7 a 14 numeros.
-    salary: /^\d{7,30}$/ // 7 a 14 numeros.
+    cuit: /^\d{9,20}$/, // 7 a 14 numeros.
+    salary: /^\d{4,30}$/ // 7 a 14 numeros.
 }
 
 const attributes = {

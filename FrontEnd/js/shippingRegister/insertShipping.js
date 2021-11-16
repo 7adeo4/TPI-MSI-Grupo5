@@ -20,6 +20,7 @@ function ShippingRegister(order, company, weight, comment) {
     "weight":  parseFloat(weight)
   }
 
+  if(comando.idShippingCompany == 2 && comando.weight)
 
   $.ajax({
       url: "https://localhost:5001/Shipping/RegisterShipping",
@@ -27,9 +28,9 @@ function ShippingRegister(order, company, weight, comment) {
       dataType: "json",
       contentType: "application/json",
       data: JSON.stringify(comando),
-      success: function (result) {
+      success: function (result) {        
           if (result.ok) {
-              swal("Excelente!", "Se registró el envío.", "success");
+              swal("Excelente!", "Se registró el envío.", "success");                          
           }
           else {
               swal("Error", "Algo salió mal", "error")

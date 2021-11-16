@@ -28,7 +28,7 @@
     <div class="container bg-light">
         <h2 class="p-3">Registrar Retiro</h2>
         <div class="row">
-            <form id="form" class="col-lg-12 col-sm-12 row d-flex justify-content-center mt-5 ">
+            <div id="form" class="col-lg-12 col-sm-12 row d-flex justify-content-center mt-5 ">
                 <div class="my-3">
                     <div class="d-flex justify-content-center">
                         <div class="col-12 col-lg-6 col-sm-10 mb" id="group__order">
@@ -104,7 +104,7 @@
                                 data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
-                </div
+                </div>
 
                 <div class="d-flex justify-content-center my-3">
                     <div class="form__message" id="form__message">
@@ -118,7 +118,7 @@
                 <div class="mb-5">
                     <div class="col-12 col-lg-12 d-flex justify-content-center flex-column align-items-center">
                         <button type="submit" class="btn btn-outline-dark col-12 col-lg-3 col-sm-10"
-                            id="submit">Registrar
+                            id="btnAgregar">Registrar
                             retiro</button>
                     </div>
                     <div>
@@ -127,21 +127,24 @@
                             exitosamente!</p>
                     </div>
                 </div>                
-            </form>
+            </div>
         </div>
     </div>
+
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <script src="../js/PickupRegister/getBranch.js"></script>
-    <script src="../js/PickupRegister/pickupRegister.js"></script>
+    <script src="../js/withdrawalRegister/getBranch.js"></script>
+    <script src="../js/withdrawalRegister/pickupRegister.js"></script>
     <script src="../js/keepLoggedIn.js"></script>
     <script src="../js/getCompleteName.js"></script>
     <script src="../js/PickupRegister/DeliveryOrderPickUp.js"></script>
     <script src="../js/withdrawalRegister/validations.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/PickupRegister/DeletePickup.js"></script>
+    <script src="../js/withdrawalRegister/DeletePickup.js"></script>
 </body>
 
 </html>

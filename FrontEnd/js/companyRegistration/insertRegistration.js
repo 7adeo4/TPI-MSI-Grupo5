@@ -43,7 +43,7 @@ function CompanyRegister(reason, address, location, phone, email, cuit, packages
         data: JSON.stringify(comando),
         success: function (result) {
             if (result.ok) {
-                swal("Good job!", "You clicked the button!", "success");
+                swal("Excelente!", "Empresa registrada con éxito!", "success");
 
             }
             else {

@@ -8,16 +8,13 @@ const expresions = {
     // user: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
     order: /^\d{1,10000}$/,
     weight: /^\d{1,10000}$/,
-    volume: /^\d{1,10000}$/,
-    bags: /^\d{1,10000}$/
+  
 }
 
 const attributes = {
 
     order: false,
     weight: false,
-    volume: false,
-    bags: false,
     company: false
 }
 
@@ -26,18 +23,15 @@ const validateform = (e) => {
         case "order":
             validate(expresions.order, e.target, 'order');
             break;
-        // case "weight":
-        //     validate(expresions.weight, e.target, 'weight');
-        //     break;
+        case "weight":
+            validate(expresions.weight, e.target, 'weight');
+            break;
         // case "volume":
         //     validate(expresions.volume, e.target, 'volume');
         //     break;
         // case "bags":
         //     validate(expresions.bags, e.target, 'bags');
-        //     break;
-        case "date":
-            validateDate();
-            break;
+        //     break;        
         case "company":
             validateCompany();
             break;
@@ -96,7 +90,7 @@ company.addEventListener('blur', validateform);
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (attributes.order && attributes.company) {
+    if (attributes.order && attributes.company && attributes.weight) {
         form.reset();
         insertShipping();
         document.getElementById('form__success-message').classList.add('form__success-message-active');
