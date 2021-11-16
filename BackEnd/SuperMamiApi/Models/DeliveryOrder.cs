@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 #nullable disable
 
+using System;
+using System.Collections.Generic;
+
+#nullable disable
+
 namespace SuperMamiApi.Models
 {
     public partial class DeliveryOrder
