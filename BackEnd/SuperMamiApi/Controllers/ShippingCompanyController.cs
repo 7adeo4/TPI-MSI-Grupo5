@@ -232,19 +232,7 @@ namespace SuperMamiApi.Controllers
                 result.Ok = false;
                 result.Error = "Complete el CUIT de la empresa, por favor.";
                 return result;
-            }
-            if (command.ShiftStartTime == "")
-            {
-                result.Ok = false;
-                result.Error = "Complete la hora de inicio del turno de la empresa, por favor.";
-                return result;
-            }
-            if (command.ShiftEndTime == "")
-            {
-                result.Ok = false;
-                result.Error = "Complete la hora de finalización del turno de la empresa, por favor.";
-                return result;
-            }
+            }            
             if (command.IdShippingType <= 0)
             {
                 result.Ok = false;
@@ -280,14 +268,12 @@ namespace SuperMamiApi.Controllers
                 ship.Phone = command.Phone;
                 ship.Email = command.Email;
                 ship.Cuit = command.Cuit;
-                ship.ShiftStartTime = command.ShiftStartTime;
-                ship.ShiftEndTime = command.ShiftEndTime;
+                ship.ShiftStartTime = "07:00";
+                ship.ShiftEndTime = "18:00";
                 ship.IdShippingType = command.IdShippingType;
                 ship.Salary = command.Salary;
                 ship.ContactName =command.ContactName;
                 ship.MaxShippingsPerDay = command.MaxShippingsPerDay;
-
-
 
                 db.ShippingCompanies.Update(ship);
                 db.SaveChanges();

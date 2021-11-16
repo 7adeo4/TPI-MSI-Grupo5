@@ -169,14 +169,12 @@ namespace SuperMamiApi.Controllers
 
         //REPORTE 5
         [HttpGet]
-        [Route("Reports/GetTotalPriceForYear")]
-        public ActionResult<ResultAPI> GetTotalPriceForYear()
+        [Route("Reports/GetTotalPricePerYear")]
+        public ActionResult<ResultAPI> GetTotalPricePerYear()
         {
 
-            var query = from s in db.ShippingPayments
-                        group new { s.Date.Year, s.TotalPrice } by s.Date.Year into g
-                        select new { anio = g.Key, total = g.Sum(c => c.TotalPrice) };
-
+            var query = from b in db.ShippingCompanies
+                        select new { Empresa = b.BusinessName, SalarioAnual = (b.Salary*12) };
             var result = new ResultAPI();
             try
             {
