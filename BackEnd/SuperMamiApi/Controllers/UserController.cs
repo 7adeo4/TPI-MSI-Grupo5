@@ -19,10 +19,6 @@ namespace SuperMamiApi.Controllers
         private readonly super_mami_entregasContext db = new super_mami_entregasContext();
         private readonly ILogger<UserController> _logger;
 
-        public UserController()
-        {
-        }
-
         public UserController(ILogger<UserController> logger)
         {
             _logger = logger;
@@ -85,7 +81,7 @@ namespace SuperMamiApi.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("User/GetUserByEmailPass")]
         public ActionResult<ResultAPI> GetUserByEmailPass(CommandValidateUser user)
         {
