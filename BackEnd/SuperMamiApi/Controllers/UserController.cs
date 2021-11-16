@@ -26,7 +26,7 @@ namespace SuperMamiApi.Controllers
 
         [HttpPost]
         [Route("User/GetUserById")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindUser user)
+        public ActionResult<ResultAPI> GetUserById([FromBody] CommandFindUser user)
         {
             var result = new ResultAPI();
             try
@@ -59,6 +59,61 @@ namespace SuperMamiApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("User/GetAllUsers")]
+        public ActionResult<ResultAPI> GetAllUsers()
+        {
+            var result = new ResultAPI();
+            try
+            {
+                result.Ok = true;
+                result.Return = db.Users.ToList();
+                result.AdditionalInfo = "Se cargó la lista correctamente";
+                result.ErrorCode = 200;
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Error al cargar los usuarios" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
+            }
+        }
+
+        [HttpPost]
+        [Route("User/GetUserByEmailPass")]
+        public ActionResult<ResultAPI> GetUserByEmailPass(CommandValidateUser user)
+        {
+            var result = new ResultAPI();            
+            try
+            {
+                 var u = db.Users.ToList().Where(c => c.Email == user.Email && c.Password == user.Password).FirstOrDefault();
+                if (u != null)
+                {
+                    result.Ok = true;
+                    result.Return = u;
+                    result.AdditionalInfo = "Se muestra el usuario correctamente";
+                    result.ErrorCode = 200;
+                    return result;
+                }
+                else
+                {
+                    result.Ok = false;
+                    result.Error = "Usuario no encontrado";
+                    result.ErrorCode = 400;
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Ok = false;
+                result.Error = "Error al cargar los usuarios" + ex.Message;
+                result.ErrorCode = 400;
+                return result;
+            }
+        }
+
         [HttpPost]
         [Route("User/RegisterUser")]
         public ActionResult<ResultAPI> RegisterUser([FromBody] CommandRegisterUser command)
@@ -74,11 +129,11 @@ namespace SuperMamiApi.Controllers
             u.Phone = command.Phone;
             u.IdRol = command.IdRol;
             u.Password = command.Password;
-            
+
 
             try
             {
-                 if (u.IdDocumentType <= 0)
+                if (u.IdDocumentType <= 0)
                 {
                     result.Ok = false;
                     result.Error = "Ese tipo de documento no existe";
@@ -147,7 +202,7 @@ namespace SuperMamiApi.Controllers
         [Route("User/UpdateUser")]
         public ActionResult<ResultAPI> UpdateUser([FromBody] CommandUpdateUser command)
         {
-            ResultAPI result = new ResultAPI();            
+            ResultAPI result = new ResultAPI();
             if (command.Name == "")
             {
                 result.Ok = false;

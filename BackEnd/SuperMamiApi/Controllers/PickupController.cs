@@ -96,10 +96,9 @@ namespace SuperMamiApi.Controllers
 
                 PickupDetail pd = new PickupDetail();
 
-                pd.IdPickup = r.IdPickup;
-                pd.Weight = command.Weight;
+                pd.IdPickup = r.IdPickup;                
                 pd.Volume = command.Volume;
-                pd.BagsQuantity = command.BagsQuantity;
+                
 
                 db.PickupDetails.Add(pd);
                 db.SaveChanges();
@@ -242,7 +241,7 @@ namespace SuperMamiApi.Controllers
         {
 
             var query = from p in db.Pickups
-                        join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup 
+                        join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup
                         where p.IsActive == true
                         group p by new {p.IdPickup, p.IdDeliveryOrder, p.IdState, pd.Weight} into g
                         select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, IdState = g.Key, Weight = g.Key};

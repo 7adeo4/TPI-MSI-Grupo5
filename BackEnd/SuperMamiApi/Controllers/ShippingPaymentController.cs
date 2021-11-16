@@ -191,96 +191,82 @@ namespace SuperMamiApi.Controllers
         }
 
 
-        [HttpGet]
-        [Route("ShippingPayment/GetTotalPriceForYear")]
-        public ActionResult<ResultAPI> GetTotalPriceForYear()
-        {
+        // [HttpGet]
+        // [Route("ShippingPayment/GetTotalPricePerYear")]
+        // public ActionResult<ResultAPI> GetTotalPricePerYear()
+        // {
 
-           var query = from s in db.ShippingPayments
-                        group new {s.Date.Year, s.TotalPrice} by s.Date.Year into g
-                        select new {anio = g.Key, total = g.Sum(c => c.TotalPrice)};
+        //    var query = from s in db.ShippingPayments
+        //                 group new {s.Date.Year, s.TotalPrice} by s.Date.Year into g
+        //                 select new {anio = g.Key, total = g.Sum(c => c.TotalPrice)};
                             
-                // SELECT EXTRACT(YEAR FROM DATE), sum(total_price)
-                // from shipping_payment
-                // group by EXTRACT(YEAR FROM DATE)            
+        //         // SELECT EXTRACT(YEAR FROM DATE), sum(total_price)
+        //         // from shipping_payment
+        //         // group by EXTRACT(YEAR FROM DATE)            
 
-            var result = new ResultAPI();
-            try
-            {
-                if (query != null)
-                {
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se cargó la lista correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-            }
+        //     var result = new ResultAPI();
+        //     try
+        //     {
+        //         if (query != null)
+        //         {
+        //             result.Ok = true;
+        //             result.Return = query;
+        //             result.AdditionalInfo = "Se cargó la lista correctamente";
+        //             result.ErrorCode = 200;
+        //             return result;
+        //         }
+        //     }
 
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-            return result;
-        }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        //     return result;
+        // }
 
-        [HttpPost]
-        [Route("ShippingPayment/GetTotalPriceForShippingCompany")]
-        public ActionResult<ResultAPI> GetTotalPriceForShippingCompany([FromBody] int anio)
-        {
+        // [HttpPost]
+        // [Route("ShippingPayment/GetTotalPricePerShippingCompany")]
+        // public ActionResult<ResultAPI> GetTotalPricePerShippingCompany([FromBody] int anio)
+        // {
 
-           var query = from s in db.Shippings 
-                        join d in db.DeliveryOrders on s.IdDeliveryOrder equals d.IdDeliveryOrder
-                        join c in db.ShippingCompanies on s.IdShippingCompany equals c.IdShippingCompany
-                        where d.DeliveryDate.Year == anio
-                        group new {c.BusinessName, d.DeliveryDate.Year, d.ShippingPrice} by c.BusinessName into g
-                        select new {empresa = g.Key, Anio = g.Key, total = g.Sum(c => c.ShippingPrice)};
-
-
-            // SELECT EXTRACT(YEAR FROM D.DELIVERY_DATE), SC.BUSINESS_NAME, SUM(D.SHIPPING_PRICE)
-            // FROM SHIPPINGS S
-            // JOIN DELIVERY_ORDER D ON S.ID_DELIVERY_ORDER = D.ID_DELIVERY_ORDER
-            // JOIN SHIPPING_COMPANY SC ON S.ID_SHIPPING_COMPANY = SC.ID_SHIPPING_COMPANY
-            // WHERE EXTRACT(YEAR FROM D.DELIVERY_DATE) = 2021
-            // GROUP BY SC.BUSINESS_NAME, EXTRACT(YEAR FROM D.DELIVERY_DATE)         
-
-            var result = new ResultAPI();
-            try
-            {
-                if (query != null)
-                {
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se cargó la lista correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-            return result;
-        }
+        //    var query = from s in db.Shippings 
+        //                 join d in db.DeliveryOrders on s.IdDeliveryOrder equals d.IdDeliveryOrder
+        //                 join c in db.ShippingCompanies on s.IdShippingCompany equals c.IdShippingCompany
+        //                 where d.DeliveryDate.Year == anio
+        //                 group new {c.BusinessName, d.DeliveryDate.Year, d.ShippingPrice} by c.BusinessName into g
+        //                 select new {empresa = g.Key, Anio = g.Key, total = g.Sum(c => c.ShippingPrice)};
 
 
+        //     // SELECT EXTRACT(YEAR FROM D.DELIVERY_DATE), SC.BUSINESS_NAME, SUM(D.SHIPPING_PRICE)
+        //     // FROM SHIPPINGS S
+        //     // JOIN DELIVERY_ORDER D ON S.ID_DELIVERY_ORDER = D.ID_DELIVERY_ORDER
+        //     // JOIN SHIPPING_COMPANY SC ON S.ID_SHIPPING_COMPANY = SC.ID_SHIPPING_COMPANY
+        //     // WHERE EXTRACT(YEAR FROM D.DELIVERY_DATE) = 2021
+        //     // GROUP BY SC.BUSINESS_NAME, EXTRACT(YEAR FROM D.DELIVERY_DATE)         
 
+        //     var result = new ResultAPI();
+        //     try
+        //     {
+        //         if (query != null)
+        //         {
+        //             result.Ok = true;
+        //             result.Return = query;
+        //             result.AdditionalInfo = "Se cargó la lista correctamente";
+        //             result.ErrorCode = 200;
+        //             return result;
+        //         }
+        //     }
 
-
-
-
-
-
-
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        //     return result;
+        // }
     }
-
-
-
-
 }
 

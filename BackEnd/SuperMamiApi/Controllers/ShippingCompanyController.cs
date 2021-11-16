@@ -369,48 +369,48 @@ namespace SuperMamiApi.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("ShippingCompany/GetPercentageShippingsByCompany")]
-        public ActionResult<ResultAPI> GetPercentageShippingsByCompany()
-        {
+        // [HttpGet]
+        // [Route("ShippingCompany/GetPercentageShippingsByCompany")]
+        // public ActionResult<ResultAPI> GetPercentageShippingsByCompany()
+        // {
+            
 
+        //     var query = from s in db.Shippings
+        //                 join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
+        //                 group new { sc.BusinessName, s.IdShippingCompany } by sc.BusinessName into g
+        //                 select new
+        //                 {
+        //                     nombre_empresa = g.Key,
+        //                     porcentaje = Math.Round((Convert.ToDouble(g.Select(z => z.IdShippingCompany).Count()) * 100) /
+        //                                                                                 (Math.Round(Convert.ToDouble((from s in db.Shippings
+        //                                                                                                               select s.IdShippingCompany).Count()))), 2)
+        //                 };
 
-            var query = from s in db.Shippings
-                        join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
-                        group new { sc.BusinessName, s.IdShippingCompany } by sc.BusinessName into g
-                        select new
-                        {
-                            nombre_empresa = g.Key,
-                            porcentaje = Math.Round((Convert.ToDouble(g.Select(z => z.IdShippingCompany).Count()) * 100) /
-                                                                                        (Math.Round(Convert.ToDouble((from s in db.Shippings
-                                                                                                                      select s.IdShippingCompany).Count()))), 2)
-                        };
+        //     // var query = from s in db.Shippings
+        //     //             where s.IdShipping == id
+        //     //             select s;
 
-            // var query = from s in db.Shippings
-            //             where s.IdShipping == id
-            //             select s;
+        //     var result = new ResultAPI();
+        //     try
+        //     {
+        //         if (query != null)
+        //         {
+        //             result.Ok = true;
+        //             result.Return = query;
+        //             result.AdditionalInfo = "Se cargó la lista correctamente";
+        //             result.ErrorCode = 200;
+        //             return result;
+        //         }
+        //     }
 
-            var result = new ResultAPI();
-            try
-            {
-                if (query != null)
-                {
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se cargó la lista correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-            return result;
-        }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        //     return result;
+        // }
     }
 }
 

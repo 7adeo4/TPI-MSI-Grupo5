@@ -1399,19 +1399,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carme\\.nuget\\packages\\": {}
+    "C:\\Users\\Camilo Rissi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+      "projectUniqueName": "C:\\Users\\Camilo Rissi\\Desktop\\SuperMamiAPI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
       "projectName": "SuperMamiApi",
-      "projectPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
-      "packagesPath": "C:\\Users\\carme\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\carme\\Escritorio\\nivelacion TECNICATURA\\CUARTO CUATRIMESTRE\\Metodología de sistemas I\\TP INTEGRADOR\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
+      "projectPath": "C:\\Users\\Camilo Rissi\\Desktop\\SuperMamiAPI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\SuperMamiApi.csproj",
+      "packagesPath": "C:\\Users\\Camilo Rissi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Camilo Rissi\\Desktop\\SuperMamiAPI\\TPI-MSI-Grupo5\\BackEnd\\SuperMamiApi\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\carme\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Camilo Rissi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
