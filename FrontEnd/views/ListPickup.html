@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://bootswatch.com/5/zephyr/bootstrap.min.css">
     <link rel="stylesheet" href="../css/validationStyles.css">
+    <link rel="stylesheet" href="../css/validationRol.css">
     <script src="https://kit.fontawesome.com/c55fb45212.js" crossorigin="anonymous"></script>
 
     <title>Retiros</title>
@@ -17,39 +18,17 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="./home.html">
-                <i style="font-size:30px" class="text-white fas fa-home"></i>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse row navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav d-flex justify-content-evenly">
-                    <div class="navbar-nav m-1">
-                        <a class="nav-item nav-link" href="./shippingRegister.html">Registrar Envio</a>
-                        <a class="nav-item nav-link" href="./updateSending.html">Actualizar Envío</a>
-                        <a class="nav-item nav-link" href="./withdrawalRegister.html">Registrar Retiro</a>
-                        <a class="nav-item nav-link active disabled" href="./updateWithdrawal.html">Actualizar
-                            Retiro</a>
-                        <a class="nav-item nav-link" href="reports.html">Reportes de Envios/Retiros</a>
-                        <a class="nav-item nav-link" href="./companyReports.html">Reportes de
-                            Empresas</a>
-                        <a class="nav-item nav-link" href="./companyRegistration.html">Registro de
-                            Empresas</a>
-                    </div>
-                    <label class="text-center align-self-center mb-3 mb-lg-0 mx-1 text-light border-bottom"
-                        id="userEmail"></label>
-                    <button id="closeSesion" onclick="goLogOut()" class="btn btn-outline-warning text-light mx-3">Cerrar
-                        Sesion</button>
-                </div>
-            </div>
+            <label class="text-center align-self-center mb-1 mb-lg-1 mx-1 text-light fs-6"
+                id="userNav"></label>
+            <button id="closeSesion" onclick="goLogOut()" class="btn btn-outline-warning text-light mx-3">Cerrar
+                Sesion</button>
         </div>
     </nav>
     <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
         <img class="col-lg-4 col-8" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png">
     </div>
     <div class="d-flex justify-content-center mt-5">
+        <a class="fs-1 text-success adminBack" id="adminBack" href="Home.html"><i class="fas fa-arrow-circle-left"></i></a>
         <h2>Retiros</h2>
     </div>
     <div class="container bg-light">
@@ -157,7 +136,7 @@
         })
     </script>
 
-
+    <script src="../js/getCompleteName.js"></script>
 </body>
 
 </html>

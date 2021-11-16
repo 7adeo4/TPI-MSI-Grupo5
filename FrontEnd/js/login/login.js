@@ -1,6 +1,6 @@
-const form = document.getElementById('form');
 
-form.addEventListener('submit', (e) => {
+
+formLogin.addEventListener('submit', (e) => {
     e.preventDefault();
-    window.location.replace('Home.html');
+    getEmailPass()
 });
