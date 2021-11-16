@@ -3,6 +3,7 @@ const formLogin = document.getElementById('formLogin');
 const emailLogin = document.getElementById('emailLogin');
 const passwordLogin = document.getElementById('passwordLogin');
 const emailLoginNav = document.getElementById('userNav');
+const boss = document.getElementById('boss');
 let nameSurname
 let keepLog = false;
 
@@ -40,7 +41,9 @@ const getEmailPass = () => {
         if (res.data.return.idRol == 3) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/shippingRegister.html');
         if (res.data.return.idRol == 4) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/updateWithdrawal.html');
         nameSurname = res.data.return.name + ' ' + res.data.return.surname
+        boss = res.data.return.idRol;
         localStorage.setItem("userPassword", nameSurname);
+        localStorage.setItem("boss", boss);
     })
         .catch(err => {
             console.log(err)
