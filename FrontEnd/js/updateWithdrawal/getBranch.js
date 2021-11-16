@@ -1,4 +1,4 @@
-// const getCompany = () => {
+const getCompany = () => {
 const url = "https://localhost:5001/Branch/GetAllBranches";
 
 fetch(url)
@@ -17,4 +17,4 @@ fetch(url)
     }
   })
   .catch((error) => console.log(error));
-// };
+};
