@@ -1,3 +1,14 @@
+using System.Runtime.InteropServices;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks.Dataflow;
+using System.Security.Cryptography;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Reflection.Metadata;
+using System.Net.Mail;
+using System.Data;
+using System.Data.Common;
+using System.ComponentModel.Design.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +20,8 @@ using SuperMamiApi.Models;
 using SuperMamiApi.Results;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
+using SuperMamiApi.Commands.DeliveryOrderCommands;
+using SuperMamiApi.Controllers;
 
 
 namespace SuperMamiApi.Controllers
@@ -24,6 +37,7 @@ namespace SuperMamiApi.Controllers
         {
             _logger = logger;
         }
+        
 
         [HttpPost]
         [Route("Pickup/GetPickupById")]
@@ -75,14 +89,6 @@ namespace SuperMamiApi.Controllers
                     result.Error = "Esa orden de entrega no existe";
                     return result;
                 }
-
-                if (command.IdUser <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Ese usuario no existe";
-                    return result;
-                }
-
                  
                 Pickup r = new Pickup();
 
@@ -90,7 +96,7 @@ namespace SuperMamiApi.Controllers
                 r.IdState = 1;
                 r.IdUser = command.IdUser;
                 r.IsActive = true;
-
+               
                 db.Pickups.Add(r);
                 db.SaveChanges();
 
@@ -98,12 +104,16 @@ namespace SuperMamiApi.Controllers
 
                 pd.IdPickup = r.IdPickup;                
                 pd.Volume = command.Volume;
-                
 
                 db.PickupDetails.Add(pd);
                 db.SaveChanges();
 
+                CommandUpdateDeliveryOrder command2 = new CommandUpdateDeliveryOrder();
+                command2.IdDeliveryOrder = command.IdDeliveryOrder;
+                command2.IdBranch = command.IdBranch;
+                
 
+                this.UpdateDeliveryOrder(command2);
 
                 result.Ok = true;
                 var pickup = db.Pickups.ToList();                
@@ -170,9 +180,9 @@ namespace SuperMamiApi.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("Pickup/DeletePickup")]
-        public ActionResult<ResultAPI> DeleteUser([FromBody] CommandDeletePickup command)
+        public ActionResult<ResultAPI> DeletePickup([FromBody] CommandDeletePickup command)
         {
             ResultAPI result = new ResultAPI();
             Pickup r = new Pickup();
@@ -186,14 +196,14 @@ namespace SuperMamiApi.Controllers
             }
 
 
-            var pick = db.Pickups.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+            var pick = db.Pickups.Where(c => c.IdPickup == command.IdPickup).FirstOrDefault();
             if (pick != null)
             {
-
-
-                pick.IdDeliveryOrder = command.IdDeliveryOrder;
-                pick.IsActive = false;
-
+               
+                    if (pick.IsActive == true)
+                    {
+                        pick.IsActive = false;
+                    }                   
 
                 db.Pickups.Update(pick);
                 db.SaveChanges();
@@ -217,7 +227,7 @@ namespace SuperMamiApi.Controllers
             var result = new ResultAPI();
             try
             {
-                var s = db.Pickups.ToList().Where(c => c.IsActive == true).FirstOrDefault();
+                var s = db.Pickups.ToList().Where(c => c.IsActive == true);
                 result.Ok = true;
                 result.Return = s;
                 result.AdditionalInfo = "Se muestra el retiro correctamente";
@@ -241,10 +251,12 @@ namespace SuperMamiApi.Controllers
         {
 
             var query = from p in db.Pickups
-                        join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup 
+                        join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup join st in db.States on  p.IdState equals st.IdState
+                        join doo in db.DeliveryOrders on p.IdDeliveryOrder equals doo.IdDeliveryOrder
+                        join br in db.Branches on doo.IdBranch equals br.IdBranch
                         where p.IsActive == true
-                        group p by new {p.IdPickup, p.IdDeliveryOrder, p.IdState, pd.Weight} into g
-                        select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, IdState = g.Key, Weight = g.Key};
+                        group p by new {p.IdPickup, p.IdDeliveryOrder, st.State1, pd.Volume, br.Name, doo.DeliveryDate} into g
+                        select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, State = g.Key, Volume = g.Key, Branch = g.Key, fecha = g.Key};
 
             var result = new ResultAPI();
             try
@@ -268,8 +280,46 @@ namespace SuperMamiApi.Controllers
             return result;
         }
 
+        [HttpPut]
+        [Route("DeliveryOrder/UpdateDeliveryOrder")]
+        public ActionResult<ResultAPI> UpdateDeliveryOrder([FromBody] CommandUpdateDeliveryOrder command)
+        {
+            ResultAPI result = new ResultAPI();
+
+            if (command.IdBranch <= 0)
+            {
+                result.Ok = false;
+                result.Error = "Ese retiro no existe";
+                return result;
+            }
+            if (command.IdDeliveryOrder <= 0)
+            {
+                result.Ok = false;
+                result.Error = "Esa orden de entrega no existe";
+                return result;
+            }
+
+            var delOr = db.DeliveryOrders.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+            if (delOr != null)
+            {                                
+                delOr.IdBranch = command.IdBranch;                
+                delOr.IsFree = true;
+                db.DeliveryOrders.Update(delOr);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = db.DeliveryOrders.ToList();
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Orden de pedido no encontrado, revise el Documento";
+                return result;
+            }
+        }
+
 
 
     }
 }
-

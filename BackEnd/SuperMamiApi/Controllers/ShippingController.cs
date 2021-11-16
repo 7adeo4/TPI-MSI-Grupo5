@@ -208,17 +208,14 @@ namespace SuperMamiApi.Controllers
 
             try
             {
-                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
                 if (shipp != null)
                 {
                     if (shipp.IsActive == true)
                     {
                         shipp.IsActive = false;
                     }
-                    else
-                    {
-                        shipp.IsActive = true;
-                    }
+                    
 
                     db.Shippings.Update(shipp);
                     db.SaveChanges();
