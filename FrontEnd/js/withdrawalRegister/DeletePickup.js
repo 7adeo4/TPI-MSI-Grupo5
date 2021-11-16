@@ -105,7 +105,7 @@ function estadoModal(id) {
    
 }
 
-function actualizarEstado(){debugger
+function actualizarEstado(){
   
   if ($(idEstadoTratar).hasClass('btn-info')) {
       $(idEstadoTratar).removeClass('btn-info').addClass('btn-warning');

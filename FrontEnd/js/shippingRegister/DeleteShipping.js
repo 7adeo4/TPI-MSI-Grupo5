@@ -2,11 +2,16 @@
 $(document).ready(function () {
     mostrarTabla();
     var idATratar;
+    var idEstadoTratar;
   
     $("#Aceptado2").click(function () {
       DeleteShipping();
-      alert("Se borró con éxito");
-      // $("#ventanaModal2").modal("toggle");
+      
+     
+    });
+    $("#Aceptado").click(function () {
+      actualizarEstado();   
+      
     });
   });
   
@@ -44,7 +49,7 @@ $(document).ready(function () {
   
   function mostrarTabla() {
     $.ajax({
-      url: "https://localhost:5001/Pickup/GetListJoin",
+      url: "https://localhost:5001/Shipping/GetListJoin",
       type: "GET",
   
       success: function (result) {
@@ -52,39 +57,36 @@ $(document).ready(function () {
           $("#cuerpoTabla").empty();
           for (var i = 0; i < result.return.$values.length; i++) {
             
-            let f = new Intl.DateTimeFormat('en');
-            let a = f.formatToParts();
-            // var id = result.return.$values[i].idPickup.idPickup;
+            
+            
             var html = "<tr>";
   
-            html += "<td>" + result.return.$values[i].idPickup.idPickup + "</td>";
+            html += "<td>" + result.return.$values[i].idShipping.idShipping + "</td>";
             html +=
               "<td>" +
-              result.return.$values[i].idPickup.idDeliveryOrder +
+              result.return.$values[i].idShipping.idDeliveryOrder +
               "</td>";
             html +=
-              "<td>" + result.return.$values[i].idDeliveryOrder.volume + "</td>";
+              "<td>" + result.return.$values[i].idShipping.businessName + "</td>";
   
-            html += "<td>" + result.return.$values[i].idPickup.name + "</td>";
-            html += "<td>" + result.return.$values[i].idPickup.deliveryDate + "</td>";
-  
-            html +=
-              "<td><button type='button' id='btnEstado' class='btn btn-info' disabled> " +
-              result.return.$values[i].idPickup.state1 +
-              "</button></td>";
-            // html += "<td><button  onclick=' DeletePickup(" +result.return.$values[i].state1 + ") ' > "+ result.return.$values[i].idPickup.state1 +"  </button></td>";
-            html +=
-              "<td> <button type='button' id='btnActualizar' class='btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#ventanaModal'>Actualizar</button></td>";
-            html +=
-            "<td><button type='button' onclick='mostrarModal( \"#ventanaModal2\", "+ result.return.$values[i].idPickup.idPickup +")' class='btn btn-outline-danger'>Eliminar</button></td>";
+            html += "<td>" + result.return.$values[i].idShipping.deliveryDate + "</td>";            
+            html += "<td>" + result.return.$values[i].idShipping.comment + "</td>";
+            html += "<td>" + result.return.$values[i].idShipping.weight + "</td>";
             
-            // html += "<td><button  onclick=' DeletePickup(" + result.return.$values[i].idPickup.idPickup + ") ' >  Eliminar   </button></td>";
-  
-            // + result.return.$values[i].idPickup.idPickup
+
+            html +=
+              "<td><button type='button' id='btnEstado" + result.return.$values[i].idShipping.idShipping +"' class='btn btn-info' disabled>" +
+              result.return.$values[i].idShipping.state1 +
+              "</button></td>";
+           
+            html +=
+            "<td> <button type='button' onclick='estadoModal(\"#btnEstado" + result.return.$values[i].idShipping.idShipping +"\")' id='btnActualizar' class='btn btn-outline-primary' >Actualizar</button></td>";
+            html +=
+          "<td><button type='button' onclick='mostrarModal( \"#ventanaModal2\","+ result.return.$values[i].idShipping.idShipping +")' class='btn btn-outline-danger'>Eliminar</button></td>";
+           
             html += "</tr>";
             $("#cuerpoTabla").append(html);
-            // var html2 = <button type="button" id="Aceptado" class="btn btn-success" data-bs-dismiss="modal">Aceptar</button>
-            // $("#aceptarEliminar").append(html2);
+            
           }
         } else {
           Swal.fire(result.error);
@@ -95,3 +97,26 @@ $(document).ready(function () {
       }
     });
   }
+
+  
+function estadoModal(id) {
+  $("#ventanaModal").modal("toggle");
+  idEstadoTratar= id; 
+   
+}
+
+function actualizarEstado(){
+  
+  if ($(idEstadoTratar).hasClass('btn-info')) {
+      $(idEstadoTratar).removeClass('btn-info').addClass('btn-warning');
+      document.getElementById("Pregunta1").innerHTML =
+          "¿Esta seguro que quiere cambiar el Estado a 'Retirado'?";
+      $(idEstadoTratar).text('Listo para retirar');      
+  }
+  else if ($(idEstadoTratar).hasClass('btn-warning')) {
+      $(idEstadoTratar).removeClass('btn-warning').addClass('btn-success');
+      $(idEstadoTratar).text('Retirado')
+      $(idEstadoTratar).attr('disabled', 'disabled');
+      
+  }
+}
