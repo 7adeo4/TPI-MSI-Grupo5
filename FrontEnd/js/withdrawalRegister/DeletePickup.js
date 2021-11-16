@@ -94,13 +94,19 @@
 $(document).ready(function () {
   mostrarTabla();
   var idATratar;
+  var idEstadoTratar;
   
 
   $("#Aceptado2").click(function () {
-    DeleteShipping();
-    
+    DeleteShipping();   
     
   });
+  $("#Aceptado").click(function () {
+    actualizarEstado();   
+    
+  });
+  
+
 });
 
 function DeleteShipping() {
@@ -145,7 +151,7 @@ function mostrarTabla() {
         
         $("#cuerpoTabla").empty();
         for (var i = 0; i < result.return.$values.length; i++) {          
-          console.log("holaaa");
+          
          
           var html = "<tr>";
 
@@ -162,11 +168,11 @@ function mostrarTabla() {
 
           
             html +=
-              "<td><button type='button' id='btnEstado  " + result.return.$values[i].idPickup.idPickup +" ' class='btn btn-info' disabled> " +
+              "<td><button type='button' id='btnEstado" + result.return.$values[i].idPickup.idPickup +"' class='btn btn-info' disabled>" +
               result.return.$values[i].idPickup.state1 +
               "</button></td>";
               html +=
-              "<td> <button type='button' onclick='actualizarEstado(\"#btnEstado\"  " + result.return.$values[i].idPickup.idPickup +"  )' id='btnActualizar' class='btn btn-outline-primary' data-bs-toggle='modal' data-bs-target='#ventanaModal'>Actualizar</button></td>";
+              "<td> <button type='button' onclick='estadoModal(\"#btnEstado" + result.return.$values[i].idPickup.idPickup +"\")' id='btnActualizar' class='btn btn-outline-primary' >Actualizar</button></td>";
           html +=
           "<td><button type='button' onclick='mostrarModal( \"#ventanaModal2\", "+ result.return.$values[i].idPickup.idPickup +")' class='btn btn-outline-danger'>Eliminar</button></td>";
          
@@ -184,19 +190,24 @@ function mostrarTabla() {
   });
 }
 
+function estadoModal(id) {
+  $("#ventanaModal").modal("toggle");
+  idEstadoTratar= id; 
+   
+}
 
-function actualizarEstado(idBoton){
-  if ($(idBoton).hasClass('btn-info')) {
-      $(idBoton).removeClass('btn-info').addClass('btn-warning');
+function actualizarEstado(){debugger
+  
+  if ($(idEstadoTratar).hasClass('btn-info')) {
+      $(idEstadoTratar).removeClass('btn-info').addClass('btn-warning');
       document.getElementById("Pregunta1").innerHTML =
-          "¿Esta seguro que quiere cambiar el Estado a 'Retirado'?"
-      $("#btnEstado").text('Listo para retirar');
-      
+          "¿Esta seguro que quiere cambiar el Estado a 'Retirado'?";
+      $(idEstadoTratar).text('Listo para retirar');      
   }
-  else if ($(idBoton).hasClass('btn-warning')) {
-      $(idBoton).removeClass('btn-warning').addClass('btn-success');
-      $(idBoton).text('Retirado')
-      $(idBoton).attr('disabled', 'disabled');
-     
+  else if ($(idEstadoTratar).hasClass('btn-warning')) {
+      $(idEstadoTratar).removeClass('btn-warning').addClass('btn-success');
+      $(idEstadoTratar).text('Retirado')
+      $(idEstadoTratar).attr('disabled', 'disabled');
+      console.log("hola3");
   }
 }
