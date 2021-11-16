@@ -151,53 +151,53 @@ namespace SuperMamiApi.Controllers
             return result;
         }
 
-        [HttpPut]
-        [Route("Shipping/UpdateShipping")]
-        public ActionResult<ResultAPI> UpdateShipping([FromBody] CommandUpdateShipping command)
-        {
-            ResultAPI result = new ResultAPI();
-            try
-            {
-                if (command.IdShippingCompany <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Esa empresa de envíos no existe";
-                    return result;
-                }
-                if (command.IdState <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Ese estado de envíos no existe";
-                    return result;
-                }
+        // [HttpPut]
+        // [Route("Shipping/UpdateShipping")]
+        // public ActionResult<ResultAPI> UpdateShipping([FromBody] CommandUpdateShipping command)
+        // {
+        //     ResultAPI result = new ResultAPI();
+        //     try
+        //     {
+        //         if (command.IdShipping <= 0)
+        //         {
+        //             result.Ok = false;
+        //             result.Error = "Esa empresa de envíos no existe";
+        //             return result;
+        //         }
+        //         if (command.IdState <= 0)
+        //         {
+        //             result.Ok = false;
+        //             result.Error = "Ese estado de envíos no existe";
+        //             return result;
+        //         }
 
-                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
-                if (shipp != null)
-                {
-                    shipp.IdShippingCompany = command.IdShippingCompany;
-                    shipp.IdState = command.IdState;
+        //         var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+        //         if (shipp != null)
+        //         {
+        //             shipp.IdShippingCompany = command.IdShippingCompany;
+        //             shipp.IdState = command.IdState;
 
-                    db.Shippings.Update(shipp);
-                    db.SaveChanges();
-                    result.Ok = true;
-                    result.Return = db.Shippings.ToList();
-                    return result;
-                }
-                else
-                {
-                    result.Ok = false;
-                    result.ErrorCode = 200;
-                    result.Error = "Envío no encontrado, revise el Nro de Orden";
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al actualizar el Envío. Error: " + ex.ToString();
-                return result;
-            }
-        }
+        //             db.Shippings.Update(shipp);
+        //             db.SaveChanges();
+        //             result.Ok = true;
+        //             result.Return = db.Shippings.ToList();
+        //             return result;
+        //         }
+        //         else
+        //         {
+        //             result.Ok = false;
+        //             result.ErrorCode = 200;
+        //             result.Error = "Envío no encontrado, revise el Nro de Orden";
+        //             return result;
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al actualizar el Envío. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        // }
 
         [HttpPut]
         [Route("Shipping/DeleteShipping")]
@@ -208,14 +208,17 @@ namespace SuperMamiApi.Controllers
 
             try
             {
-                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
+                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
                 if (shipp != null)
                 {
                     if (shipp.IsActive == true)
                     {
                         shipp.IsActive = false;
                     }
-                    
+                    else
+                    {
+                        shipp.IsActive = true;
+                    }
 
                     db.Shippings.Update(shipp);
                     db.SaveChanges();
@@ -238,6 +241,50 @@ namespace SuperMamiApi.Controllers
                 return result;
             }
 
+        }
+
+
+        [HttpPut]
+        [Route("Shipping/UpdateShippingState")]
+        public ActionResult<ResultAPI> UpdateShippingState([FromBody] CommandUpdateShipping command)
+        {
+            ResultAPI result = new ResultAPI();
+
+            var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
+            if (shipp != null)
+            {
+                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
+                if (shipp != null)
+                {
+                    if (shipp.IsActive == true)
+                    {
+                        shipp.IsActive = false;
+                    }
+                    
+
+                if (shipp.IdState == 1)
+                {
+                    shipp.IdState = 4;
+                }
+                else
+                if (shipp.IdState == 4)
+                {
+                    shipp.IdState = 5;
+                }
+
+                db.Shippings.Update(shipp);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = shipp;
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Retiro no encontrado, revise el Documento";
+                return result;
+            }
         }
 
         //LISTADO
@@ -275,7 +322,7 @@ namespace SuperMamiApi.Controllers
             }
             return result;
         }
-
+        //CONTADOR
         //OBTENER CANTIDAD ENVIOS POR EMPRESA EN EL DIA
         [HttpPost]
         [Route("Shipping/GetShippingsByCompanyCountToday")]
@@ -312,106 +359,106 @@ namespace SuperMamiApi.Controllers
 
 
 
-        //REPORTES
-        [HttpGet]
-        [Route("Shipping/GetCountShippingType")]
-        public ActionResult<ResultAPI> GetCountShippingType()
-        {
+        // //REPORTES
+        // [HttpGet]
+        // [Route("Shipping/GetCountShippingType")]
+        // public ActionResult<ResultAPI> GetCountShippingType()
+        // {
 
-            var query = from s in db.Shippings
-                        join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
-                        join st in db.ShippingTypes on sc.IdShippingType equals st.IdShippingType
-                        group st by st.Description into g
-                        select new { tipo_de_envio = g.Key, Total = g.Count() };
+        //     var query = from s in db.Shippings
+        //                 join sc in db.ShippingCompanies on s.IdShippingCompany equals sc.IdShippingCompany
+        //                 join st in db.ShippingTypes on sc.IdShippingType equals st.IdShippingType
+        //                 group st by st.Description into g
+        //                 select new { tipo_de_envio = g.Key, Total = g.Count() };
 
-            // var query = from s in db.Shippings
-            //             where s.IdShipping == id
-            //             select s;
+        //     // var query = from s in db.Shippings
+        //     //             where s.IdShipping == id
+        //     //             select s;
 
-            var result = new ResultAPI();
-            try
-            {
-                if (query != null)
-                {
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se cargó la lista correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-            }
+        //     var result = new ResultAPI();
+        //     try
+        //     {
+        //         if (query != null)
+        //         {
+        //             result.Ok = true;
+        //             result.Return = query;
+        //             result.AdditionalInfo = "Se cargó la lista correctamente";
+        //             result.ErrorCode = 200;
+        //             return result;
+        //         }
+        //     }
 
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-            return result;
-        }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        //     return result;
+        // }
 
-        [HttpPost]
-        [Route("Shipping/GetCountShippingsByDate")]
-        public ActionResult<ResultAPI> GetCountShippingsByDate([FromBody] int month)
-        {
-            ResultAPI result = new ResultAPI();
+        // [HttpPost]
+        // [Route("Shipping/GetCountShippingsByDate")]
+        // public ActionResult<ResultAPI> GetCountShippingsByDate([FromBody] int month)
+        // {
+        //     ResultAPI result = new ResultAPI();
 
-            var query = (from s in db.Shippings
-                         join d in db.DeliveryOrders on s.IdDeliveryOrder equals d.IdDeliveryOrder
-                         where d.DeliveryDate.Month == month
-                         select s).Count();
-            try
-            {
-                result.Ok = true;
-                result.Return = query;
-                result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
-                result.ErrorCode = 200;
-                return result;
-            }
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-        }
+        //     var query = (from s in db.Shippings
+        //                  join d in db.DeliveryOrders on s.IdDeliveryOrder equals d.IdDeliveryOrder
+        //                  where d.DeliveryDate.Month == month
+        //                  select s).Count();
+        //     try
+        //     {
+        //         result.Ok = true;
+        //         result.Return = query;
+        //         result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
+        //         result.ErrorCode = 200;
+        //         return result;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        // }
 
-        [HttpPost]
-        [Route("Shipping/GetPriceRangeByMonth")]
-        public ActionResult<ResultAPI> GetPriceRangeByMonth([FromBody] int year)
-        {
+        // [HttpPost]
+        // [Route("Shipping/GetPriceRangeByMonth")]
+        // public ActionResult<ResultAPI> GetPriceRangeByMonth([FromBody] int year)
+        // {
 
-            var query = from doo in db.DeliveryOrders
-                        where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
-                        group doo by doo.DeliveryDate into g
-                        select new
-                        {
-                            Mes_de_facturación = g.Key.Month,
-                            Facturación_máxima = g.Max(z => z.ShippingPrice),
-                            Facturación_mínima = g.Min(z => z.ShippingPrice)
-                        };
+        //     var query = from doo in db.DeliveryOrders
+        //                 where doo.DeliveryDate.Year == year && doo.ShippingPrice != null
+        //                 group doo by doo.DeliveryDate into g
+        //                 select new
+        //                 {
+        //                     Mes_de_facturación = g.Key.Month,
+        //                     Facturación_máxima = g.Max(z => z.ShippingPrice),
+        //                     Facturación_mínima = g.Min(z => z.ShippingPrice)
+        //                 };
 
-            var result = new ResultAPI();
-            try
-            {
-                if (query != null)
-                {
-                    result.Ok = true;
-                    result.Return = query;
-                    result.AdditionalInfo = "Se cargó la lista correctamente";
-                    result.ErrorCode = 200;
-                    return result;
-                }
-            }
+        //     var result = new ResultAPI();
+        //     try
+        //     {
+        //         if (query != null)
+        //         {
+        //             result.Ok = true;
+        //             result.Return = query;
+        //             result.AdditionalInfo = "Se cargó la lista correctamente";
+        //             result.ErrorCode = 200;
+        //             return result;
+        //         }
+        //     }
 
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
-                return result;
-            }
-            return result;
-        }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        //     return result;
+        // }
 
     }
 }

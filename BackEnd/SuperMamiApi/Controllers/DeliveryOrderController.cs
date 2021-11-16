@@ -48,83 +48,81 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
-        [Route("DeliveryOrder/GetDeliveryOrderByID")]
-        public ActionResult<ResultAPI> Get([FromBody] CommandFindDeliveryOrder order)
+        [Route("DeliveryOrder/UpdateDeliveryOrder")]
+        public ActionResult<ResultAPI> UpdateDeliveryOrder([FromBody] CommandUpdateDeliveryOrder command)
         {
-            var resultado = new ResultAPI();
-            try
+            ResultAPI result = new ResultAPI();          
+
+            // if (s.IdShippingCompany <= 0)
+            // {
+            //     result.Ok = false;
+            //     result.Error = "Esa empresa de envío no existe";
+            //     return result;
+            // }
+
+            var delOrd = db.DeliveryOrders.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder && c.IsShipping == false).FirstOrDefault();
+            if (delOrd != null)
             {
 
-                var dO = db.DeliveryOrders.ToList().Where(c => c.IdDeliveryOrder == order.IdDeliveryOrder).FirstOrDefault();
-                if (dO != null)
-                {
-                    resultado.Ok = true;
-                    resultado.Return = dO;
-                    resultado.AdditionalInfo = "Se muestra la orden de entrega correctamente";
-                    resultado.ErrorCode = 200;
-                    return resultado;
-                }
-                else
-                {
-                    resultado.Ok = false;
-                    resultado.Error = "orden de entrega no encontrada";
-                    resultado.ErrorCode = 400;
-                    return resultado;
-                }
-
-            }
-            catch (Exception ex)
-            {
-                resultado.Ok = false;
-                resultado.Error = "Error al cargar la orden de entrega" + ex.Message;
-                resultado.ErrorCode = 400;
-                return resultado;
-            }
-
-        }
+                delOrd.IdBranch = command.IdBranch;                
 
 
-        [HttpPost]
-        [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
-        public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
-        {
-            ResultAPI result = new ResultAPI();
-
-            var resultado = new ResultAPI();
-            var query = from doo in db.DeliveryOrders
-                        where doo.DeliveryDate.Year == p_anio
-                        group doo.DeliveryDate.Year by doo.DeliveryDate.Year into g
-                        select new
-                        {
-                            Año = g.Key,
-                            Cantidad_envíos = (from s1 in db.Shippings
-                                               join d1 in db.DeliveryOrders on
-                                               s1.IdDeliveryOrder equals d1.IdDeliveryOrder
-                                               where s1.IsActive == true && d1.DeliveryDate.Year == p_anio
-                                               select s1.IdShipping).Count(),
-                            Cantidad_retiros =
-                                                (from p1 in db.Pickups
-                                                 join d2 in db.DeliveryOrders on
-                                                 p1.IdDeliveryOrder equals d2.IdDeliveryOrder
-                                                 where p1.IsActive == true && d2.DeliveryDate.Year == p_anio
-                                                 select p1.IdPickup).Count()
-                        };
-
-            try
-            {
+                db.DeliveryOrders.Update(delOrd);
+                db.SaveChanges();
                 result.Ok = true;
-                result.Return = query;
-                result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
-                result.ErrorCode = 200;
+                result.Return = db.DeliveryOrders.ToList();
                 return result;
             }
-            catch (Exception ex)
+            else
             {
                 result.Ok = false;
-                result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+                result.ErrorCode = 200;
+                result.Error = "Empresa no encontrada";
                 return result;
             }
         }
+        
+        // [HttpPost]
+        // [Route("DeliveryOrder/GetTotalShippingsAndPickups")]
+        // public ActionResult<ResultAPI> GetTotalShippingsAndPickups([FromBody] int p_anio)
+        // {
+        //     ResultAPI result = new ResultAPI();
+
+        //     var resultado = new ResultAPI();
+        //     var query = from doo in db.DeliveryOrders
+        //                 where doo.DeliveryDate.Year == p_anio
+        //                 group doo.DeliveryDate.Year by doo.DeliveryDate.Year into g
+        //                 select new
+        //                 {
+        //                     Año = g.Key,
+        //                     Cantidad_envíos = (from s1 in db.Shippings
+        //                                        join d1 in db.DeliveryOrders on
+        //                                        s1.IdDeliveryOrder equals d1.IdDeliveryOrder
+        //                                        where s1.IsActive == true && d1.DeliveryDate.Year == p_anio
+        //                                        select s1.IdShipping).Count(),
+        //                     Cantidad_retiros =
+        //                                         (from p1 in db.Pickups
+        //                                          join d2 in db.DeliveryOrders on
+        //                                          p1.IdDeliveryOrder equals d2.IdDeliveryOrder
+        //                                          where p1.IsActive == true && d2.DeliveryDate.Year == p_anio
+        //                                          select p1.IdPickup).Count()
+        //                 };
+
+        //     try
+        //     {
+        //         result.Ok = true;
+        //         result.Return = query;
+        //         result.AdditionalInfo = "Se muestra la cantidad de envios por fecha correctamente";
+        //         result.ErrorCode = 200;
+        //         return result;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al mostrar la cantidad. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        // }
 
     }
 }

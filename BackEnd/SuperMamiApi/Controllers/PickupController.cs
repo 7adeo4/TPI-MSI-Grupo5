@@ -89,7 +89,15 @@ namespace SuperMamiApi.Controllers
                     result.Error = "Esa orden de entrega no existe";
                     return result;
                 }
-                 
+
+                if (command.IdUser <= 0)
+                {
+                    result.Ok = false;
+                    result.Error = "Ese usuario no existe";
+                    return result;
+                }
+
+
                 Pickup r = new Pickup();
 
                 r.IdDeliveryOrder = command.IdDeliveryOrder;
@@ -102,7 +110,7 @@ namespace SuperMamiApi.Controllers
 
                 PickupDetail pd = new PickupDetail();
 
-                pd.IdPickup = r.IdPickup;                
+                pd.IdPickup = r.IdPickup;
                 pd.Volume = command.Volume;
 
                 db.PickupDetails.Add(pd);
@@ -116,7 +124,7 @@ namespace SuperMamiApi.Controllers
                 this.UpdateDeliveryOrder(command2);
 
                 result.Ok = true;
-                var pickup = db.Pickups.ToList();                
+                var pickup = db.Pickups.ToList();
                 result.Return = pickup;
             }
 
@@ -240,6 +248,42 @@ namespace SuperMamiApi.Controllers
                 result.Ok = false;
                 result.Error = "Error al cargar retiros" + ex.Message;
                 result.ErrorCode = 400;
+                return result;
+            }
+        }
+
+        [HttpPut]
+        [Route("Pickup/UpdatePickupState")]
+        public ActionResult<ResultAPI> UpdatePickupState([FromBody] CommandUpdatePickup command)
+        {
+            ResultAPI result = new ResultAPI();
+
+
+            var pick = db.Pickups.Where(c => c.IdPickup == command.IdPickup).FirstOrDefault();
+            if (pick != null)
+            {
+
+                if (pick.IdState == 1)
+                {
+                    pick.IdState = 4;
+                }
+                else
+                if (pick.IdState == 4)
+                {
+                    pick.IdState = 5;
+                }
+
+                db.Pickups.Update(pick);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = pick;
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Retiro no encontrado, revise el Documento";
                 return result;
             }
         }
