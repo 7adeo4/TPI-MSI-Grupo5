@@ -1,54 +1,43 @@
-insertShipping = () => {
-  let user = document.getElementById("user").value;
-  let order = document.getElementById("order").value;
-  let company = document.getElementById("company").value;
-  let weight = document.getElementById("weight").value;
-  let volume = document.getElementById("volume").value;
-  let bags = document.getElementById("bags").value;
+$(document).ready(function () {debugger
+  $("#btnRegistrar").click(function () {
 
-  command = {
-    idShippingCompany: parseInt(company),
-    idDeliveryOrder: parseInt(order),
-    idUser: 1,
-    weight: weight,
-    volume: volume,
-    bagsQuantity: parseInt(bags),
-  };
+      let order = $("#order").val();
+      let company = $('select#company option:checked').val(); 
+      let weight = $("#weight").val();
+      let comment = $("#comment").val();
 
-  fetch("https://localhost:5001/Shipping/RegisterShipping", {
-    method: "POST",
-    body: JSON.stringify(command),
-    headers: {
-      "Content-type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      if (data === "error") console.log(result.error);
-      else swal("Datos ingresados correctamente");
-    })
-    .catch((error) => {
-      console.log(error);
-      swal("Problemas con el servidor");
-    });
+      ShippingRegister(order, company, weight, comment);
+  });
+});
 
-  // $.ajax({
-  //     url: "https://localhost:5001/Usuario/AltaUsuario",
-  //     type: "POST",
-  //     dataType: "JSON",
-  //     contentType: "application/json",
-  //     data: JSON.stringify(command),
-  //     success: function (result) {
-  //         if (result.ok) {
-  //             swal("Vaaaaamooo lxs piii");
-  //         } else {
-  //             swal(result.error);
-  //         }
-  //     },
-  //     error: function (error) {
-  //         swal("Problemas en el servidor");
-  //     },
 
-  // });
-};
+function ShippingRegister(order, company, weight, comment) {
+  comando = {
+    "idShippingCompany": parseInt(order),
+    "idDeliveryOrder": parseInt(company) ,
+    "idUser": 1,
+    "comment": comment,
+    "weight":  parseFloat(weight)
+  }
+
+
+  $.ajax({
+      url: "https://localhost:5001/Shipping/RegisterShipping",
+      type: "POST",
+      dataType: "json",
+      contentType: "application/json",
+      data: JSON.stringify(comando),
+      success: function (result) {
+          if (result.ok) {
+              swal("Excelente!", "Se registró el envío.", "success");
+
+          }
+          else {
+              swal("Error", "Algo salió mal", "error")
+          }
+      },
+      error: function (error) {
+          swal("Problemas en el servidor");
+      }
+  });
+}
