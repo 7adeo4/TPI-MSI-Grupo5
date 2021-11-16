@@ -83,7 +83,7 @@ namespace SuperMamiApi.Controllers
                     return result;
                 }
 
-                 
+
                 Pickup r = new Pickup();
 
                 r.IdDeliveryOrder = command.IdDeliveryOrder;
@@ -96,9 +96,9 @@ namespace SuperMamiApi.Controllers
 
                 PickupDetail pd = new PickupDetail();
 
-                pd.IdPickup = r.IdPickup;                
+                pd.IdPickup = r.IdPickup;
                 pd.Volume = command.Volume;
-                
+
 
                 db.PickupDetails.Add(pd);
                 db.SaveChanges();
@@ -106,7 +106,7 @@ namespace SuperMamiApi.Controllers
 
 
                 result.Ok = true;
-                var pickup = db.Pickups.ToList();                
+                var pickup = db.Pickups.ToList();
                 result.Return = pickup;
             }
 
@@ -234,6 +234,42 @@ namespace SuperMamiApi.Controllers
             }
         }
 
+        [HttpPut]
+        [Route("Pickup/UpdatePickupState")]
+        public ActionResult<ResultAPI> UpdatePickupState([FromBody] CommandUpdatePickup command)
+        {
+            ResultAPI result = new ResultAPI();
+
+
+            var pick = db.Pickups.Where(c => c.IdPickup == command.IdPickup).FirstOrDefault();
+            if (pick != null)
+            {
+
+                if (pick.IdState == 1)
+                {
+                    pick.IdState = 4;
+                }
+                else
+                if (pick.IdState == 4)
+                {
+                    pick.IdState = 5;
+                }
+
+                db.Pickups.Update(pick);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = pick;
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Retiro no encontrado, revise el Documento";
+                return result;
+            }
+        }
+
         //LISTADO
         [HttpGet]
         [Route("Pickup/GetListJoin")]
@@ -243,8 +279,8 @@ namespace SuperMamiApi.Controllers
             var query = from p in db.Pickups
                         join pd in db.PickupDetails on p.IdPickup equals pd.IdPickup
                         where p.IsActive == true
-                        group p by new {p.IdPickup, p.IdDeliveryOrder, p.IdState, pd.Weight} into g
-                        select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, IdState = g.Key, Weight = g.Key};
+                        group p by new { p.IdPickup, p.IdDeliveryOrder, p.IdState, pd.Weight } into g
+                        select new { IdPickup = g.Key, IdDeliveryOrder = g.Key, IdState = g.Key, Weight = g.Key };
 
             var result = new ResultAPI();
             try

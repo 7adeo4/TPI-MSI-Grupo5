@@ -151,53 +151,53 @@ namespace SuperMamiApi.Controllers
             return result;
         }
 
-        [HttpPut]
-        [Route("Shipping/UpdateShipping")]
-        public ActionResult<ResultAPI> UpdateShipping([FromBody] CommandUpdateShipping command)
-        {
-            ResultAPI result = new ResultAPI();
-            try
-            {
-                if (command.IdShippingCompany <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Esa empresa de envíos no existe";
-                    return result;
-                }
-                if (command.IdState <= 0)
-                {
-                    result.Ok = false;
-                    result.Error = "Ese estado de envíos no existe";
-                    return result;
-                }
+        // [HttpPut]
+        // [Route("Shipping/UpdateShipping")]
+        // public ActionResult<ResultAPI> UpdateShipping([FromBody] CommandUpdateShipping command)
+        // {
+        //     ResultAPI result = new ResultAPI();
+        //     try
+        //     {
+        //         if (command.IdShipping <= 0)
+        //         {
+        //             result.Ok = false;
+        //             result.Error = "Esa empresa de envíos no existe";
+        //             return result;
+        //         }
+        //         if (command.IdState <= 0)
+        //         {
+        //             result.Ok = false;
+        //             result.Error = "Ese estado de envíos no existe";
+        //             return result;
+        //         }
 
-                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
-                if (shipp != null)
-                {
-                    shipp.IdShippingCompany = command.IdShippingCompany;
-                    shipp.IdState = command.IdState;
+        //         var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+        //         if (shipp != null)
+        //         {
+        //             shipp.IdShippingCompany = command.IdShippingCompany;
+        //             shipp.IdState = command.IdState;
 
-                    db.Shippings.Update(shipp);
-                    db.SaveChanges();
-                    result.Ok = true;
-                    result.Return = db.Shippings.ToList();
-                    return result;
-                }
-                else
-                {
-                    result.Ok = false;
-                    result.ErrorCode = 200;
-                    result.Error = "Envío no encontrado, revise el Nro de Orden";
-                    return result;
-                }
-            }
-            catch (Exception ex)
-            {
-                result.Ok = false;
-                result.Error = "Algo salió mal al actualizar el Envío. Error: " + ex.ToString();
-                return result;
-            }
-        }
+        //             db.Shippings.Update(shipp);
+        //             db.SaveChanges();
+        //             result.Ok = true;
+        //             result.Return = db.Shippings.ToList();
+        //             return result;
+        //         }
+        //         else
+        //         {
+        //             result.Ok = false;
+        //             result.ErrorCode = 200;
+        //             result.Error = "Envío no encontrado, revise el Nro de Orden";
+        //             return result;
+        //         }
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         result.Ok = false;
+        //         result.Error = "Algo salió mal al actualizar el Envío. Error: " + ex.ToString();
+        //         return result;
+        //     }
+        // }
 
         [HttpPut]
         [Route("Shipping/DeleteShipping")]
@@ -241,6 +241,42 @@ namespace SuperMamiApi.Controllers
                 return result;
             }
 
+        }
+
+
+        [HttpPut]
+        [Route("Shipping/UpdateShippingState")]
+        public ActionResult<ResultAPI> UpdateShippingState([FromBody] CommandUpdateShipping command)
+        {
+            ResultAPI result = new ResultAPI();
+
+            var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
+            if (shipp != null)
+            {
+
+                if (shipp.IdState == 1)
+                {
+                    shipp.IdState = 4;
+                }
+                else
+                if (shipp.IdState == 4)
+                {
+                    shipp.IdState = 5;
+                }
+
+                db.Shippings.Update(shipp);
+                db.SaveChanges();
+                result.Ok = true;
+                result.Return = shipp;
+                return result;
+            }
+            else
+            {
+                result.Ok = false;
+                result.ErrorCode = 200;
+                result.Error = "Retiro no encontrado, revise el Documento";
+                return result;
+            }
         }
 
         //LISTADO
