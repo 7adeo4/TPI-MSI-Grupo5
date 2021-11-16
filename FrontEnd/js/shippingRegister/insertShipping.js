@@ -30,7 +30,6 @@ function ShippingRegister(order, company, weight, comment) {
       success: function (result) {
           if (result.ok) {
               swal("Excelente!", "Se registró el envío.", "success");
-
           }
           else {
               swal("Error", "Algo salió mal", "error")
