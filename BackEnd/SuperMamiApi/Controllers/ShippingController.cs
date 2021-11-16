@@ -253,6 +253,14 @@ namespace SuperMamiApi.Controllers
             var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
             if (shipp != null)
             {
+                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
+                if (shipp != null)
+                {
+                    if (shipp.IsActive == true)
+                    {
+                        shipp.IsActive = false;
+                    }
+                    
 
                 if (shipp.IdState == 1)
                 {
