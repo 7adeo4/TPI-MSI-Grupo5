@@ -10,9 +10,9 @@
     <title>Home</title>
 </head>
 
-<body>
+<body style="height: 100vh">
     <nav class="container-fluid navbar navbar-light bg-dark d-flex flex-row-reverse">
-        <a id="logOut"><i style="font-size: 30px;" class="text-white fas fa-sign-out-alt"></i></a>
+        <a  class="navbar-brand" id="logOut" href="../joinPage.html"><i style="font-size: 30px;" class="text-white fas fa-sign-out-alt"></i></a>
         <a class="navbar-brand" href="./home.html">
             <i style="font-size:30px" class="text-white fas fa-home"></i>
         </a>
@@ -26,37 +26,43 @@
             <h2>HOME</h2>
         </div>
     </div>
-    <div class="container">
-        <form class="d-flex justify-content-center align-items-center flex-column mt-5">
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <button onclick="window.location.href='shippingRegister.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Registrar Envío</button>
+    <div class="container mt-3" >
+        <div class="card-group">
+            <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top img-fluid" src="/TPI-MSI-Grupo5/FrontEnd/images/pngegg (2).png"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="updateSending.html"
+                        class="btn btn-outline-dark d-grid gap-2 col-lg-12 col-sm-6 col-md-6 mx-auto">ENVÍOS</a>
+                </div>
             </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <button onclick="window.location.href='updateSending.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Actualizar Envío</button>
+            <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top img-fluid" src="/TPI-MSI-Grupo5/FrontEnd/images/REtiros 2.png"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="updateWithdrawal.html"
+                        class="btn btn-outline-dark d-grid gap-2 col-lg-12 col-sm-6 col-md-6 mx-auto">RETIROS</a>
+                </div>
             </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <button onclick="window.location.href='withdrawalRegister.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Registrar Retiro</button>
+            <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top img-fluid" src="/TPI-MSI-Grupo5/FrontEnd/images/Empresas.png"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#"
+                        class="btn btn-outline-dark d-grid gap-2 col-lg-12 col-sm-6 col-md-6 mx-auto">EMPRESAS</a>
+                </div>
             </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <button onclick="window.location.href='updateWithdrawal.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Actualizar Retiro</button>
+            <div class="card m-3" style="width: 18rem;">
+                <img class="card-img-top img-fluid" src="/TPI-MSI-Grupo5/FrontEnd/images/Reportes.png"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#"
+                        class="btn btn-outline-dark d-grid gap-2 col-lg-12 col-sm-6 col-md-6 mx-auto">REPORTES</a>
+                </div>
             </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <button onclick="window.location.href='reports.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Reportes de Envíos/Retiros</button>
-            </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <imput onclick="window.location.href='companyRegistration.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Registro de Empresas</imput>
-            </div>
-            <div class="col-8 mb-3 d-flex justify-content-center align-items-center">
-                <imput onclick="window.location.href='companyReports.html'" type="button"
-                    class="btn btn-outline-danger btn-lg col-10">Reportes de Empresas</imput>
-            </div>
-        </form>
+
+        </div>
+
     </div>
 </body>
 
