@@ -35,57 +35,20 @@
                             <div class="d-flex justify-content-between ">
                                 <label for="order" class="form-label pt-3">Nº de Orden</label>
 
-                                <button type="button" class="btn btn-outline-primary mb-2 mx-4" data-bs-toggle="modal"
-                                    data-bs-target="#ventanaModal">Información Orden de
+                                <button type="button" class="btn btn-outline-primary mb-2 mx-4"  id="btnOrdenEntrega">Información Orden de
                                     Entrega</button>
                             </div>
                             <div class="modal" id="ventanaModal" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header ">
                                             <h5 class="modal-title">Información Orden de Entrega</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close" ></button>
                                         </div>
                                         <div class="modal-body">
                                             <table class="table table-dark table-stripe table-hover">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>Nombre</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Apellido</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Teléfono</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Fecha</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Barrio</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Es Propietario (owner)</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Precio del Envío</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Es Gratis?</td>
-                                                        <td>-</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Peso</td>
-                                                        <td>-</td>
-                                                    </tr>
+                                                <tbody id="DeliveryOrderBody">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -166,6 +129,7 @@
     <script src="../js/getCompleteName.js"></script>
     <script src="../js/shippingRegister/validations.js"></script>
     <script src="../js/shippingRegister/insertShipping.js"></script>
+    <script src="../js/shippingRegister/deliveryOrderShipping.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
