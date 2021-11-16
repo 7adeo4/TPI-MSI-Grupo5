@@ -1,4 +1,4 @@
-$(document).ready(function () {debugger
+$(document).ready(function () {
   $("#btnRegistrar").click(function () {
 
       let order = $("#order").val();
