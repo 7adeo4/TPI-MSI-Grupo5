@@ -16,15 +16,15 @@ const goLogOut = (e) => {
 const goLogIn = () => {
     keepLog = true;
     localStorage.setItem("keepLog", keepLog);
-    window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/Home.html');
+    window.location.assign('http://127.0.0.1:5500/views/Home.html');
 }
 
 const verifyLogin = () => {
     if (!localStorage.getItem("keepLog")) {
-        window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/Home.html');
+        window.location.assign('http://127.0.0.1:5500/views/Home.html');
     }
     else {
-        window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/login.html')
+        window.location.assign('http://127.0.0.1:5500/views/login.html')
     }
 }
 
@@ -38,8 +38,8 @@ const getEmailPass = () => {
         }
     }).then(res => {
         if (res.data.return.idRol == 1 || res.data.return.idRol == 2) window.location.assign('Home.html');
-        if (res.data.return.idRol == 3) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/ListShippings.html');
-        if (res.data.return.idRol == 4) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/ListPickup.html');
+        if (res.data.return.idRol == 3) window.location.assign('http://127.0.0.1:5500/views/ListShippings.html');
+        if (res.data.return.idRol == 4) window.location.assign('http://127.0.0.1:5500/views/ListPickup.html');
         nameSurname = res.data.return.name + ' ' + res.data.return.surname
         boss = res.data.return.idRol;
         localStorage.setItem("userPassword", nameSurname);

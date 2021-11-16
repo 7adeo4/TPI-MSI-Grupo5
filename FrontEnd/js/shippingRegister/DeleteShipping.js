@@ -28,7 +28,7 @@ $(document).ready(function () {
       data: JSON.stringify(comando),
       success: function (result) {
         if (result.ok) {
-          alert("Envío Eliminado");
+          swal("Envío Eliminado");
           console.log(comando);
   
           mostrarTabla();
