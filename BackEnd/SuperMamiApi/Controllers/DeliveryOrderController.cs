@@ -48,6 +48,28 @@ namespace SuperMamiApi.Controllers
         }
 
         [HttpPost]
+        [Route("DeliveryOrder/GetDeliveryOrderById")]
+        public ActionResult<ResultAPI> GetDeliveryOrderById([FromBody] CommandFindDeliveryOrder command)
+        {
+            var resultado = new ResultAPI();
+            try
+            {
+                resultado.Ok = true;
+                resultado.Return = db.DeliveryOrders.ToList().FirstOrDefault(c=>c.IdDeliveryOrder == command.IdDeliveryOrder);
+                resultado.AdditionalInfo = "Se cargó la lista correctamente";
+                resultado.ErrorCode = 200;
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                resultado.Ok = false;
+                resultado.Error = "Error al cargar la orden de entrega" + ex.Message;
+                resultado.ErrorCode = 400;
+                return resultado;
+            }
+        }
+
+        [HttpPost]
         [Route("DeliveryOrder/UpdateDeliveryOrder")]
         public ActionResult<ResultAPI> UpdateDeliveryOrder([FromBody] CommandUpdateDeliveryOrder command)
         {

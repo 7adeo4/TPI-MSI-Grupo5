@@ -208,7 +208,7 @@ namespace SuperMamiApi.Controllers
 
             try
             {
-                var shipp = db.Shippings.Where(c => c.IdDeliveryOrder == command.IdDeliveryOrder).FirstOrDefault();
+                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
                 if (shipp != null)
                 {
                     if (shipp.IsActive == true)
@@ -253,14 +253,11 @@ namespace SuperMamiApi.Controllers
             var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
             if (shipp != null)
             {
-                var shipp = db.Shippings.Where(c => c.IdShipping == command.IdShipping).FirstOrDefault();
-                if (shipp != null)
+                if (shipp.IsActive == true)
                 {
-                    if (shipp.IsActive == true)
-                    {
-                        shipp.IsActive = false;
-                    }
-                    
+                    shipp.IsActive = false;
+                }
+
 
                 if (shipp.IdState == 1)
                 {
@@ -285,6 +282,8 @@ namespace SuperMamiApi.Controllers
                 result.Error = "Retiro no encontrado, revise el Documento";
                 return result;
             }
+
+
         }
 
         //LISTADO
