@@ -2,7 +2,6 @@ const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 const company = document.getElementById('company');
 const closeSesion = document.getElementById('closeSesion');
-getEmail()
 getCompany();
 
 const expresions = {
