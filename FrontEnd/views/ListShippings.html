@@ -70,13 +70,52 @@
                     </div>
                 </div>
             </div>
+        </nav>
+        <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
+            <img class="col-lg-4 col-8" src="https://www.dinoonline.com.ar/super/images/logo-super-mami.png">
         </div>
-        <div class="modal" id="ventanaModal2" tabindex="-1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Cancelar</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="d-flex justify-content-center mt-5">
+            <h2>Envíos</h2>
+        </div>
+        <div class="container">
+    <a href="shippingRegister.html" class="btn btn-primary" >Agregar envio</a>
+    
+            <table class="table " border="0" id="table" >
+                <thead>
+                    <tr>
+                        <th data-field="id">Codigo de Envío</th>
+                        <th data-field="empresa" data-filter-control="input">Empresa</th>
+                        <th data-field="fecha" data-filter-control="input">Fecha</th>
+                        <th data-field="peso" data-filter-control="input">Peso</th>
+                        <th data-field="observaciones" >Observaciones</th>
+                        <th data-field="estados" >Estados</th>
+    
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+    
+    
+    
+                </tbody>
+            </table>
+            <div class="modal" id="ventanaModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Actualizar Estado</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="alert alert-success">
+                                <p id="Pregunta1"> ¿Esta seguro que quiere cambiar el Estado a
+                                    'Enviado' ? </p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="Aceptado" class="btn btn-success"
+                                data-bs-dismiss="modal">Aceptar</button>
+                        </div>
                     </div>
                     <div class="modal-body">
                         <div class="alert alert-danger">

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    debugger
+    
     $("#btnOrdenEntrega").click(function () {
 
         let DeliveryOrderId = $("#order").val();
@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 function DeliveryOrderShow(DeliveryOrderId) {
-    debugger
+    
     comando = {
         "idDeliveryOrder": parseInt(DeliveryOrderId)
     }
