@@ -19,44 +19,24 @@ insertUser = () => {
         password: password,
     };
 
-    fetch("https://localhost:5001/User/RegisterUser", {
-        method: 'POST',
-        body: JSON.stringify(command),
-        headers: {
-            "Content-type": "application/json"
-        }
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            if (data === 'error') console.log(result.error);
-            else swal('Datos ingresados correctamente');
-            window.location.replace('Home.html');
+        axios({
+            method: 'POST',
+            url: 'https://localhost:5001/User/RegisterUser',
+            data: command,
+        }).then(res => {
+            console.log(res.data.return.$values[res.data.return.$values.length - 1].idRol);
+            if (res.data.return.$values[res.data.return.$values.length - 1].idRol == 1 || res.data.return.$values[res.data.return.$values.length - 1].idRol == 2) window.location.assign('Home.html');
+            if (res.data.return.$values[res.data.return.$values.length - 1].idRol == 3) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/ListShippings.html');
+            if (res.data.return.$values[res.data.return.$values.length - 1].idRol == 4) window.location.assign('http://127.0.0.1:5500/TPI-MSI-Grupo5/FrontEnd/views/ListPickup.html');
+            nameSurname = res.data.return.$values[res.data.return.$values.length - 1].name + ' ' + res.data.return.$values[res.data.return.$values.length - 1].surname
+            boss = res.data.return.$values[res.data.return.$values.length - 1].idRol;
+            localStorage.setItem("userPassword", nameSurname);
+            localStorage.setItem("boss", boss);
         })
-        .catch(error => {
-            console.log(error)
-            swal("Problemas con el servidor")
-        })
+            .catch(err => {
+                console.log(err)
+                swal("Email o contraseña incorrecto")
+            })
 
 
-
-
-    // $.ajax({
-    //     url: "https://localhost:5001/Usuario/AltaUsuario",
-    //     type: "POST",
-    //     dataType: "JSON",
-    //     contentType: "application/json",
-    //     data: JSON.stringify(command),
-    //     success: function (result) {
-    //         if (result.ok) {
-    //             swal("Vaaaaamooo lxs piii");
-    //         } else {
-    //             swal(result.error);
-    //         }
-    //     },
-    //     error: function (error) {
-    //         swal("Problemas en el servidor");
-    //     },
-
-    // });
 }

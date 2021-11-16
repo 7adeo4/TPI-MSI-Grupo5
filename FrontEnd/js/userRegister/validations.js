@@ -137,7 +137,6 @@ form.addEventListener('submit', (e) => {
 		}
 		else {
 			insertUser();
-			setEmail();
 			// goLogOut();
 			form.reset();
 			document.getElementById('form__success-message').classList.add('form__success-message-active');

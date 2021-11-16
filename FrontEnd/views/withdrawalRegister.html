@@ -14,22 +14,10 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand mx-3" href="./home.html">
-                <i style="font-size:30px" class="text-white fas fa-home"></i>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse row navbar-collapse" id="navbarNavDropdown">
-                <div class="navbar-nav d-flex justify-content-between">
-                   
-                    <label class="text-center align-self-center mb-3 mb-lg-0 mx-1 text-light border-bottom"
-                        id="userEmail"></label>
-                    <button id="closeSesion" onclick="goLogOut()" class="btn btn-outline-warning text-light mx-3">Cerrar
-                        Sesion</button>
-                </div>
-            </div>
+            <label class="text-center align-self-center mb-1 mb-lg-1 mx-1 text-light fs-6"
+                id="userNav"></label>
+            <button id="closeSesion" onclick="goLogOut()" class="btn btn-outline-warning text-light mx-3">Cerrar
+                Sesion</button>
         </div>
     </nav>
     <div style="background-color:rgb(250, 217, 5);" class="d-flex justify-content-center shadow-lg p-3 mb-5 rounded">
@@ -146,13 +134,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <script src="../js/PickupRegister/getBranch.js"></script>
+    <script src="../js/PickupRegister/pickupRegister.js"></script>
     <script src="../js/keepLoggedIn.js"></script>
-    <script src="../js/withdrawalRegister/getBranch.js"></script>
-    <script src="../js/withdrawalRegister/pickupRegister.js"></script>
+    <script src="../js/getCompleteName.js"></script>
     <script src="../js/PickupRegister/DeliveryOrderPickUp.js"></script>
     <script src="../js/withdrawalRegister/validations.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="../js/withdrawalRegister/DeletePickup.js"></script>    
+    <script src="../js/PickupRegister/DeletePickup.js"></script>
 </body>
 
 </html>
